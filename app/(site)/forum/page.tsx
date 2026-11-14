@@ -9,6 +9,7 @@ import { decodeForumCursor, forumPageHref, forumSearch } from '@/lib/forum-valid
 import { forumSort } from '@/lib/forum-ranking';
 import { ForumPostCard } from '@/components/forum-post';
 import { ForumFeed } from '@/components/forum-feed';
+import { PageAd } from '@/components/page-ad';
 type Props = { searchParams: Promise<{ q?: string; after?: string; sort?: string }> };
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams;
@@ -123,6 +124,7 @@ export default async function ForumPage({ searchParams }: Props) {
           </ForumFeed>
         )}
       </section>
+      <PageAd show={page.posts.length > 0} />
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next';
-import Script from 'next/script';
+import { GoogleAnalytics } from '@/components/google-analytics';
+import { AdSenseNavigationGuard } from '@/components/adsense-navigation-guard';
+import { ADSENSE_CLIENT } from '@/lib/adsense';
 import './globals.css';
 import './reference.css';
 import './polish.css';
@@ -25,6 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
     },
     twitter: { card: 'summary_large_image' },
+    other: { 'google-adsense-account': ADSENSE_CLIENT },
     verification: { google: seo.googleVerification || undefined },
     alternates: { types: { 'application/rss+xml': '/feed.xml' } },
     robots: { index: true, follow: true },
@@ -36,20 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-theme="light" data-scroll-behavior="smooth" suppressHydrationWarning>
       {/* Extensions can inject attributes on html and body before React hydrates. */}
       <body suppressHydrationWarning>
+        <AdSenseNavigationGuard />
         {children}
-        <Script id="google-analytics-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-V9CT08E8JJ');
-          `}
-        </Script>
-        <Script
-          id="google-analytics"
-          src="https://www.googletagmanager.com/gtag/js?id=G-V9CT08E8JJ"
-          strategy="afterInteractive"
-        />
+        <GoogleAnalytics />
       </body>
     </html>
   );

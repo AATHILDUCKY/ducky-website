@@ -1,6 +1,7 @@
 import { ContactForm } from '@/components/contact-form';
 import './contact.css';
 import { ReferencePage } from '@/components/reference-page';
+import { PageAd } from '@/components/page-ad';
 export const metadata = {
   title: 'Contact',
   description:
@@ -12,6 +13,7 @@ export default function Page() {
     <>
       <ReferencePage name="contact" />
       <ContactForm />
+      <PageAd contained />
     </>
   );
 }

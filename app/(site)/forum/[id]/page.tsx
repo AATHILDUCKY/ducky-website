@@ -12,6 +12,7 @@ import { ForumPostCard } from '@/components/forum-post';
 import { ForumReplyForm } from '@/components/forum-reply-form';
 import { ForumComment } from '@/components/forum-comment';
 import { ForumCommentList } from '@/components/forum-comment-list';
+import { PageAd } from '@/components/page-ad';
 import type { ForumReply } from '@/lib/forum-types';
 import { z } from 'zod';
 type Props = {
@@ -121,6 +122,7 @@ export default async function ForumDetail({ params, searchParams }: Props) {
         ← All posts
       </Link>
       <ForumPostCard post={post} author={profile} admin={admin} full />
+      {post.status === 'published' && <PageAd />}
       <section id="replies" className="forum-replies">
         <div className="forum-replies-heading">
           <MessageCircle size={23} />

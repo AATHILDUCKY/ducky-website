@@ -178,6 +178,24 @@ Official references researched for the implementation:
 - [Google: article structured data](https://developers.google.com/search/docs/appearance/structured-data/article)
 - [Google: verify site ownership](https://support.google.com/webmasters/answer/9008080)
 
+## Google AdSense
+
+Publisher `ca-pub-6405478732026557` is configured, including the account-verification meta tag and `/ads.txt`. Create a **responsive display** ad unit in AdSense, then set its numeric `data-ad-slot` in `.env` or the build environment:
+
+```dotenv
+NEXT_PUBLIC_ADSENSE_DISPLAY_SLOT=YOUR_NUMERIC_SLOT_ID
+```
+
+Rebuild and restart after setting this value. Leaving it empty disables both ad placements and AdSense script requests; no placeholder or sample slot is sent to Google.
+
+Each eligible public page has one labeled placement at a natural content break, away from navigation and form controls. Sizes are 320×100 on phones (shrinking to the available width on narrow screens), 468×60 on tablets, and 728×90 on desktop. Space is reserved before loading. The script loads only when a placement approaches the viewport; unfilled ads or script failures collapse the placement. Ads never auto-refresh.
+
+The home page, admin, editors, previews, error pages, and empty feeds have no placements. Crossing between ad pages and excluded pages uses a full document navigation so the home page never inherits the ad library. Ad pages use a fresh nonce and Google's supported strict CSP; their HTML renders per request while database content retains its existing cache. The home page retains its existing rendering strategy and security policy.
+
+In **AdSense → Ads → Edit site**, turn **Auto ads off** to retain these manual placements and prevent overlays, vignettes, and additional automatic ads. Add the exact home URL under **Page exclusions → This page only** as an additional account-side exclusion. Site approval, demand, consent requirements for the audience, and account settings determine whether Google serves an ad. Test live serving with your approved domain; local verification uses a stub rather than requesting or clicking real ads.
+
+References: [responsive ad sizes](https://support.google.com/adsense/answer/9183363?hl=en), [AdSense CSP](https://support.google.com/adsense/answer/16283098?hl=en), [Auto ads settings](https://support.google.com/adsense/answer/9305577?hl=en).
+
 ## Imported content
 
 Profile, experience, skills, public contact links, and all ten projects were researched from [aathilducky.com](https://aathilducky.com/), its [about](https://aathilducky.com/about/), [projects](https://aathilducky.com/projects/), and [contact](https://aathilducky.com/contact/) pages on November 10, 2026. The portrait comes from the GitHub avatar linked on that website. A readable source snapshot is in `db/source-snapshot.json` and is also imported into PostgreSQL.

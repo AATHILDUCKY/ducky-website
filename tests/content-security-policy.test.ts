@@ -1,9 +1,33 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { contentSecurityPolicy } from '../lib/content-security-policy';
+import {
+  adsenseContentSecurityPolicy,
+  contentSecurityPolicy,
+} from '../lib/content-security-policy';
 test('development can evaluate Next.js modules while production disallows eval', () => {
   assert.match(contentSecurityPolicy(true), /script-src 'self' 'unsafe-inline' 'unsafe-eval'/);
   assert.doesNotMatch(contentSecurityPolicy(false), /unsafe-eval/);
+});
+test('ad pages trust nonced scripts and their descendants without allowing arbitrary scripts', () => {
+  for (const development of [true, false]) {
+    const policy = adsenseContentSecurityPolicy(development, 'example-random-nonce');
+    const directives = policy.split('; ');
+    const scripts = directives.find((directive) => directive.startsWith('script-src '))!;
+    assert.ok(scripts.includes("'nonce-example-random-nonce' 'strict-dynamic'"));
+    assert.ok(!scripts.includes("'unsafe-inline'"));
+    assert.ok(!scripts.includes('https:'));
+    assert.equal(scripts.includes("'unsafe-eval'"), development);
+    for (const directive of [
+      "object-src 'none'",
+      "base-uri 'none'",
+      "form-action 'self'",
+      "frame-ancestors 'none'",
+    ])
+      assert.ok(directives.includes(directive));
+    assert.ok(directives.includes("frame-src 'self' https:"));
+    assert.ok(!contentSecurityPolicy(development).includes('strict-dynamic'));
+    assert.ok(!contentSecurityPolicy(development).includes('googlesyndication'));
+  }
 });
 test('both environments allow Analytics while retaining forms and framing restrictions', () => {
   for (const development of [true, false]) {

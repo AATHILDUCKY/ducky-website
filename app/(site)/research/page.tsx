@@ -4,6 +4,7 @@ import { getPosts } from '@/lib/db';
 import { isResearchPost } from '@/lib/research';
 import { ResearchAreas } from '@/components/research-areas';
 import { WritingList } from '@/components/writing-list';
+import { PageAd } from '@/components/page-ad';
 export const metadata = {
   title: 'Security Research',
   description:
@@ -71,6 +72,7 @@ export default async function Research() {
           Explore tools <ArrowUpRight size={17} />
         </Link>
       </section>
+      <PageAd />
     </>
   );
 }

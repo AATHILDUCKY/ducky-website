@@ -1,5 +1,6 @@
 import { ReferencePage } from '@/components/reference-page';
 import './about.css';
+import { PageAd } from '@/components/page-ad';
 export const metadata = {
   title: 'About',
   description:
@@ -7,5 +8,10 @@ export const metadata = {
   alternates: { canonical: '/about' },
 };
 export default function Page() {
-  return <ReferencePage name="about" />;
+  return (
+    <>
+      <ReferencePage name="about" />
+      <PageAd contained />
+    </>
+  );
 }

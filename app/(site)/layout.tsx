@@ -8,6 +8,7 @@ import './home-poster.css';
 import './home-editorial.css';
 import './home-night.css';
 import './site-signature.css';
+import './ads.css';
 export const viewport: Viewport = { themeColor: '#090909', colorScheme: 'dark' };
 export const revalidate = 3600;
 export default async function Layout({ children }: { children: React.ReactNode }) {

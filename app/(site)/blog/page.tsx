@@ -1,5 +1,6 @@
 import { getPosts } from '@/lib/db';
 import { BlogFilter } from '@/components/blog-filter';
+import { PageAd } from '@/components/page-ad';
 export const metadata = {
   title: 'Writeups',
   description:
@@ -20,6 +21,7 @@ export default async function Blog() {
         <p>What I’m building. What I’m breaking. What I’m learning from both.</p>
       </div>
       <BlogFilter posts={posts} />
+      <PageAd show={posts.length > 0} />
     </>
   );
 }

@@ -9,6 +9,7 @@ export default defineConfig({
     'author.e2e.ts',
     'branding.e2e.ts',
     'socials.e2e.ts',
+    'adsense.e2e.ts',
   ],
   fullyParallel: false,
   workers: 1,

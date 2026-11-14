@@ -1,0 +1,53 @@
+/* Keep publisher chrome separate from Google's creative and reserve its space before loading. */
+.reference-site.public-site .display-ad {
+  box-sizing: border-box;
+  width: min(100%, 1040px);
+  margin: clamp(40px, 5vw, 72px) auto;
+  padding: 18px 0 24px;
+  border-block: 1px solid var(--line, #ffffff26);
+  text-align: center;
+}
+
+.reference-site.public-site .display-ad[hidden] {
+  display: none;
+}
+
+.reference-site.public-site .display-ad-label {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--muted, #b6b6b6);
+  font: 10px/1.5 var(--font-mono, monospace);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.display-ad-space {
+  width: 100%;
+  min-height: 100px;
+}
+
+.ducky_display_ad {
+  width: min(100%, 320px);
+  height: 100px;
+  margin-inline: auto;
+}
+
+@media (min-width: 540px) {
+  .ducky_display_ad {
+    width: min(100%, 468px);
+    height: 60px;
+  }
+  .display-ad-space {
+    min-height: 60px;
+  }
+}
+
+@media (min-width: 900px) {
+  .ducky_display_ad {
+    width: min(100%, 728px);
+    height: 90px;
+  }
+  .display-ad-space {
+    min-height: 90px;
+  }
+}

@@ -13,3 +13,20 @@ export function contentSecurityPolicy(development: boolean) {
     "form-action 'self'",
   ].join('; ');
 }
+
+/** AdSense supports nonce-based CSP because its serving domains can change. */
+export function adsenseContentSecurityPolicy(development: boolean, nonce: string) {
+  return [
+    "default-src 'self'",
+    `script-src 'nonce-${nonce}' 'strict-dynamic'${development ? " 'unsafe-eval'" : ''}`,
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: blob: https:",
+    "font-src 'self'",
+    "connect-src 'self' https:",
+    "frame-src 'self' https:",
+    "object-src 'none'",
+    "frame-ancestors 'none'",
+    "base-uri 'none'",
+    "form-action 'self'",
+  ].join('; ');
+}

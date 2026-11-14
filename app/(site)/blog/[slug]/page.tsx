@@ -8,6 +8,7 @@ import { AuthorAvatar } from '@/components/author-avatar';
 import { ShareButton } from '@/components/share-button';
 import { RelatedWriteups } from '@/components/related-writeups';
 import { relatedWriteups } from '@/lib/related-writeups';
+import { PageAd } from '@/components/page-ad';
 import type { Metadata } from 'next';
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -71,6 +72,7 @@ export default async function Article({ params }: Props) {
         />
       )}
       <Markdown content={p.content} />
+      <PageAd />
       <div className="article-tags tags">
         {p.tags.map((t) => (
           <span key={t}>{t}</span>
