@@ -44,6 +44,6 @@ Set `SITE_URL` to the public HTTPS domain before the production build. Submit th
 
 ## Deployment and verification
 
-Run `npm run db:setup` to apply the additive schema, then build and restart using the existing deployment workflow. Existing posts, settings, and contact requests are preserved. Back up `forum_posts`, `forum_replies`, and `media` with the other PostgreSQL tables.
+Run `npm run build` to apply the additive schema and build, then restart with `npm start`. Existing posts, settings, and contact requests are preserved. Back up `forum_posts`, `forum_replies`, and `media` with the other PostgreSQL tables.
 
 `tests/forum.test.ts` covers URL allowlists, validation, cursor precision, and XML escaping/size limits. `tests/forum.e2e.ts` covers ten-at-a-time scrolling, no-JavaScript pagination, keyword AND/ranking, guest replies, replay deduplication, rate limits, moderation, authorization, Markdown rendering, WebP upload, drafts, and sitemap updates. Test posts and media are removed afterward.

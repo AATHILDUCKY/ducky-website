@@ -31,6 +31,6 @@ Sources:
 - [Google: discussion forum structured data](https://developers.google.com/search/docs/appearance/structured-data/discussion-forum).
 - [Google: using significant comment changes for lastmod](https://developers.google.com/search/help/office-hours/2023/january).
 
-Before a production rebuild, run `npm run db:setup` for the additive schema and slug migration. Existing content and UUID links are preserved. Set the public HTTPS `SITE_URL` and submit its `/sitemap.xml` in Search Console; localhost cannot be indexed.
+`npm run build` applies the additive schema and slug migration before building; restart with `npm start`. Existing content and UUID links are preserved. Set the public HTTPS `SITE_URL` and submit its `/sitemap.xml` in Search Console; localhost cannot be indexed.
 
 Tests cover Unicode and duplicate titles, redirects, canonical/indexing metadata, sitemap inclusion and ETags, in-feed comments, replies to replies, branch pagination, cross-post validation, responsive layouts, and hide/restore behavior.

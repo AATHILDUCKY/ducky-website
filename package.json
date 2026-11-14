@@ -2,16 +2,20 @@
   "name": "aathilducky-portfolio",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22.9.0"
+  },
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
-    "build": "next build --webpack",
-    "start": "next start --hostname 127.0.0.1",
+    "build": "node scripts/application.mjs build",
+    "start": "node scripts/application.mjs start",
     "typecheck": "tsc --noEmit",
     "db:setup": "node --env-file=.env scripts/setup-db.mjs",
     "test": "node --env-file=.env --import tsx --test --experimental-test-isolation=none tests/*.test.ts",
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@next/env": "^16.0.0",
     "@tiptap/core": "^3.33.0",
     "@tiptap/extension-code-block-lowlight": "^3.33.0",
     "@tiptap/extension-image": "^3.33.0",

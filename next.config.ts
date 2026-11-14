@@ -1,7 +1,6 @@
 import type { NextConfig } from 'next';
 import { contentSecurityPolicy } from './lib/content-security-policy';
 const config: NextConfig = {
-  output: 'standalone',
   outputFileTracingIncludes: {
     '/opengraph-image': ['./assets/fonts/JetBrainsMono-social.ttf'],
   },

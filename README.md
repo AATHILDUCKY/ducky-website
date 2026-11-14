@@ -2,55 +2,46 @@
 
 A portfolio matching aathilducky.com, with a PostgreSQL-backed Markdown blog and admin studio built with **Next.js 16, React 19, Node.js, and PostgreSQL**. Designed for a small 2 GB RAM Linux VPS. No separate API server, ORM engine, Redis, or background worker is needed.
 
-## Start locally
+## Build and run
 
-Install **Node.js 22.9+** (24 LTS recommended), npm, and **PostgreSQL server 14+**. On Ubuntu/Debian, PostgreSQL is available with `sudo apt install postgresql postgresql-contrib`.
-
-```bash
-./run.sh
-```
-
-Open **http://localhost:3000** and **http://localhost:3000/admin**. The included private `.env` contains a generated `ADMIN_USERNAME`, `ADMIN_PASSWORD`, database password, and session secret. Open that file locally to see or change your credentials. It is excluded from Git and served assets. `.env.example` documents the settings without secrets. If `.env` is missing, the script creates unique credentials automatically.
-
-The script installs locked dependencies when necessary, checks the database, initializes the schema and seed data without overwriting existing records, and starts the development server. If the PostgreSQL binaries are installed and no database is listening on the configured port, it creates a private cluster in `.postgres/`, listening only on `127.0.0.1:55432`. This requires a normal OS user; do not run as root. Use an existing PostgreSQL database by changing `DATABASE_URL`.
-
-Development mode enables the script evaluation required by Next.js debugging and lazy-loaded editor modules. Production keeps script evaluation disabled. After updating an already open development session, reload the browser tab to receive the updated policy.
-
-Ctrl+C stops Next.js. The local database stays running so your data remains available. Stop only this project's database with:
+Install **Node.js 22.9+** (24 LTS recommended), npm, and **PostgreSQL server 14+**. On Ubuntu/Debian, install PostgreSQL with `sudo apt install postgresql postgresql-contrib`, or configure an existing database using `DATABASE_URL`.
 
 ```bash
-node scripts/stop-db.mjs
+npm ci
+npm run build
+npm start
 ```
 
-## Run in production
+Open **http://localhost:3000** and **http://localhost:3000/admin**. This runs the full production application: public pages, admin studio, API routes, database-backed media, and static assets. No separate deployment script, asset-copy step, or API process is needed.
 
-The requested `deply.sh` and a correctly spelled `deploy.sh` alias are both included. Run on the target Linux VPS as your normal application user:
+`npm run build` loads your environment, checks PostgreSQL, applies the idempotent schema and seed setup while preserving existing content, and builds Next.js with one worker and a 1 GB Node heap limit. On a fresh checkout with no environment configuration, it creates a private `.env` with unique admin, database, and session credentials. Open `.env` locally to view the credentials; it is excluded from Git and served assets. `.env.example` documents the settings without secrets.
 
-```bash
-./deply.sh
-```
+`npm start` checks the production build and database, restarts the project's local PostgreSQL cluster if necessary, and runs the standard Next.js production server with a 384 MB Node heap limit. It serves `public/` and `.next/static/` directly. It does not reinstall dependencies or rebuild. Stop it with Ctrl+C; the database remains running so your data stays available. Run `node scripts/stop-db.mjs` to stop only this project's database.
 
-It installs locked dependencies, checks/initializes PostgreSQL, builds with one worker and a 1 GB Node heap limit, packages the standalone server into `.runtime/`, and starts it with a 384 MB heap limit. The last successful release remains intact while a replacement is building. The script runs in the foreground; use systemd for automatic restart and reboot persistence.
+If PostgreSQL binaries are installed and no database is listening at the configured local address, the application creates a private cluster in `.postgres/`, listening only on `127.0.0.1:55432` by default. This requires a normal OS user; do not run as root. To use a managed or existing database, set `DATABASE_URL` instead. Build and runtime must use the intended database; when changing to a fresh database after building, run `npm run db:setup` before starting.
 
-```bash
-./deply.sh --build-only  # prepare a release without starting the server
-./deply.sh --start-only # start the prepared release without reinstalling/building
-```
+Environment variables supplied by your hosting platform take precedence over `.env.production.local`, `.env.local`, `.env.production`, and `.env`, in that order. The database preparation and Next.js use the same configuration. Set `DATABASE_URL`, `ADMIN_USERNAME`, `ADMIN_PASSWORD`, and a `SESSION_SECRET` of at least 32 characters when configuring the environment yourself.
 
-Before exposing production, configure these values in `.env`:
+## Production deployment
+
+Before building for your domain, configure these values in `.env` or your hosting environment:
 
 ```dotenv
 SITE_URL=https://aathilducky.com
 COOKIE_SECURE=true
-HOSTNAME=127.0.0.1
+APP_HOST=127.0.0.1
 PORT=3000
 ```
 
+`APP_HOST` defaults to `0.0.0.0` for hosting platforms and containers. Set it to `127.0.0.1` when using a local reverse proxy. Existing `HOSTNAME` settings in environment files remain supported; use `APP_HOST` for new deployments to avoid conflicting with the operating system's machine name. `PORT` is read from your environment files as well as hosting variables. CLI overrides also work, for example `npm start -- --port 4000`.
+
 Use a unique admin password and keep the generated session secret. A password or username change invalidates previous sessions on restart. Changing `SITE_URL` requires rebuilding because static metadata uses that value.
 
-`deploy/nginx.conf.example` includes reverse-proxy headers, gzip, static asset caching, and an 11 MB upload ceiling. Point your domain at the VPS, adapt the Nginx config, and configure HTTPS using your preferred certificate tooling. Keep the application and database ports private. Run `./deply.sh --build-only` after environment changes.
+For each release, install dependencies and run `npm run build`, then restart `npm start`. Stop the existing application before rebuilding in the same directory because Next.js replaces `.next/`. Keep the project, production dependencies in `node_modules/`, `public/`, and the complete `.next/` build on the server. After building, `npm prune --omit=dev` can remove development-only dependencies. The old `.runtime/` release packaging is no longer used.
 
-For a persistent service, edit **all** paths and `User` in `deploy/ducky.service.example`, then install it:
+`deploy/nginx.conf.example` includes reverse-proxy headers, gzip, static asset caching, and an 11 MB upload ceiling. Point your domain at the VPS, adapt the Nginx config, and configure HTTPS using your preferred certificate tooling. Keep the application and database ports private.
+
+For automatic restart and reboot persistence, edit **all** paths and `User` in `deploy/ducky.service.example`, including the npm executable path (`command -v npm`), then install it after building:
 
 ```bash
 sudo cp deploy/ducky.service.example /etc/systemd/system/ducky.service
@@ -60,7 +51,15 @@ sudo systemctl enable --now ducky
 sudo systemctl restart ducky
 ```
 
-The systemd service starts the existing release without building at boot. If using NVM, make Node available in the service PATH or set an explicit Environment=PATH= line. `journalctl -u ducky -f` shows logs. Old `.runtime/<release>` directories can be removed manually after verifying the current release; do not remove `.runtime/current`'s target.
+The systemd service runs `npm start` without building at boot. If using NVM, make Node and npm available in the service PATH or set an explicit `Environment=PATH=...` line. `journalctl -u ducky -f` shows logs.
+
+## Development
+
+```bash
+./run.sh
+```
+
+The development helper installs dependencies when necessary, prepares the database, and runs Next.js with hot reload. After dependencies and the database are ready, `npm run dev` also starts development mode. Development enables the script evaluation required by Next.js debugging and lazy-loaded editor modules; production keeps script evaluation disabled.
 
 ## Website design system
 
@@ -107,7 +106,7 @@ The separate form on **/contact** saves the visitor’s name, email, subject, an
 
 Submissions use server validation, a database limit of five requests per email per 15 minutes, and a unique submission token to prevent duplicate deliveries on network retries. Extra fields, including website values sent by older tabs or browser autofill, are ignored. Success is returned only after the request is saved or a previously saved delivery is confirmed. Request text renders as plain text. Concurrent admin edits cannot silently overwrite each other. Contact submissions do not send automatic emails or notifications.
 
-Run `npm run db:setup` when deploying this update to create the additive `contact_requests` and `contact_rate_limits` tables and indexes. Existing content is preserved. The local database already has the new tables. Add contact requests to your usual database backup policy.
+`npm run build` creates the additive `contact_requests` and `contact_rate_limits` tables and indexes automatically. Existing content is preserved. The local database already has the new tables. Add contact requests to your usual database backup policy.
 
 ### Forum
 
@@ -117,9 +116,9 @@ The forum contains posts and compact controls, with no introduction, profile sid
 
 **Top** balances freshness with capped, logarithmic like/reply signals. An indexed score and shared snapshot of up to 500 candidates keep each scrolling session stable as reactions change. Older content continues through a chronological tail. **Latest** uses chronological keyset pagination with crawlable links. Both load ten posts at a time. Search still matches all keywords and sorts by relevance. Counters update atomically instead of recounting reactions on every read. Public interactions have rate limits, and replies retain moderation and retry deduplication. See [feed ranking research and policy](docs/forum-feed-ranking.md).
 
-`/sitemap.xml` is a sitemap index, with separate static-page, blog, and forum files split into stable 10,000-post ranges. Published discussions have canonical URLs, social metadata, and discussion structured data. Search results, drafts, and editing routes are excluded from indexing. Apply the additive tables and indexes with `npm run db:setup` before a production rebuild. See [forum architecture and research](docs/forum-architecture.md) for algorithms, sources, deployment, and indexing setup.
+`/sitemap.xml` is a sitemap index, with separate static-page, blog, and forum files split into stable 10,000-post ranges. Published discussions have canonical URLs, social metadata, and discussion structured data. Search results, drafts, and editing routes are excluded from indexing. A production build applies the additive tables and indexes automatically. See [forum architecture and research](docs/forum-architecture.md) for algorithms, sources, deployment, and indexing setup.
 
-Forum posts now have stable title-based slugs, with permanent redirects for old UUID links. Clicking a comment count expands the discussion inside the feed; each comment supports nested replies with branch pagination and moderation. Sitemaps use real discussion modification dates and ETags for unchanged XML. Run `npm run db:setup` before a production rebuild to migrate existing posts. See [URLs, comments, and SEO](docs/forum-urls-comments-seo.md) for the implementation and research.
+Forum posts now have stable title-based slugs, with permanent redirects for old UUID links. Clicking a comment count expands the discussion inside the feed; each comment supports nested replies with branch pagination and moderation. Sitemaps use real discussion modification dates and ETags for unchanged XML. A production build migrates existing posts automatically. See [URLs, comments, and SEO](docs/forum-urls-comments-seo.md) for the implementation and research.
 
 ### Editing the homepage
 
@@ -200,14 +199,14 @@ This writes a private custom-format PostgreSQL dump to `backups/`, including ima
 ```bash
 npm run typecheck
 npm test
-npm run build  # requires the configured PostgreSQL database
+npm run build  # prepares and checks the configured PostgreSQL database
 ```
 
 The test suite checks homepage migration, safe links, text escaping, section visibility/order, image byte budgets, actual WebP output, metadata removal, rotation, malformed uploads, slugs, post validation, and unsafe link rejection. `tests/e2e.spec.ts` exercises the protected admin, publishing/sitemap changes, image upload, Markdown output, homepage drafts/preview/publishing, stale-save protection, and mobile layout against a running server:
 
 ```bash
-# Terminal 1
-./deply.sh
+# Terminal 1 (after npm run build)
+npm start
 # Terminal 2
 node --env-file=.env node_modules/@playwright/test/cli.js test
 ```
