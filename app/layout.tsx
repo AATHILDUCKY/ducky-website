@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import './globals.css';
 import './reference.css';
 import './polish.css';
@@ -34,7 +35,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" data-theme="light" data-scroll-behavior="smooth" suppressHydrationWarning>
       {/* Extensions can inject attributes on html and body before React hydrates. */}
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <Script id="google-analytics-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-V9CT08E8JJ');
+          `}
+        </Script>
+        <Script
+          id="google-analytics"
+          src="https://www.googletagmanager.com/gtag/js?id=G-V9CT08E8JJ"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }
