@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { Pool } from 'pg';
 import { createHmac, randomUUID } from 'node:crypto';
 import sharp from 'sharp';
+import { readFile } from 'node:fs/promises';
 import { encodeForumCursor } from '../lib/forum-validation';
 import { forumFeedScore } from '../lib/forum-ranking';
 import { createForumSlug } from '../lib/forum-slugs.mjs';
@@ -314,6 +315,55 @@ test('guests reply without accounts; replies are escaped, deduplicated, rate lim
   expect(schema['@type']).toBe('DiscussionForumPosting');
   expect(schema.comment.some((comment: { text: string }) => comment.text === content)).toBeFalsy();
   await guest.close();
+});
+
+test('forum accepts iPhone HEIC selections and HEIF drops without a MIME type', async ({
+  page,
+}) => {
+  await page.goto('/admin/login');
+  await page.getByLabel('Username', { exact: true }).fill(process.env.ADMIN_USERNAME!);
+  await page.getByLabel('Password', { exact: true }).fill(process.env.ADMIN_PASSWORD!);
+  await page.getByRole('button', { name: 'Enter your studio' }).click();
+  await expect(page).toHaveURL(/\/admin$/);
+  await page.goto('/forum/new');
+  const input = page.getByLabel('Attach forum images');
+  await expect(input).toHaveAttribute('accept', /\.heic/);
+  const photo = await readFile('tests/fixtures/sample.heic');
+  let uploaded = page.waitForResponse(
+    (response) => response.url().endsWith('/api/upload') && response.request().method() === 'POST',
+  );
+  await input.setInputFiles({ name: 'IMG_1001.HEIC', mimeType: 'image/heic', buffer: photo });
+  let response = await uploaded;
+  expect(response.status()).toBe(201);
+  let result = await response.json();
+  mediaIds.push(result.id);
+  expect(result.bytes).toBeLessThan(50000);
+  await expect(page.locator('.forum-upload-grid img')).toHaveCount(1);
+  await expect(page.getByRole('button', { name: 'Add images' })).toBeEnabled();
+
+  uploaded = page.waitForResponse(
+    (response) => response.url().endsWith('/api/upload') && response.request().method() === 'POST',
+  );
+  await page.evaluate((base64) => {
+    const bytes = Uint8Array.from(atob(base64), (character) => character.charCodeAt(0));
+    const transfer = new DataTransfer();
+    transfer.items.add(new File([bytes], 'IMG_1002.HEIF', { type: '' }));
+    document
+      .querySelector('.forum-composer')!
+      .dispatchEvent(
+        new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: transfer }),
+      );
+  }, photo.toString('base64'));
+  response = await uploaded;
+  expect(response.status()).toBe(201);
+  result = await response.json();
+  mediaIds.push(result.id);
+  expect(result.bytes).toBeLessThan(50000);
+  await expect(page.locator('.forum-upload-grid img')).toHaveCount(2);
+  const media = await page.request.get(result.url);
+  expect(media.headers()['content-type']).toBe('image/webp');
+  expect((await media.body()).length).toBeLessThan(50000);
+  await expect(page.locator('.forum-error')).toHaveCount(0);
 });
 
 test('only the owner can publish Markdown, optimized images, and social embeds; sitemaps exclude drafts', async ({

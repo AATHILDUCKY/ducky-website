@@ -3,6 +3,7 @@ import { contentSecurityPolicy } from './lib/content-security-policy';
 const config: NextConfig = {
   outputFileTracingIncludes: {
     '/opengraph-image': ['./assets/fonts/JetBrainsMono-social.ttf'],
+    '/api/upload': ['./scripts/decode-heif.cjs', './node_modules/libheif-js/**/*'],
   },
   poweredByHeader: false,
   cacheMaxMemorySize: 10 * 1024 * 1024,

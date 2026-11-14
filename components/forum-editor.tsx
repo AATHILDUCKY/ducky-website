@@ -4,6 +4,7 @@ import { Bold, Code2, Eye, ImagePlus, Link2, Loader2, Send, Trash2 } from 'lucid
 import { saveForumPost } from '@/app/forum-actions';
 import { previewForumPost } from '@/app/forum-render-actions';
 import type { ForumImage, ForumPost } from '@/lib/forum-types';
+import { IMAGE_ACCEPT, isImageFile, MAX_IMAGE_BYTES } from '@/lib/image-upload';
 
 export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
   const [state, action, pending] = useActionState(saveForumPost, {});
@@ -15,6 +16,7 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
   const [previewing, startPreview] = useTransition();
   const textarea = useRef<HTMLTextAreaElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const uploadInFlight = useRef(false);
   function insert(before: string, after = '') {
     const el = textarea.current;
     if (!el) return;
@@ -29,12 +31,24 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
     });
   }
   async function upload(files: File[]) {
-    if (uploading) return;
+    if (uploadInFlight.current || !files.length) return;
     setError('');
-    if (images.length + files.length > 4) {
-      setError('Attach up to 4 images to each post.');
+    if (files.some((file) => !isImageFile(file))) {
+      setError('Choose image files, including iPhone HEIC/HEIF photos.');
+      if (fileInput.current) fileInput.current.value = '';
       return;
     }
+    if (files.some((file) => file.size > MAX_IMAGE_BYTES)) {
+      setError('Please choose images smaller than 10 MB each.');
+      if (fileInput.current) fileInput.current.value = '';
+      return;
+    }
+    if (images.length + files.length > 4) {
+      setError('Attach up to 4 images to each post.');
+      if (fileInput.current) fileInput.current.value = '';
+      return;
+    }
+    uploadInFlight.current = true;
     setUploading(true);
     try {
       for (const file of files) {
@@ -57,6 +71,7 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
     } catch (error) {
       setError((error as Error).message);
     } finally {
+      uploadInFlight.current = false;
       setUploading(false);
       if (fileInput.current) fileInput.current.value = '';
     }
@@ -68,7 +83,7 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
       onDragOver={(event) => event.preventDefault()}
       onDrop={(event) => {
         event.preventDefault();
-        void upload([...event.dataTransfer.files].filter((file) => file.type.startsWith('image/')));
+        void upload([...event.dataTransfer.files]);
       }}
     >
       <input type="hidden" name="id" value={id} />
@@ -155,9 +170,7 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
             'Share a thought, a useful find, or something you’re working on…\n\nPaste a GitHub or Instagram link and it becomes a card.'
           }
           onPaste={(event) => {
-            const files = [...event.clipboardData.files].filter((file) =>
-              file.type.startsWith('image/'),
-            );
+            const files = [...event.clipboardData.files].filter(isImageFile);
             if (files.length) {
               event.preventDefault();
               void upload(files);
@@ -180,7 +193,7 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
         ref={fileInput}
         type="file"
         multiple
-        accept="image/jpeg,image/png,image/webp,image/avif,image/gif,image/tiff"
+        accept={IMAGE_ACCEPT}
         className="sr-only"
         aria-label="Attach forum images"
         onChange={(event) => void upload([...(event.target.files || [])])}
@@ -221,7 +234,8 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
         </div>
       )}
       <p className="forum-composer-hint">
-        Drop or paste images here. Each image is optimized to WebP under 50 KB.
+        JPEG, PNG, WebP, AVIF, GIF, TIFF, and iPhone HEIC/HEIF photos. Up to 10 MB and 50 megapixels
+        each. Images are optimized to WebP under 50 KB.
       </p>
       {uploading && (
         <p role="status">

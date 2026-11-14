@@ -1,4 +1,5 @@
 'use client';
+import { IMAGE_ACCEPT } from '@/lib/image-upload';
 import Link from 'next/link';
 import { useState, useEffect, useMemo, useCallback, useRef, useTransition } from 'react';
 import {
@@ -220,7 +221,7 @@ function ImagePicker({
         ref={input}
         type="file"
         aria-label={`${label} image file`}
-        accept="image/png,image/jpeg,image/webp,image/avif,image/gif,image/tiff"
+        accept={IMAGE_ACCEPT}
         className="sr-only"
         onChange={(event) => {
           const file = event.target.files?.[0];

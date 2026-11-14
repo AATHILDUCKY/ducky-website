@@ -1,4 +1,5 @@
 'use client';
+import { IMAGE_ACCEPT } from '@/lib/image-upload';
 import { useRef, useState } from 'react';
 import { Upload, Loader2 } from 'lucide-react';
 import { AuthorAvatar } from './author-avatar';
@@ -81,7 +82,7 @@ export function ArticleAuthorSettings({
         ref={input}
         aria-label="Author photo file"
         type="file"
-        accept="image/*"
+        accept={IMAGE_ACCEPT}
         className="sr-only"
         onChange={async (e) => {
           const file = e.target.files?.[0];

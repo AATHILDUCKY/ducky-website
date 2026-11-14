@@ -1,8 +1,9 @@
 import { isAdmin } from '@/lib/auth';
 import { pool } from '@/lib/db';
 import { compressImage } from '@/lib/images';
+import { ImageUploadError, MAX_IMAGE_BYTES, SUPPORTED_IMAGE_FORMATS } from '@/lib/image-upload';
 export const runtime = 'nodejs';
-const MAX_SIZE = 10 * 1024 * 1024;
+const MAX_SIZE = MAX_IMAGE_BYTES;
 let processing = false;
 export async function POST(request: Request) {
   if (!(await isAdmin()))
@@ -82,7 +83,9 @@ export async function POST(request: Request) {
     return Response.json(
       {
         error:
-          'Could not process this image. Use a valid JPEG, PNG, WebP, AVIF, GIF, or TIFF under 10 MB.',
+          e instanceof ImageUploadError
+            ? e.message
+            : `Could not process this image. Use a valid ${SUPPORTED_IMAGE_FORMATS} image under 10 MB.`,
       },
       { status: 400 },
     );

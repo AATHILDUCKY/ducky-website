@@ -1,4 +1,5 @@
 'use client';
+import { IMAGE_ACCEPT } from '@/lib/image-upload';
 import { useActionState, useState, useRef } from 'react';
 import { Check, Save, Upload, Loader2, Plus, Trash2 } from 'lucide-react';
 import { saveProfile, saveSeo } from '@/app/admin/actions';
@@ -71,7 +72,7 @@ export function ProfileForm({ profile: p }: { profile: Profile }) {
           <input type="hidden" name="portrait" value={portrait} />
           <input
             type="file"
-            accept="image/*"
+            accept={IMAGE_ACCEPT}
             className="sr-only"
             ref={fileInput}
             onChange={async (e) => {

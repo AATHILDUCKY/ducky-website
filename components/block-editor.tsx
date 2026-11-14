@@ -1,4 +1,5 @@
 'use client';
+import { isImageFile } from '@/lib/image-upload';
 import { useEffect, useRef, useState } from 'react';
 import {
   useEditor,
@@ -194,9 +195,7 @@ export default function BlockEditor({
         spellcheck: 'true',
       },
       handlePaste: (_view, event) => {
-        const file = Array.from(event.clipboardData?.files || []).find((f) =>
-          f.type.startsWith('image/'),
-        );
+        const file = Array.from(event.clipboardData?.files || []).find((f) => isImageFile(f));
         if (file) {
           event.preventDefault();
           callbacks.current.onUpload(file);
@@ -219,9 +218,7 @@ export default function BlockEditor({
       },
       handleDrop: (_view, event, _slice, moved) => {
         if (moved) return false;
-        const file = Array.from(event.dataTransfer?.files || []).find((f) =>
-          f.type.startsWith('image/'),
-        );
+        const file = Array.from(event.dataTransfer?.files || []).find((f) => isImageFile(f));
         if (!file) return false;
         event.preventDefault();
         callbacks.current.onUpload(file);

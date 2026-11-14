@@ -1,4 +1,5 @@
 'use client';
+import { IMAGE_ACCEPT, isImageFile } from '@/lib/image-upload';
 import { useState, useRef, useEffect, useTransition, useCallback } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -270,7 +271,7 @@ export function PostEditor({ post, baseUrl }: { post?: Post; baseUrl: string }) 
             className="sr-only"
             ref={inlineUpload}
             type="file"
-            accept="image/png,image/jpeg,image/webp,image/avif,image/gif,image/tiff"
+            accept={IMAGE_ACCEPT}
             onChange={(event) => {
               const file = event.target.files?.[0];
               if (file) void upload(file);
@@ -320,7 +321,7 @@ export function PostEditor({ post, baseUrl }: { post?: Post; baseUrl: string }) 
                 }}
                 onPaste={(event) => {
                   const file = Array.from(event.clipboardData.files).find((file) =>
-                    file.type.startsWith('image/'),
+                    isImageFile(file),
                   );
                   if (file) {
                     event.preventDefault();
@@ -463,7 +464,7 @@ export function PostEditor({ post, baseUrl }: { post?: Post; baseUrl: string }) 
               className="sr-only"
               ref={coverUpload}
               type="file"
-              accept="image/png,image/jpeg,image/webp,image/avif,image/gif,image/tiff"
+              accept={IMAGE_ACCEPT}
               onChange={(e) => {
                 const f = e.target.files?.[0];
                 if (f) void upload(f, true);
