@@ -1,0 +1,170 @@
+{
+  "brandVerified": true,
+  "results": [
+    {
+      "kind": "home",
+      "viewport": 320,
+      "width": 288,
+      "margin": 16,
+      "heading": "36px",
+      "intro": "20px",
+      "portrait": 75,
+      "overflow": false
+    },
+    {
+      "kind": "home",
+      "viewport": 390,
+      "width": 358,
+      "margin": 16,
+      "heading": "36px",
+      "intro": "20px",
+      "portrait": 90,
+      "overflow": false
+    },
+    {
+      "kind": "home",
+      "viewport": 1024,
+      "width": 960,
+      "margin": 32,
+      "heading": "48px",
+      "intro": "20px",
+      "portrait": 260,
+      "overflow": false
+    },
+    {
+      "kind": "home",
+      "viewport": 1440,
+      "width": 1376,
+      "margin": 32,
+      "heading": "56px",
+      "intro": "20px",
+      "portrait": 331.1875,
+      "overflow": false
+    },
+    {
+      "kind": "home",
+      "viewport": 1920,
+      "width": 1600,
+      "margin": 160,
+      "heading": "56px",
+      "intro": "20px",
+      "portrait": 360,
+      "overflow": false
+    },
+    {
+      "kind": "admin",
+      "width": 320,
+      "route": "/admin",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 320,
+      "route": "/admin/homepage",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 320,
+      "route": "/admin/posts/new",
+      "clipped": []
+    },
+    {
+      "kind": "enlargedAdmin",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "kind": "admin",
+      "width": 390,
+      "route": "/admin",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 390,
+      "route": "/admin/homepage",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 390,
+      "route": "/admin/posts/new",
+      "clipped": []
+    },
+    {
+      "kind": "enlargedAdmin",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "kind": "admin",
+      "width": 768,
+      "route": "/admin",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 768,
+      "route": "/admin/homepage",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 768,
+      "route": "/admin/posts/new",
+      "clipped": []
+    },
+    {
+      "kind": "enlargedAdmin",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "kind": "admin",
+      "width": 1024,
+      "route": "/admin",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 1024,
+      "route": "/admin/homepage",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 1024,
+      "route": "/admin/posts/new",
+      "clipped": []
+    },
+    {
+      "kind": "enlargedAdmin",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "kind": "admin",
+      "width": 1440,
+      "route": "/admin",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 1440,
+      "route": "/admin/homepage",
+      "clipped": []
+    },
+    {
+      "kind": "admin",
+      "width": 1440,
+      "route": "/admin/posts/new",
+      "clipped": []
+    },
+    {
+      "kind": "enlargedAdmin",
+      "width": 1440,
+      "overflow": false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+node_modules
+.next
+.postgres
+.runtime
+backups
+artifacts
+test-results
+playwright-report
+.env
+.env.*
+package-lock.json
+db/source-snapshot.json

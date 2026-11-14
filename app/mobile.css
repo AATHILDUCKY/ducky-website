@@ -1,0 +1,203 @@
+/* Compact phone typography without shrinking the browser's root font or tap targets. */
+@media (max-width: 767px) {
+  :root {
+    --text-h1: clamp(1.875rem, 8vw, 2.25rem);
+    --text-h2: 1.5rem;
+    --text-h3: 1.25rem;
+    --text-admin-heading: 1.75rem;
+    --text-intro: 1.0625rem;
+    --text-article: 1rem;
+    --text-nav: 1rem;
+    --text-card: 1.25rem;
+    --text-description: 0.9375rem;
+    --text-meta: 0.8125rem;
+    --text-tag: 0.8125rem;
+    --text-eyebrow: 0.75rem;
+    --text-code: 0.875rem;
+    --space-section: 40px;
+    --space-page-start: 28px;
+    --space-heading-content: 20px;
+    --gap-card: 16px;
+  }
+  html[data-theme='light'] :is(.reference-site, .app-theme) {
+    --page-gutter: 16px;
+  }
+  html[data-theme='light'] :is(.reference-site, .app-theme) :is(input, textarea, select) {
+    font-size: 1rem;
+  }
+  html[data-theme='light'] :is(.reference-site, .app-theme) .button {
+    font-size: 1rem;
+    min-height: 44px;
+    padding: 10px 16px;
+  }
+  html[data-theme='light'] .app-theme .icon-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  html[data-theme='light'] .reference-site :is(.site-header, .site-footer) .brand-wordmark {
+    font-size: 1.0625rem;
+  }
+  html[data-theme='light'] .reference-site :is(.site-header, .site-footer) .brand-duck {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+  }
+  html[data-theme='light'] .reference-site .brand-art {
+    gap: 8px;
+  }
+  html[data-theme='light'] .reference-site .mobile-nav a {
+    font-size: 1rem;
+  }
+  html[data-theme='light'] .reference-site .section-header {
+    gap: 16px;
+  }
+  html[data-theme='light'] .reference-site .profile-tags li {
+    font-size: 0.8125rem;
+    padding: 4px 8px;
+  }
+  html[data-theme='light'] .reference-site .profile-caption h2 {
+    font-size: 1.125rem;
+  }
+  html[data-theme='light'] .reference-site .profile-caption p {
+    font-size: 0.875rem;
+  }
+  html[data-theme='light'] .reference-site .visual-topline {
+    font-size: 0.75rem;
+  }
+  html[data-theme='light'] .reference-site .stack-group h3 {
+    font-size: 1.125rem;
+  }
+  html[data-theme='light'] .reference-site .tool-filters button {
+    font-size: 0.875rem;
+    padding: 8px 12px;
+    min-height: 44px;
+  }
+  html[data-theme='light'] .reference-site .tool-search input {
+    font-size: 1rem;
+  }
+
+  html[data-theme='light'] .reference-site[data-page='blog'] .app-theme.supplemental-page {
+    --text-reading: 1.125rem;
+    --text-writeup-title: 1.375rem;
+    --text-writeup-preview: 1rem;
+    .page-heading > p {
+      font-size: 1.125rem;
+      line-height: 1.65;
+    }
+    .blog-card h2 {
+      font-size: var(--text-writeup-title);
+    }
+    :is(.blog-card .eyebrow, .blog-card-bottom, .filter-pills button) {
+      font-size: 0.875rem;
+    }
+    .writeups-filters .search-box input {
+      font-size: 1rem !important;
+    }
+    .article-heading h1 {
+      font-size: clamp(1.875rem, 7.5vw, 2.25rem);
+      line-height: 1.25;
+      margin-block: 16px 20px;
+    }
+    .article-heading > p {
+      font-size: 1.125rem;
+      line-height: 1.65;
+    }
+    :is(.article-heading > .eyebrow, .article-author time, .article-tags span, .share-button) {
+      font-size: 0.875rem;
+    }
+    .article-author strong {
+      font-size: 1rem;
+    }
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      flex-basis: 40px;
+    }
+    .prose {
+      font-size: var(--text-reading);
+      line-height: 1.75;
+    }
+    .prose :is(p, li) {
+      line-height: 1.75;
+    }
+    .prose h1 {
+      font-size: 1.875rem;
+    }
+    .prose h2 {
+      font-size: 1.625rem;
+    }
+    .prose h3 {
+      font-size: 1.375rem;
+    }
+    .prose :is(h4, h5, h6) {
+      font-size: 1.125rem;
+    }
+    .prose table {
+      font-size: 1rem;
+    }
+    .prose :is(pre, pre code) {
+      font-size: 0.875rem;
+    }
+    .prose .code-block > figcaption button {
+      min-height: 44px;
+    }
+  }
+  html[data-theme='light'] .reference-site[data-page='contact'] {
+    .contact-request-intro p {
+      font-size: 1rem;
+    }
+    .contact-field label {
+      font-size: 0.9375rem;
+    }
+    .contact-field :is(input, textarea) {
+      font-size: 1rem;
+    }
+    .contact-feedback {
+      font-size: 0.9375rem;
+    }
+  }
+  html[data-theme='light'] .app-theme .admin-shell .requests-workspace {
+    .request-summary-card strong {
+      font-size: 1.75rem;
+    }
+    .request-summary-card span {
+      font-size: 0.875rem;
+    }
+    .request-row h2 {
+      font-size: 1.125rem;
+    }
+    :is(.request-sender, .request-preview, .request-editor > p) {
+      font-size: 0.9375rem;
+    }
+    .request-message-body {
+      font-size: 1rem;
+    }
+    .request-contact h2 {
+      font-size: 1.25rem;
+    }
+    .request-contact a {
+      font-size: 1rem;
+    }
+    .request-editor h2 {
+      font-size: 1.375rem;
+    }
+    .request-editor :is(select, textarea) {
+      font-size: 1rem;
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  html[data-theme='light'] :is(.reference-site, .app-theme) {
+    --page-gutter: 24px;
+  }
+}
+@media (max-width: 767px) {
+  /* Legacy editor/search rules use !important; keep native fields zoom-safe on phones. */
+  html[data-theme='light'] .app-theme .search-box input,
+  html[data-theme='light'] .app-theme .admin-shell :is(input, textarea, select) {
+    font-size: 1rem !important;
+  }
+  html[data-theme='light'] .app-theme .admin-shell .editor-main > input.editor-title {
+    font-size: 1.5rem !important;
+  }
+}

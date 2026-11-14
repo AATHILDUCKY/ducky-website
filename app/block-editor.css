@@ -1,0 +1,563 @@
+.app-theme .editor-main {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  min-width: 0;
+}
+.app-theme .editor-layout .editor-main > input.editor-title {
+  font-size: clamp(27px, 3vw, 40px);
+  font-weight: 650;
+  color: var(--text);
+  letter-spacing: -1.4px;
+  padding: 30px 30px 12px;
+  background: transparent;
+  border: 0;
+}
+.app-theme .editor-main > .editor-excerpt {
+  background: transparent;
+  padding: 0 30px 24px;
+  border: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+.app-theme .writeup-mode-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 20px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+.app-theme .writeup-mode-bar > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: var(--text-meta)/1.5 var(--font-mono);
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+.app-theme .editor-mode-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--mint);
+  border-radius: 0;
+}
+.app-theme .writeup-modes {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  background: var(--tint);
+  border: 1px solid var(--border);
+  border-radius: 0;
+}
+.app-theme .writeup-modes button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 6px 10px;
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+}
+.app-theme .writeup-modes button.selected {
+  background: var(--panel);
+  border-color: var(--border);
+  color: var(--mint);
+  box-shadow: 0 1px 3px #00000010;
+}
+.app-theme .block-editor-shell {
+  position: relative;
+}
+.app-theme .block-editor-loading {
+  min-height: 480px;
+  display: grid;
+  place-items: center;
+  font-size: var(--text-meta);
+  color: var(--muted);
+  background: var(--panel);
+}
+.app-theme .block-toolbar {
+  position: sticky;
+  top: 69px;
+  z-index: 5;
+  background: color-mix(in srgb, var(--panel) 96.1%, transparent);
+  padding: 11px 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.app-theme .block-toolbar button,
+.app-theme .block-selection-bar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 31px;
+  height: 33px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: var(--text-muted);
+  background: transparent;
+  padding: 0;
+}
+.app-theme .block-toolbar button:hover,
+.app-theme .block-selection-bar button:hover {
+  background: var(--tint);
+  color: var(--mint);
+  border-color: var(--border);
+}
+.app-theme .block-toolbar button[aria-pressed='true'] {
+  color: var(--mint);
+  background: var(--tint);
+  border-color: var(--border);
+}
+.app-theme .block-toolbar button.block-add {
+  width: auto;
+  gap: 6px;
+  background: var(--tint);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 7px 10px;
+  font-size: var(--text-meta);
+}
+.app-theme .block-format-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  flex: 1;
+}
+.app-theme .block-history {
+  display: flex;
+  border-left: 1px solid var(--border);
+  padding-left: 6px;
+}
+.app-theme .block-document {
+  padding: 32px;
+  min-height: 550px;
+  outline: none;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+.app-theme .block-document > * {
+  max-width: 100%;
+}
+.app-theme .block-document > p {
+  color: var(--muted);
+  margin: 0 0 18px;
+  min-height: 1.5em;
+}
+.app-theme .block-document h2 {
+  font-size: 28px;
+  margin: 30px 0 17px;
+  letter-spacing: -0.9px;
+}
+.app-theme .block-document h3 {
+  font-size: 21px;
+  margin: 25px 0 15px;
+  letter-spacing: -0.5px;
+}
+.app-theme .block-document h4 {
+  font-size: 17px;
+  margin: 20px 0 12px;
+}
+.app-theme .block-document a {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.app-theme .block-document p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--subtle);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.app-theme .block-document hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+.app-theme .block-document blockquote {
+  border-left: 3px solid var(--border);
+  background: var(--tint);
+  padding: 15px 21px;
+  margin: 22px 0;
+  border-radius: 0;
+}
+.app-theme .block-document ul,
+.app-theme .block-document ol {
+  padding-left: 25px;
+  margin: 20px 0;
+}
+.app-theme .block-document li {
+  margin: 7px 0;
+}
+.app-theme .block-document li p {
+  margin: 0;
+}
+.app-theme .block-document ul[data-type='taskList'] {
+  list-style: none;
+  padding: 0;
+}
+.app-theme .block-document ul[data-type='taskList'] li {
+  display: flex;
+  gap: 11px;
+  align-items: baseline;
+}
+.app-theme .block-document ul[data-type='taskList'] li > label {
+  display: inline-flex;
+  flex: 0 0 auto;
+  margin: 0;
+}
+.app-theme .block-document ul[data-type='taskList'] input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--text-muted);
+}
+.app-theme .block-document ul[data-type='taskList'] li > div {
+  flex: 1;
+}
+.app-theme .block-document .ProseMirror-selectednode {
+  outline: 2px solid var(--border);
+  outline-offset: 4px;
+}
+.app-theme .block-document img {
+  border-radius: 0;
+  max-height: 600px;
+  width: auto;
+}
+.app-theme .block-document .tableWrapper {
+  overflow-x: auto;
+  margin: 22px 0;
+}
+.app-theme .block-document table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  min-width: 320px;
+  margin: 0;
+}
+.app-theme .block-document th,
+.app-theme .block-document td {
+  border: 1px solid var(--border);
+  min-width: 70px;
+  padding: 9px 12px;
+  vertical-align: top;
+  position: relative;
+}
+.app-theme .block-document th {
+  background: var(--tint);
+  font-weight: 650;
+}
+.app-theme .block-document th p,
+.app-theme .block-document td p {
+  margin: 0;
+}
+.app-theme .block-document .selectedCell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--tint) 14.5%, transparent);
+  pointer-events: none;
+}
+.app-theme .block-inserter {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 22px;
+  margin: 15px;
+  border-radius: 0;
+  box-shadow: 0 12px 40px #00000012;
+}
+.app-theme .block-inserter > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 19px;
+}
+.app-theme .block-inserter header > div {
+  display: grid;
+  gap: 4px;
+}
+.app-theme .block-inserter strong {
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+}
+.app-theme .block-inserter header span {
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+}
+.app-theme .block-inserter header button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 3px;
+}
+.app-theme .block-inserter > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.app-theme .block-inserter > div > button {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--tint);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 13px;
+  text-align: left;
+  color: var(--muted);
+}
+.app-theme .block-inserter > div > button:hover {
+  border-color: var(--border);
+  background: var(--tint);
+}
+.app-theme .block-inserter > div > button > span {
+  display: grid;
+  gap: 4px;
+}
+.app-theme .block-inserter small {
+  font-size: var(--text-meta);
+  line-height: 1.6;
+  color: var(--muted);
+}
+.app-theme .block-selection-bar {
+  padding: 11px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  font: var(--text-meta)/1.5 var(--font-mono);
+  color: var(--text-muted);
+}
+.app-theme .block-selection-bar > span:last-child {
+  margin-left: auto;
+  font-size: var(--text-meta);
+}
+.app-theme .block-selection-bar > div {
+  display: flex;
+}
+.app-theme .block-table-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px 22px;
+  background: var(--tint);
+  font-size: var(--text-meta);
+}
+.app-theme .block-table-actions button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 5px;
+  font-size: var(--text-meta);
+}
+.app-theme .block-link-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 20px;
+  background: var(--tint);
+  border-bottom: 1px solid var(--border);
+}
+.app-theme .block-link-form > label {
+  flex: 1;
+  min-width: 160px;
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+  display: grid;
+  gap: 8px;
+}
+.app-theme .block-link-form input {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--panel);
+  width: 100%;
+  color: var(--text);
+  font: inherit;
+}
+.app-theme .block-code {
+  margin: 25px 0;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--canvas);
+}
+.app-theme .block-code-header {
+  padding: 10px 14px;
+}
+.app-theme .block-code-header > label {
+  display: flex;
+  flex-direction: row;
+  gap: 9px;
+  align-items: center;
+  margin: 0;
+}
+.app-theme .block-code-header select {
+  background: transparent;
+  border: 0;
+  padding: 4px;
+  color: var(--text-muted);
+  font: var(--text-meta) var(--font-mono);
+  width: auto;
+}
+.app-theme .block-document .block-code pre {
+  border: 0;
+  padding: 20px;
+  margin: 0;
+  background: transparent;
+  color: var(--text);
+  border-radius: 0;
+  overflow-x: auto;
+  font: var(--text-meta)/1.85 var(--font-mono);
+  white-space: pre;
+  tab-size: 2;
+}
+.app-theme .block-document .block-code code {
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+.app-theme .markdown-source-pane .markdown-input {
+  width: 100%;
+  min-height: 550px;
+  padding: 30px;
+  background: var(--panel);
+  border: 0;
+  resize: vertical;
+  font: var(--text-meta)/1.9 var(--font-mono);
+  color: var(--text-muted);
+  outline-offset: -3px;
+}
+.app-theme .markdown-source-note {
+  padding: 13px 25px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: var(--tint);
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: var(--text-meta);
+}
+.app-theme .writeup-full-preview {
+  padding: 30px;
+  min-height: 550px;
+  background: var(--panel);
+}
+.app-theme .editor-status {
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--muted);
+}
+.app-theme .markdown-help {
+  background: var(--panel);
+}
+.app-theme .editor-settings-panel {
+  border-color: var(--border);
+  background: var(--color-surface);
+}
+@media (max-width: 1200px) {
+  .app-theme .block-inserter > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .app-theme .writeup-mode-bar > div:first-child {
+    display: none;
+  }
+  .app-theme .writeup-mode-bar {
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 650px) {
+  .app-theme .editor-layout .editor-main > input.editor-title {
+    padding: 24px 20px 14px;
+    font-size: 29px;
+  }
+  .app-theme .editor-main > .editor-excerpt {
+    padding: 0 20px 20px;
+    font-size: 16px;
+  }
+  .app-theme .writeup-mode-bar {
+    padding: 10px;
+    justify-content: center;
+  }
+  .app-theme .writeup-modes {
+    width: 100%;
+  }
+  .app-theme .writeup-modes button {
+    flex: 1;
+    min-height: 40px;
+    font-size: var(--text-meta);
+  }
+  .app-theme .block-toolbar {
+    top: 59px;
+    padding: 9px;
+    gap: 8px;
+  }
+  .app-theme .block-toolbar button,
+  .app-theme .block-selection-bar button {
+    width: 40px;
+    height: 40px;
+  }
+  .app-theme .block-toolbar button.block-add {
+    min-height: 40px;
+  }
+  .app-theme .block-format-buttons {
+    flex-basis: calc(100% - 135px);
+  }
+  .app-theme .block-history {
+    margin-left: auto;
+  }
+  .app-theme .block-document,
+  .app-theme .writeup-full-preview {
+    padding: 24px 20px;
+    font-size: 16px;
+  }
+  .app-theme .block-document h2 {
+    font-size: 25px;
+  }
+  .app-theme .block-inserter {
+    padding: 15px;
+    margin: 10px;
+  }
+  .app-theme .block-inserter > div {
+    gap: 7px;
+  }
+  .app-theme .block-inserter > div > button {
+    flex-direction: column;
+    padding: 12px;
+  }
+  .app-theme .block-selection-bar {
+    padding: 10px;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .app-theme .block-selection-bar > span:last-child {
+    flex-basis: 100%;
+    text-align: right;
+  }
+  .app-theme .markdown-source-pane .markdown-input {
+    padding: 22px 17px;
+    font-size: 14px;
+  }
+  .app-theme .block-document .block-code pre {
+    font-size: var(--text-meta);
+    padding: 17px;
+  }
+  .app-theme .block-code-header select {
+    font-size: 16px;
+    max-width: 175px;
+  }
+}

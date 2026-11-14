@@ -1,0 +1,248 @@
+{
+  "checks": 41,
+  "results": [
+    {
+      "route": "/",
+      "width": 320,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/tools",
+      "width": 320,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/research",
+      "width": 320,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/blog",
+      "width": 320,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/contact",
+      "width": 320,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/tools",
+      "width": 768,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/research",
+      "width": 768,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/blog",
+      "width": 768,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/contact",
+      "width": 768,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/tools",
+      "width": 1440,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/research",
+      "width": 1440,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/blog",
+      "width": 1440,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/contact",
+      "width": 1440,
+      "status": 200,
+      "retiredLinks": 0,
+      "overflow": false
+    },
+    {
+      "route": "/projects",
+      "status": 404
+    },
+    {
+      "route": "/projects/duck-leak-scanner",
+      "status": 404
+    },
+    {
+      "route": "/freelance",
+      "status": 404
+    },
+    {
+      "route": "/admin/projects",
+      "status": 404
+    },
+    {
+      "route": "/admin/freelance",
+      "status": 404
+    },
+    {
+      "route": "/admin",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/admin/homepage",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/admin/posts",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/admin/posts/new",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/admin/profile",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/admin/seo",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "route": "/admin",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/admin/homepage",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/admin/posts",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/admin/posts/new",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/admin/profile",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/admin/seo",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/admin",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/admin/homepage",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/admin/posts",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/admin/posts/new",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/admin/profile",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/admin/seo",
+      "width": 1440,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "archivePreserved": true,
+  "archivedRecords": 10,
+  "saveRoundTrip": true,
+  "sitemapClean": true,
+  "toolsFilter": true,
+  "previewVerified": true
+}

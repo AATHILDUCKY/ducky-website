@@ -1,0 +1,267 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": []
+  },
+  {
+    "route": "/about",
+    "width": 320,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": [
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(246, 250, 255) 45%, rgb(234, 243, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(248, 246, 255) 45%, rgb(238, 234, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 252, 248) 45%, rgb(255, 240, 229))"
+      }
+    ]
+  },
+  {
+    "route": "/freelance",
+    "width": 320,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": [
+      {
+        "class": "freelance-panel",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": []
+  },
+  {
+    "route": "/about",
+    "width": 390,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": [
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(246, 250, 255) 45%, rgb(234, 243, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(248, 246, 255) 45%, rgb(238, 234, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 252, 248) 45%, rgb(255, 240, 229))"
+      }
+    ]
+  },
+  {
+    "route": "/freelance",
+    "width": 390,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": [
+      {
+        "class": "freelance-panel",
+        "border": "1px",
+        "padding": "20px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "width": 768,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": []
+  },
+  {
+    "route": "/about",
+    "width": 768,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": [
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(246, 250, 255) 45%, rgb(234, 243, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(248, 246, 255) 45%, rgb(238, 234, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 252, 248) 45%, rgb(255, 240, 229))"
+      }
+    ]
+  },
+  {
+    "route": "/freelance",
+    "width": 768,
+    "overflow": false,
+    "menuWidth": 44,
+    "cards": [
+      {
+        "class": "freelance-panel",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "width": 1024,
+    "overflow": false,
+    "menuWidth": 0,
+    "cards": []
+  },
+  {
+    "route": "/about",
+    "width": 1024,
+    "overflow": false,
+    "menuWidth": 0,
+    "cards": [
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(246, 250, 255) 45%, rgb(234, 243, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(248, 246, 255) 45%, rgb(238, 234, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 252, 248) 45%, rgb(255, 240, 229))"
+      }
+    ]
+  },
+  {
+    "route": "/freelance",
+    "width": 1024,
+    "overflow": false,
+    "menuWidth": 0,
+    "cards": [
+      {
+        "class": "freelance-panel",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "overflow": false,
+    "menuWidth": 0,
+    "cards": []
+  },
+  {
+    "route": "/about",
+    "width": 1440,
+    "overflow": false,
+    "menuWidth": 0,
+    "cards": [
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(246, 250, 255) 45%, rgb(234, 243, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(248, 246, 255) 45%, rgb(238, 234, 255))"
+      },
+      {
+        "class": "expertise-item",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 252, 248) 45%, rgb(255, 240, 229))"
+      }
+    ]
+  },
+  {
+    "route": "/freelance",
+    "width": 1440,
+    "overflow": false,
+    "menuWidth": 0,
+    "cards": [
+      {
+        "class": "freelance-panel",
+        "border": "1px",
+        "padding": "28px",
+        "background": "linear-gradient(135deg, rgb(255, 255, 255), rgb(245, 252, 248) 45%, rgb(233, 247, 240))"
+      }
+    ]
+  }
+]

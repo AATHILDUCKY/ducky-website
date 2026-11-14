@@ -1,0 +1,204 @@
+html[data-theme='light'] .reference-site.public-site[data-page='home'] {
+  --muted: #b6b6b6;
+  --line: #ffffff26;
+  --color-page: #090909;
+  --color-heading: #ffffff;
+  --color-title: #ffffff;
+  --color-body: #e5e5e5;
+  --color-secondary: #b6b6b6;
+  --color-description: #b6b6b6;
+  --color-muted: #b6b6b6;
+  --color-accent: var(--accent);
+  --color-border: #ffffff26;
+  --color-surface: #141414;
+  color: #ffffff;
+  background: #090909;
+  color-scheme: dark;
+
+  main {
+    background: radial-gradient(ellipse at 96% 9%, #d76a4e09, transparent 30%), #090909;
+  }
+  main::before {
+    background-image: radial-gradient(#d76a4e33 0.7px, transparent 0.7px);
+  }
+  .hero::before {
+    background: transparent;
+  }
+  .site-header,
+  .mobile-nav,
+  .site-footer {
+    background: #090909;
+  }
+  .site-header,
+  .mobile-nav a {
+    border-color: var(--line);
+  }
+  .signature-wordmark,
+  .signature-wordmark .signature-dot,
+  .hero-poster-wordmark,
+  .hero h1,
+  .profile-caption h2,
+  .signature-caption-mark > span,
+  .editorial-heading,
+  .home-experience .experience-heading,
+  .footer-statement {
+    color: var(--paper);
+  }
+  .desktop-nav a {
+    color: #b6b6b6;
+  }
+  .desktop-nav a:hover,
+  .desktop-nav a[aria-current],
+  .mobile-nav a[aria-current],
+  .hero h1 > span,
+  .hero .eyebrow,
+  .visual-code,
+  .section-index,
+  .home-section-mark,
+  .hero-social-label,
+  .journal-learning > svg,
+  .journal-learning span,
+  .journal-learning p,
+  .footer-statement .icon {
+    color: var(--accent);
+  }
+  .desktop-nav a[aria-current]::after,
+  .eyebrow .status-dot,
+  .hero-availability .status-dot {
+    background: var(--accent);
+  }
+  .home-section-mark {
+    border-color: #d76a4e55;
+  }
+  .home-overview > .journal-learning svg,
+  .footer-pages a[aria-current] {
+    color: var(--accent);
+  }
+  .hero-poster-wordmark > span + span,
+  .editorial-heading > span + span,
+  .experience-heading > span + span,
+  .footer-statement > span:nth-child(2) {
+    color: transparent;
+    -webkit-text-stroke-color: var(--accent);
+  }
+  .poster-wordmark-star {
+    color: var(--accent);
+  }
+  .hero-copy,
+  .hero-footer,
+  .hero-availability,
+  .profile-caption p,
+  .section-description,
+  .home-experience .experience-overview .section-description,
+  .journal-learning p,
+  .footer-inner > div > p {
+    color: #bfbfbf;
+  }
+  .hero-copy strong {
+    color: var(--paper);
+  }
+  .hero-footer .divider,
+  .hero-availability-line {
+    background: #ffffff40;
+  }
+  .hero .journal-learning {
+    background: #151515;
+    border-color: var(--line);
+    border-left: 2px solid var(--accent);
+  }
+  .header-contact,
+  .hero-actions .button-primary,
+  .section-header > .text-link,
+  .home-writeups .section-header > .button {
+    background: var(--accent);
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+  .hero-actions .button:not(.button-primary),
+  .menu-toggle,
+  .footer-top {
+    color: var(--paper);
+    background: #151515;
+    border-color: #ffffff44;
+  }
+  .hero-actions .button:hover,
+  .header-contact:hover,
+  .section-header > .text-link:hover,
+  .home-writeups .section-header > .button:hover,
+  .footer-top:hover {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
+  }
+  .hero-socials,
+  .experience-overview-mark,
+  .footer-statement {
+    border-color: var(--line);
+  }
+  .hero-social-link {
+    background: #171717;
+    color: var(--paper);
+    border-color: #ffffff33;
+  }
+  .hero-social-link-featured,
+  .hero-social-link:hover,
+  .hero-social-link:focus-visible {
+    background: var(--accent);
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+  .discipline-strip {
+    background: #111111;
+    border-block: 1px solid var(--line);
+  }
+  main > .home-highlights[data-home-section] {
+    background: #111111;
+    border-bottom: 1px solid var(--line);
+  }
+  .experience-step {
+    -webkit-text-stroke-color: #ffffff88;
+  }
+  .experience-row-featured .experience-step {
+    color: var(--accent);
+  }
+  .experience-rail::after {
+    background: var(--line);
+  }
+  .experience-overview .text-link {
+    color: var(--accent);
+    border-color: #d76a4e55;
+  }
+  .home-tools-overview .home-tool-link:nth-child(n),
+  .experience-row .experience-role-card,
+  .home-about-grid,
+  .home-writeups .home-writeup-card:nth-child(n),
+  .creator-panel {
+    background: #121212;
+    border-color: var(--line);
+  }
+  .experience-row-featured .experience-role-card {
+    border-color: #d76a4e66;
+  }
+  .home-writeups .home-writeup-card:nth-child(n) .home-writeup-body {
+    background: #121212;
+  }
+  .home-tools-overview .home-tool-link:hover,
+  .home-writeup-card:hover {
+    border-color: #d76a4e88;
+  }
+  .home-contact-overview .home-contact-panel {
+    background: radial-gradient(ellipse at 100% 100%, #d76a4e0b, transparent 65%), #121212;
+    border-color: #d76a4e4d;
+  }
+  .home-contact-panel .home-contact-link {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+  .footer-pages {
+    color: #d5d5d5;
+  }
+  :is(a, button):focus-visible {
+    outline-color: var(--accent);
+  }
+}

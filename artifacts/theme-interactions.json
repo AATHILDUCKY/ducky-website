@@ -1,0 +1,44 @@
+{
+  "toolsFilter": true,
+  "directory": {
+    "padding": "24px",
+    "radius": "28px",
+    "background": "rgba(255, 255, 255, 0.4)",
+    "blur": "blur(12px)",
+    "titleSize": "15px",
+    "titleColor": "rgb(2, 6, 23)"
+  },
+  "hover": {
+    "transform": "matrix(1, 0, 0, 1, 0, -2)",
+    "titleColor": "rgb(55, 48, 163)"
+  },
+  "reducedMotion": {
+    "transform": "none",
+    "duration": "0s"
+  },
+  "projectsFilter": true,
+  "codeCopy": true,
+  "code": {
+    "background": "rgb(2, 6, 23)",
+    "color": "rgb(248, 250, 252)",
+    "font": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+    "size": "13px"
+  },
+  "adminHeading": {
+    "color": "rgb(15, 23, 42)",
+    "size": "24px"
+  },
+  "preview": {
+    "theme": "light",
+    "font": "system-ui, -apple-system, BlinkMacSystemFont, \"SF Pro Text\", Inter, \"Segoe UI\", sans-serif",
+    "heading": "36px",
+    "header": 64
+  },
+  "mobilePreview": {
+    "overflow": false,
+    "heading": "30px"
+  },
+  "adminMobileNavigation": true,
+  "visualEditorLoaded": true,
+  "editorOverflow": false
+}

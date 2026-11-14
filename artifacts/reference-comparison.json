@@ -1,0 +1,41 @@
+{
+  "metrics": {
+    "home": {
+      "referenceHeight": 4088,
+      "localHeight": 4088,
+      "titleTopDifference": 0,
+      "titleWidthDifference": 0
+    },
+    "about": {
+      "referenceHeight": 3228,
+      "localHeight": 3228,
+      "titleTopDifference": 0,
+      "titleWidthDifference": 0
+    },
+    "tools": {
+      "referenceHeight": 1643,
+      "localHeight": 1643,
+      "titleTopDifference": 0,
+      "titleWidthDifference": 0
+    },
+    "projects": {
+      "referenceHeight": 2061,
+      "localHeight": 2061,
+      "titleTopDifference": 0,
+      "titleWidthDifference": 0
+    },
+    "freelance": {
+      "referenceHeight": 1822,
+      "localHeight": 1822,
+      "titleTopDifference": 0,
+      "titleWidthDifference": 0
+    },
+    "contact": {
+      "referenceHeight": 1037,
+      "localHeight": 1037,
+      "titleTopDifference": 0,
+      "titleWidthDifference": 0
+    }
+  },
+  "errors": []
+}

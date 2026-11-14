@@ -1,0 +1,200 @@
+[
+  {
+    "width": 320,
+    "overflow": false,
+    "heading": {
+      "size": 40,
+      "font": "Charter, \"Bitstream Charter\", Georgia, \"Noto Serif\", serif"
+    },
+    "copy": 20,
+    "sections": [
+      "hero",
+      "highlights",
+      "about",
+      "experience",
+      "tools",
+      "writeups",
+      "contact"
+    ],
+    "metrics": [
+      {
+        "height": 200,
+        "icon": true
+      },
+      {
+        "height": 227,
+        "icon": true
+      },
+      {
+        "height": 200,
+        "icon": true
+      }
+    ],
+    "missingIcons": []
+  },
+  {
+    "width": 390,
+    "overflow": false,
+    "heading": {
+      "size": 40,
+      "font": "Charter, \"Bitstream Charter\", Georgia, \"Noto Serif\", serif"
+    },
+    "copy": 20,
+    "sections": [
+      "hero",
+      "highlights",
+      "about",
+      "experience",
+      "tools",
+      "writeups",
+      "contact"
+    ],
+    "metrics": [
+      {
+        "height": 200,
+        "icon": true
+      },
+      {
+        "height": 173,
+        "icon": true
+      },
+      {
+        "height": 200,
+        "icon": true
+      }
+    ],
+    "missingIcons": []
+  },
+  {
+    "width": 768,
+    "overflow": false,
+    "heading": {
+      "size": 40,
+      "font": "Charter, \"Bitstream Charter\", Georgia, \"Noto Serif\", serif"
+    },
+    "copy": 20,
+    "sections": [
+      "hero",
+      "highlights",
+      "about",
+      "experience",
+      "tools",
+      "writeups",
+      "contact"
+    ],
+    "metrics": [
+      {
+        "height": 204,
+        "icon": true
+      },
+      {
+        "height": 204,
+        "icon": true
+      },
+      {
+        "height": 200,
+        "icon": true
+      }
+    ],
+    "missingIcons": []
+  },
+  {
+    "width": 1024,
+    "overflow": false,
+    "heading": {
+      "size": 49.152,
+      "font": "Charter, \"Bitstream Charter\", Georgia, \"Noto Serif\", serif"
+    },
+    "copy": 22,
+    "sections": [
+      "hero",
+      "highlights",
+      "about",
+      "experience",
+      "tools",
+      "writeups",
+      "contact"
+    ],
+    "metrics": [
+      {
+        "height": 200,
+        "icon": true
+      },
+      {
+        "height": 200,
+        "icon": true
+      },
+      {
+        "height": 200,
+        "icon": true
+      }
+    ],
+    "missingIcons": []
+  },
+  {
+    "width": 1440,
+    "overflow": false,
+    "heading": {
+      "size": 69.12,
+      "font": "Charter, \"Bitstream Charter\", Georgia, \"Noto Serif\", serif"
+    },
+    "copy": 22,
+    "sections": [
+      "hero",
+      "highlights",
+      "about",
+      "experience",
+      "tools",
+      "writeups",
+      "contact"
+    ],
+    "metrics": [
+      {
+        "height": 232,
+        "icon": true
+      },
+      {
+        "height": 232,
+        "icon": true
+      },
+      {
+        "height": 232,
+        "icon": true
+      }
+    ],
+    "missingIcons": []
+  },
+  {
+    "width": 1920,
+    "overflow": false,
+    "heading": {
+      "size": 76,
+      "font": "Charter, \"Bitstream Charter\", Georgia, \"Noto Serif\", serif"
+    },
+    "copy": 22,
+    "sections": [
+      "hero",
+      "highlights",
+      "about",
+      "experience",
+      "tools",
+      "writeups",
+      "contact"
+    ],
+    "metrics": [
+      {
+        "height": 207,
+        "icon": true
+      },
+      {
+        "height": 207,
+        "icon": true
+      },
+      {
+        "height": 207,
+        "icon": true
+      }
+    ],
+    "missingIcons": []
+  }
+]

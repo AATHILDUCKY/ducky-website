@@ -1,0 +1,1016 @@
+[
+  {
+    "path": "/",
+    "width": 320,
+    "overflow": false,
+    "h1": 30,
+    "hero": 18,
+    "inputs": []
+  },
+  {
+    "path": "/about",
+    "width": 320,
+    "overflow": false,
+    "h1": 30,
+    "hero": null,
+    "inputs": []
+  },
+  {
+    "path": "/tools",
+    "width": 320,
+    "overflow": false,
+    "h1": 30,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "width": 320,
+    "overflow": false,
+    "h1": 30,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/blog",
+    "width": 320,
+    "overflow": false,
+    "h1": 30,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "width": 360,
+    "overflow": false,
+    "h1": 30,
+    "hero": 18,
+    "inputs": []
+  },
+  {
+    "path": "/about",
+    "width": 360,
+    "overflow": false,
+    "h1": 30,
+    "hero": null,
+    "inputs": []
+  },
+  {
+    "path": "/tools",
+    "width": 360,
+    "overflow": false,
+    "h1": 30,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "width": 360,
+    "overflow": false,
+    "h1": 30,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/blog",
+    "width": 360,
+    "overflow": false,
+    "h1": 30,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "width": 390,
+    "overflow": false,
+    "h1": 31.2,
+    "hero": 18,
+    "inputs": []
+  },
+  {
+    "path": "/about",
+    "width": 390,
+    "overflow": false,
+    "h1": 31.2,
+    "hero": null,
+    "inputs": []
+  },
+  {
+    "path": "/tools",
+    "width": 390,
+    "overflow": false,
+    "h1": 31.2,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "width": 390,
+    "overflow": false,
+    "h1": 31.2,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/blog",
+    "width": 390,
+    "overflow": false,
+    "h1": 31.2,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "width": 430,
+    "overflow": false,
+    "h1": 34.4,
+    "hero": 18,
+    "inputs": []
+  },
+  {
+    "path": "/about",
+    "width": 430,
+    "overflow": false,
+    "h1": 34.4,
+    "hero": null,
+    "inputs": []
+  },
+  {
+    "path": "/tools",
+    "width": 430,
+    "overflow": false,
+    "h1": 34.4,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "width": 430,
+    "overflow": false,
+    "h1": 34.4,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/blog",
+    "width": 430,
+    "overflow": false,
+    "h1": 34.4,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "width": 600,
+    "overflow": false,
+    "h1": 36,
+    "hero": 18,
+    "inputs": []
+  },
+  {
+    "path": "/about",
+    "width": 600,
+    "overflow": false,
+    "h1": 36,
+    "hero": null,
+    "inputs": []
+  },
+  {
+    "path": "/tools",
+    "width": 600,
+    "overflow": false,
+    "h1": 36,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "width": 600,
+    "overflow": false,
+    "h1": 36,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/blog",
+    "width": 600,
+    "overflow": false,
+    "h1": 36,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "width": 767,
+    "overflow": false,
+    "h1": 36,
+    "hero": 18,
+    "inputs": []
+  },
+  {
+    "path": "/about",
+    "width": 767,
+    "overflow": false,
+    "h1": 36,
+    "hero": null,
+    "inputs": []
+  },
+  {
+    "path": "/tools",
+    "width": 767,
+    "overflow": false,
+    "h1": 36,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "width": 767,
+    "overflow": false,
+    "h1": 36,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/blog",
+    "width": 767,
+    "overflow": false,
+    "h1": 36,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "width": 768,
+    "overflow": false,
+    "h1": 40,
+    "hero": 22,
+    "inputs": []
+  },
+  {
+    "path": "/about",
+    "width": 768,
+    "overflow": false,
+    "h1": 48,
+    "hero": null,
+    "inputs": []
+  },
+  {
+    "path": "/tools",
+    "width": 768,
+    "overflow": false,
+    "h1": 48,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 17
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "width": 768,
+    "overflow": false,
+    "h1": 48,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 17
+      },
+      {
+        "class": "",
+        "size": 17
+      },
+      {
+        "class": "",
+        "size": 17
+      },
+      {
+        "class": "",
+        "size": 17
+      },
+      {
+        "class": "",
+        "size": 17
+      }
+    ]
+  },
+  {
+    "path": "/blog",
+    "width": 768,
+    "overflow": false,
+    "h1": 48,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 17
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "width": 1440,
+    "overflow": false,
+    "h1": 69.12,
+    "hero": 24,
+    "inputs": []
+  },
+  {
+    "path": "/about",
+    "width": 1440,
+    "overflow": false,
+    "h1": 56,
+    "hero": null,
+    "inputs": []
+  },
+  {
+    "path": "/tools",
+    "width": 1440,
+    "overflow": false,
+    "h1": 56,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 17
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "width": 1440,
+    "overflow": false,
+    "h1": 56,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 17
+      },
+      {
+        "class": "",
+        "size": 17
+      },
+      {
+        "class": "",
+        "size": 17
+      },
+      {
+        "class": "",
+        "size": 17
+      },
+      {
+        "class": "",
+        "size": 17
+      }
+    ]
+  },
+  {
+    "path": "/blog",
+    "width": 1440,
+    "overflow": false,
+    "h1": 56,
+    "hero": null,
+    "inputs": [
+      {
+        "class": "",
+        "size": 17
+      }
+    ]
+  },
+  {
+    "path": "/blog/how-to-use-this-portfolio-website",
+    "width": 390,
+    "article": 18
+  },
+  {
+    "path": "/blog/how-to-use-this-portfolio-website",
+    "width": 767,
+    "article": 18
+  },
+  {
+    "path": "/blog/how-to-use-this-portfolio-website",
+    "width": 768,
+    "article": 22
+  },
+  {
+    "path": "/blog/how-to-use-this-portfolio-website",
+    "width": 1440,
+    "article": 22
+  },
+  {
+    "path": "/admin",
+    "width": 320,
+    "overflow": false,
+    "inputs": []
+  },
+  {
+    "path": "/admin/profile",
+    "width": 320,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/posts",
+    "width": 320,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/requests",
+    "width": 320,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/homepage",
+    "width": 320,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin",
+    "width": 390,
+    "overflow": false,
+    "inputs": []
+  },
+  {
+    "path": "/admin/profile",
+    "width": 390,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/posts",
+    "width": 390,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/requests",
+    "width": 390,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/homepage",
+    "width": 390,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin",
+    "width": 767,
+    "overflow": false,
+    "inputs": []
+  },
+  {
+    "path": "/admin/profile",
+    "width": 767,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      },
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/posts",
+    "width": 767,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/requests",
+    "width": 767,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  },
+  {
+    "path": "/admin/homepage",
+    "width": 767,
+    "overflow": false,
+    "inputs": [
+      {
+        "class": "",
+        "size": 16
+      }
+    ]
+  }
+]

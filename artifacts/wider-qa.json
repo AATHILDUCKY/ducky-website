@@ -1,0 +1,2188 @@
+{
+  "results": [
+    {
+      "route": "/",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 288,
+        "left": 16,
+        "font": "36px",
+        "height": 135
+      },
+      "intro": {
+        "width": 288,
+        "left": 16,
+        "font": "20px",
+        "height": 195
+      },
+      "description": {
+        "width": 246,
+        "left": 37,
+        "font": "17px",
+        "height": 82.875
+      },
+      "title": {
+        "width": 246,
+        "left": 37,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 75,
+        "left": 16,
+        "font": "18px",
+        "height": 75
+      },
+      "article": null
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 288,
+        "left": 16,
+        "font": "36px",
+        "height": 180
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/tools",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 288,
+        "left": 16,
+        "font": "36px",
+        "height": 135
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/projects",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 288,
+        "left": 16,
+        "font": "36px",
+        "height": 90
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/freelance",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 246,
+        "left": 37,
+        "font": "36px",
+        "height": 180
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/contact",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 246,
+        "left": 37,
+        "font": "36px",
+        "height": 180
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 288,
+        "left": 16,
+        "font": "36px",
+        "height": 90
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/research",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 288,
+        "left": 16,
+        "font": "36px",
+        "height": 135
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog/building-testing-always-learning",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 288,
+        "left": 16,
+        "font": "36px",
+        "height": 90
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 2500.734375
+      }
+    },
+    {
+      "route": "/projects/duck-leak-scanner",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 288,
+        "left": 16,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 288,
+        "left": 16,
+        "font": "36px",
+        "height": 90
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/login",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 238,
+        "left": 41,
+        "font": "32px",
+        "height": 40
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 406,
+        "left": 24,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": {
+        "width": 406,
+        "left": 24,
+        "font": "20px",
+        "height": 162.5
+      },
+      "description": {
+        "width": 238,
+        "left": 105,
+        "font": "17px",
+        "height": 82.875
+      },
+      "title": {
+        "width": 238,
+        "left": 105,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 170,
+        "left": 514,
+        "font": "18px",
+        "height": 170
+      },
+      "article": null
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 720,
+        "left": 24,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/tools",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 720,
+        "left": 24,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/projects",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 720,
+        "left": 24,
+        "font": "48px",
+        "height": 60
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/freelance",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 358.34375,
+        "left": 53,
+        "font": "48px",
+        "height": 240
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/contact",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 662,
+        "left": 53,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 720,
+        "left": 24,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/research",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 720,
+        "left": 24,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog/building-testing-always-learning",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 720,
+        "left": 24,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 2169.4375
+      }
+    },
+    {
+      "route": "/projects/duck-leak-scanner",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 720,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 720,
+        "left": 24,
+        "font": "48px",
+        "height": 60
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/login",
+      "width": 768,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 382,
+        "left": 193,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 533.828125,
+        "left": 32,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": {
+        "width": 533.828125,
+        "left": 32,
+        "font": "20px",
+        "height": 130
+      },
+      "description": {
+        "width": 310,
+        "left": 121,
+        "font": "17px",
+        "height": 82.875
+      },
+      "title": {
+        "width": 310,
+        "left": 121,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 260,
+        "left": 664.265625,
+        "font": "18px",
+        "height": 260
+      },
+      "article": null
+    },
+    {
+      "route": "/about",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 395.734375,
+        "left": 32,
+        "font": "48px",
+        "height": 240
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/tools",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 524.515625,
+        "left": 32,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/projects",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 524.515625,
+        "left": 32,
+        "font": "48px",
+        "height": 60
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/freelance",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 496.25,
+        "left": 61,
+        "font": "48px",
+        "height": 180
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/contact",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 502.078125,
+        "left": 61,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 32,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/research",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 32,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog/building-testing-always-learning",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 960,
+        "left": 32,
+        "font": "48px",
+        "height": 60
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 1989.1875
+      }
+    },
+    {
+      "route": "/projects/duck-leak-scanner",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 960,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 32,
+        "font": "48px",
+        "height": 60
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/login",
+      "width": 1024,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 382,
+        "left": 321,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 765.65625,
+        "left": 32,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": {
+        "width": 720.71875,
+        "left": 32,
+        "font": "20px",
+        "height": 97.5
+      },
+      "description": {
+        "width": 518,
+        "left": 121,
+        "font": "17px",
+        "height": 55.25
+      },
+      "title": {
+        "width": 518,
+        "left": 121,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 331.1875,
+        "left": 958.828125,
+        "font": "18px",
+        "height": 331.1875
+      },
+      "article": null
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 554.890625,
+        "left": 32,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/tools",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 746.078125,
+        "left": 32,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/projects",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 746.078125,
+        "left": 32,
+        "font": "56px",
+        "height": 70
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/freelance",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 731.390625,
+        "left": 61,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/contact",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 737.03125,
+        "left": 61,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 32,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/research",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 32,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog/building-testing-always-learning",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 960,
+        "left": 240,
+        "font": "56px",
+        "height": 70
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": {
+        "width": 960,
+        "left": 240,
+        "font": "18px",
+        "height": 1999.1875
+      }
+    },
+    {
+      "route": "/projects/duck-leak-scanner",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1376,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 32,
+        "font": "56px",
+        "height": 70
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/login",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 382,
+        "left": 529,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 891.5625,
+        "left": 160,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": {
+        "width": 720.71875,
+        "left": 160,
+        "font": "20px",
+        "height": 97.5
+      },
+      "description": {
+        "width": 630,
+        "left": 249,
+        "font": "17px",
+        "height": 27.625
+      },
+      "title": {
+        "width": 630,
+        "left": 249,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 360,
+        "left": 1249.78125,
+        "font": "18px",
+        "height": 360
+      },
+      "article": null
+    },
+    {
+      "route": "/about",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 643.390625,
+        "left": 160,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/tools",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 872.6875,
+        "left": 160,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/projects",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 872.6875,
+        "left": 160,
+        "font": "56px",
+        "height": 70
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/freelance",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 857.984375,
+        "left": 189,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/contact",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 865.71875,
+        "left": 189,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 160,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/research",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 160,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/blog/building-testing-always-learning",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 960,
+        "left": 480,
+        "font": "56px",
+        "height": 70
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": {
+        "width": 960,
+        "left": 480,
+        "font": "18px",
+        "height": 1999.1875
+      }
+    },
+    {
+      "route": "/projects/duck-leak-scanner",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1600,
+        "left": 160,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 950,
+        "left": 160,
+        "font": "56px",
+        "height": 70
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/login",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 382,
+        "left": 769,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 161.015625,
+        "left": 16,
+        "font": "32px",
+        "height": 80
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/posts/new",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": null,
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/homepage",
+      "width": 320,
+      "overflow": false,
+      "clipped": [
+        {
+          "tag": "BUTTON",
+          "class": "button button-dark",
+          "text": "Save changes"
+        }
+      ],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 246,
+        "left": 37,
+        "font": "32px",
+        "height": 40
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/projects",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 144.109375,
+        "left": 16,
+        "font": "32px",
+        "height": 80
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/profile",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 273.21875,
+        "left": 16,
+        "font": "32px",
+        "height": 40
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/seo",
+      "width": 320,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 113.828125,
+        "left": 16,
+        "font": "32px",
+        "height": 120
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin",
+      "width": 768,
+      "overflow": false,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 390.015625,
+        "left": 204,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/posts/new",
+      "width": 768,
+      "overflow": false,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ],
+      "overlappingNav": false,
+      "container": null,
+      "heading": null,
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/homepage",
+      "width": 768,
+      "overflow": false,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 343.21875,
+        "left": 235,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/projects",
+      "width": 768,
+      "overflow": false,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 286.03125,
+        "left": 204,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/profile",
+      "width": 768,
+      "overflow": false,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 315.4375,
+        "left": 204,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/seo",
+      "width": 768,
+      "overflow": false,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 343.828125,
+        "left": 204,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 408.578125,
+        "left": 260,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/posts/new",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": null,
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/homepage",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 343.21875,
+        "left": 291,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/projects",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 286.03125,
+        "left": 260,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/profile",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 315.4375,
+        "left": 260,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/seo",
+      "width": 1440,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 438.9375,
+        "left": 260,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 408.578125,
+        "left": 274,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/posts/new",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": null,
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/homepage",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 343.21875,
+        "left": 405,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/projects",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 286.03125,
+        "left": 274,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/profile",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 315.4375,
+        "left": 274,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/admin/seo",
+      "width": 1920,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": null,
+      "heading": {
+        "width": 438.9375,
+        "left": 274,
+        "font": "40px",
+        "height": 50
+      },
+      "intro": null,
+      "description": null,
+      "title": null,
+      "portrait": null,
+      "article": null
+    },
+    {
+      "route": "/",
+      "width": 1001,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 953,
+        "left": 24,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 530.21875,
+        "left": 24,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": {
+        "width": 530.21875,
+        "left": 24,
+        "font": "20px",
+        "height": 130
+      },
+      "description": {
+        "width": 306.5,
+        "left": 113,
+        "font": "17px",
+        "height": 82.875
+      },
+      "title": {
+        "width": 306.5,
+        "left": 113,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 260,
+        "left": 650.609375,
+        "font": "18px",
+        "height": 260
+      },
+      "article": null
+    },
+    {
+      "route": "/",
+      "width": 1100,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1036,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 576.1875,
+        "left": 32,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": {
+        "width": 576.1875,
+        "left": 32,
+        "font": "20px",
+        "height": 97.5
+      },
+      "description": {
+        "width": 348,
+        "left": 121,
+        "font": "17px",
+        "height": 55.25
+      },
+      "title": {
+        "width": 348,
+        "left": 121,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 260,
+        "left": 724.59375,
+        "font": "18px",
+        "height": 260
+      },
+      "article": null
+    },
+    {
+      "route": "/",
+      "width": 1200,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1136,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 631.90625,
+        "left": 32,
+        "font": "48px",
+        "height": 120
+      },
+      "intro": {
+        "width": 631.90625,
+        "left": 32,
+        "font": "20px",
+        "height": 97.5
+      },
+      "description": {
+        "width": 398,
+        "left": 121,
+        "font": "17px",
+        "height": 55.25
+      },
+      "title": {
+        "width": 398,
+        "left": 121,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 276,
+        "left": 795.953125,
+        "font": "18px",
+        "height": 276
+      },
+      "article": null
+    },
+    {
+      "route": "/",
+      "width": 1280,
+      "overflow": false,
+      "clipped": [],
+      "overlappingNav": false,
+      "container": {
+        "width": 1216,
+        "left": 32,
+        "font": "18px",
+        "height": 64
+      },
+      "heading": {
+        "width": 676.484375,
+        "left": 32,
+        "font": "56px",
+        "height": 140
+      },
+      "intro": {
+        "width": 676.484375,
+        "left": 32,
+        "font": "20px",
+        "height": 97.5
+      },
+      "description": {
+        "width": 438,
+        "left": 121,
+        "font": "17px",
+        "height": 55.25
+      },
+      "title": {
+        "width": 438,
+        "left": 121,
+        "font": "22px",
+        "height": 30.796875
+      },
+      "portrait": {
+        "width": 294.390625,
+        "left": 850.234375,
+        "font": "18px",
+        "height": 294.390625
+      },
+      "article": null
+    }
+  ],
+  "checks": 83,
+  "overflows": [],
+  "clipped": [
+    {
+      "route": "/admin/homepage",
+      "width": 320,
+      "clipped": [
+        {
+          "tag": "BUTTON",
+          "class": "button button-dark",
+          "text": "Save changes"
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "width": 768,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ]
+    },
+    {
+      "route": "/admin/posts/new",
+      "width": 768,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ]
+    },
+    {
+      "route": "/admin/homepage",
+      "width": 768,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ]
+    },
+    {
+      "route": "/admin/projects",
+      "width": 768,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ]
+    },
+    {
+      "route": "/admin/profile",
+      "width": 768,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ]
+    },
+    {
+      "route": "/admin/seo",
+      "width": 768,
+      "clipped": [
+        {
+          "tag": "A",
+          "class": "button button-dark new-post",
+          "text": "Write something"
+        }
+      ]
+    }
+  ],
+  "navOverlap": [],
+  "preview": "20px",
+  "extra": [
+    {
+      "kind": "mobilePreview",
+      "overflow": false
+    },
+    {
+      "route": "/",
+      "kind": "enlarged",
+      "overflow": false
+    },
+    {
+      "route": "/tools",
+      "kind": "enlarged",
+      "overflow": false
+    },
+    {
+      "route": "/research",
+      "kind": "enlarged",
+      "overflow": false
+    },
+    {
+      "route": "/admin/homepage",
+      "kind": "enlarged",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

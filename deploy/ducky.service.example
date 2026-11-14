@@ -1,0 +1,22 @@
+# Install as /etc/systemd/system/ducky.service after editing paths and User.
+[Unit]
+Description=Aathilducky portfolio and blog
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=YOUR_USER
+WorkingDirectory=/home/YOUR_USER/ducky-website
+ExecStart=/home/YOUR_USER/ducky-website/deply.sh --start-only
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=NEXT_TELEMETRY_DISABLED=1
+MemoryMax=650M
+TasksMax=100
+NoNewPrivileges=true
+PrivateTmp=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

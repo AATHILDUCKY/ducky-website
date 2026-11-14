@@ -1,0 +1,165 @@
+/* Shared syntax palette for published articles, previews, and editable code blocks. */
+.prose .code-block {
+  margin: 28px 0;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--tint);
+  box-shadow: 0 3px 14px #00000005;
+}
+.prose .code-block > figcaption,
+.block-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--color-surface-raised);
+  color: var(--mint);
+  font: var(--text-meta)/1.6 var(--font-mono);
+}
+.code-language {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+.code-language > span {
+  color: var(--muted);
+  font-weight: 700;
+}
+.prose .code-block > figcaption button,
+.block-code-header button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--panel) 69%, transparent);
+  cursor: pointer;
+  font: inherit;
+}
+.prose .code-block > figcaption button:hover {
+  background: var(--panel);
+  border-color: var(--border);
+}
+.prose .code-block > figcaption button:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+.prose figure.code-block > pre {
+  background: var(--canvas);
+  color: var(--text);
+  padding: 22px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  overflow-x: auto;
+  font: var(--text-meta)/1.85 var(--font-mono);
+  tab-size: 2;
+}
+.prose figure.code-block > pre > code {
+  display: block;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.code-copy-status {
+  display: block;
+  font-size: var(--text-meta);
+  color: var(--rose);
+  padding: 0 16px;
+}
+.code-copy-status:empty {
+  display: none;
+}
+.hljs-comment,
+.hljs-quote {
+  color: var(--muted);
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
+  color: var(--violet);
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-template-tag {
+  color: var(--mint);
+}
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attr {
+  color: var(--amber);
+}
+.hljs-title,
+.hljs-section,
+.hljs-title.function_,
+.hljs-function .hljs-title {
+  color: var(--cyan);
+}
+.hljs-type,
+.hljs-built_in {
+  color: var(--amber);
+}
+.hljs-variable,
+.hljs-template-variable {
+  color: var(--rose);
+}
+.hljs-params,
+.hljs-subst {
+  color: var(--color-body);
+}
+.hljs-property,
+.hljs-selector-id {
+  color: var(--cyan);
+}
+.hljs-operator,
+.hljs-punctuation {
+  color: var(--color-secondary);
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 700;
+}
+.hljs-meta,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-class {
+  color: var(--rose);
+}
+.hljs-deletion {
+  color: var(--rose);
+  background: var(--violet-tint);
+}
+.hljs-addition {
+  background: var(--tint);
+}
+.prose .code-block pre:focus-visible,
+.block-code pre:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -3px;
+}
+@media (max-width: 650px) {
+  .prose figure.code-block > pre {
+    padding: 17px;
+    font-size: var(--text-meta);
+  }
+  .prose .code-block > figcaption button {
+    min-height: 40px;
+  }
+}

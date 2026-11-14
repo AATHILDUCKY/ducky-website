@@ -1,0 +1,31 @@
+.app-theme .social-field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 2px;
+}
+.app-theme .social-field-label svg {
+  flex: 0 0 auto;
+  color: var(--color-heading);
+}
+.app-theme .social-settings-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+.app-theme .social-settings-form .settings-note {
+  margin-top: 22px;
+}
+.app-theme .social-settings-form .settings-note a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.app-theme .social-settings-form .form-success,
+.app-theme .social-settings-form .form-error {
+  margin-top: 18px;
+}
+.app-theme .social-link-fields + .form-grid {
+  margin-top: 20px;
+}
