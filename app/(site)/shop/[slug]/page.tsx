@@ -78,8 +78,8 @@ export default async function ProductPage({ params }: Props) {
             <div>
               <h3>Payment & returns</h3>
               <p>
-                {s.payment === 'cod'
-                  ? 'Pay cash when your order arrives.'
+                {s.cod_enabled
+                  ? 'Cash on delivery is available as an option at checkout.'
                   : 'We will contact you to arrange payment after ordering.'}
               </p>
               <p>{s.returns}</p>

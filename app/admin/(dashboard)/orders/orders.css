@@ -724,3 +724,105 @@
     display: none !important;
   }
 }
+.order-payment-proofs {
+  margin: 28px 0;
+}
+.proof-empty {
+  border: 1px dashed var(--shop-line);
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+}
+.proof-empty p {
+  margin: 0;
+  font-size: 14px;
+}
+.admin-payment-proof {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--shop-line);
+  border-radius: 12px;
+  margin: 16px 0;
+}
+.admin-payment-proof > header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+.admin-payment-proof strong {
+  overflow-wrap: anywhere;
+}
+.admin-payment-proof > header p {
+  font-size: 13px;
+  margin: 6px 0;
+}
+.admin-payment-proof img {
+  display: block;
+  max-width: 100%;
+  max-height: 440px;
+  object-fit: contain;
+  object-position: left;
+  border: 1px solid var(--shop-line);
+  border-radius: 8px;
+  background: #f5f6f3;
+}
+.proof-download {
+  display: inline-flex;
+  margin: 16px 0;
+  color: #3e6638 !important;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline !important;
+}
+.proof-review-form {
+  display: grid;
+  gap: 16px;
+  border-top: 1px solid var(--shop-line);
+  padding-top: 18px;
+}
+.proof-review-form > div {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.proof-review-form > p {
+  font-size: 13px;
+  margin: 0;
+}
+.proof-review-result p {
+  font-size: 14px;
+}
+.proof-review-result small {
+  color: var(--shop-muted);
+  font-size: 13px;
+}
+.orders-workspace .proof-pending {
+  background: #fff3dc;
+  color: #8a5d1e;
+}
+.orders-workspace .proof-approved {
+  background: #eaf4e5;
+  color: #376530;
+}
+.orders-workspace .proof-rejected {
+  background: #fcece8;
+  color: #9a463b;
+}
+.proof-inbox-label {
+  color: #8a5d1e !important;
+  font-weight: 600;
+  margin-top: 7px;
+}
+@media (max-width: 600px) {
+  .admin-payment-proof {
+    padding: 18px;
+  }
+  .admin-payment-proof > header {
+    flex-direction: column;
+  }
+  .proof-review-form .shop-button {
+    width: 100%;
+  }
+}

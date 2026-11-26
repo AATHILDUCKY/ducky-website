@@ -18,6 +18,7 @@ const product = {
 };
 const checkout = {
   submission_id: randomUUID(),
+  access_token: 'a'.repeat(64),
   name: 'Test Customer',
   email: 'CUSTOMER@example.com',
   phone: '+94 77 123 4567',

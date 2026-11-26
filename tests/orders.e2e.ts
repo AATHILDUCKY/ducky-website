@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { Pool } from 'pg';
+import { writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 const db = new Pool({ connectionString: process.env.DATABASE_URL, max: 2 });
 const token = randomUUID();
@@ -88,6 +89,7 @@ test('dedicated orders: bounded lists, filters, private documents, PDF downloads
     expect(pdf.headers()['cache-control']).toContain('no-store');
     expect(pdf.headers()['content-disposition']).toContain(`DK-${number}-${kind}.pdf`);
     expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
+    await writeFile(`artifacts/document-${kind}-download.pdf`, await pdf.body());
     await page.goto(documentUrl(kind));
     await expect(page.locator('.order-document')).toContainText('TRACK-QA-42');
     expect(await page.locator('.order-document').textContent()).not.toContain('PRIVATE ONLY');
@@ -97,10 +99,28 @@ test('dedicated orders: bounded lists, filters, private documents, PDF downloads
       ).toBeVisible();
       expect(await page.locator('.order-document').textContent()).not.toContain('Unit price');
     } else await expect(page.locator('.order-document')).toContainText('2,851.00');
+    for (const width of [390, 1440]) {
+      await page.setViewportSize({ width, height: 1000 });
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+        `${kind} preview at ${width}`,
+      ).toBeTruthy();
+      await page.screenshot({ path: `artifacts/document-${kind}-${width}.png`, fullPage: true });
+    }
     await page.emulateMedia({ media: 'print' });
     await expect(page.locator('.admin-sidebar')).toBeHidden();
     await expect(page.locator('.document-toolbar')).toBeHidden();
     await expect(page.locator('.order-document')).toBeVisible();
+    const printed = await page.pdf({
+      path: `artifacts/document-${kind}-print.pdf`,
+      format: 'A4',
+      preferCSSPageSize: true,
+      printBackground: true,
+    });
+    expect(
+      (printed.toString('latin1').match(/\/Type\s*\/Page\b/g) || []).length,
+      `${kind} should print on one A4 page`,
+    ).toBe(1);
     await page.emulateMedia({ media: 'screen' });
   }
   expect(

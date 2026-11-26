@@ -27,12 +27,16 @@ export const shopSettingsSchema = z.object({
   currency: z.enum(['LKR', 'USD', 'EUR', 'GBP', 'INR']),
   shipping: minor,
   payment: z.enum(['cod', 'manual']),
+  cod_enabled: z.boolean().default(false),
+  payment_instructions: z.string().trim().max(2000).default(''),
   delivery: z.string().trim().min(5).max(1000),
   returns: z.string().trim().min(5).max(1000),
 });
 export const checkoutSchema = z
   .object({
     submission_id: z.uuid(),
+    access_token: z.string().regex(/^[a-f0-9]{64}$/),
+    payment: z.enum(['manual', 'cod']).default('manual'),
     name: z.string().trim().min(2).max(100),
     email: z
       .email()

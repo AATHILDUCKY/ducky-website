@@ -2,11 +2,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { z } from 'zod';
 import { Download, ReceiptText, FileText, PackageCheck, Mail, Phone, MapPin } from 'lucide-react';
-import { getProfile } from '@/lib/db';
+import { getDocumentSeller } from '@/lib/order-document-seller';
 import { getOrder } from '@/lib/orders';
 import { money } from '@/lib/shop-types';
 import { requestDate } from '@/lib/contact-requests';
 import { orderLabels, documentKinds, documentTitles } from '@/lib/order-utils';
+import { OrderPaymentProofs } from '@/components/order-payment-proofs';
 import { OrderForm } from '@/components/order-editor';
 import { OrderDocument } from '@/components/order-document';
 import { PrintDocument } from '@/components/order-document-controls';
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 export default async function OrderPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!z.uuid().safeParse(id).success) notFound();
-  const [o, seller] = await Promise.all([getOrder(id), getProfile()]);
+  const [o, seller] = await Promise.all([getOrder(id), getDocumentSeller()]);
   if (!o) notFound();
   const icons = { receipt: ReceiptText, invoice: FileText, shipping: PackageCheck };
   return (
@@ -101,6 +102,10 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
           );
         })}
       </section>
+      <OrderPaymentProofs
+        orderId={o.id}
+        canApprove={o.payment_status === 'unpaid' && o.status !== 'cancelled'}
+      />
       <div className="order-detail-grid">
         <section aria-label="Receipt preview">
           <div className="orders-preview-heading shop-order-controls">

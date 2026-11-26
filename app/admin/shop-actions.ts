@@ -77,6 +77,8 @@ export async function saveShopSettings(_: ShopState, form: FormData): Promise<Sh
   await requireAdmin();
   const p = shopSettingsSchema.safeParse({
     ...Object.fromEntries(form),
+    payment: 'manual',
+    cod_enabled: form.get('cod_enabled') === 'yes',
     shipping: Math.round(Number(form.get('shipping')) * 100),
   });
   if (!p.success) return { error: p.error.issues.map((i) => i.message).join(' ') };

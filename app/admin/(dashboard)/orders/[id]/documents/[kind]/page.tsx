@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { z } from 'zod';
 import { getOrder } from '@/lib/orders';
-import { getProfile } from '@/lib/db';
+import { getDocumentSeller } from '@/lib/order-document-seller';
 import { documentKinds, documentTitles } from '@/lib/order-utils';
 import { OrderDocument } from '@/components/order-document';
 import { PrintDocument } from '@/components/order-document-controls';
@@ -14,7 +14,7 @@ export default async function DocumentPage({
   const { id, kind } = await params;
   const parsed = z.enum(documentKinds).safeParse(kind);
   if (!z.uuid().safeParse(id).success || !parsed.success) notFound();
-  const [o, seller] = await Promise.all([getOrder(id), getProfile()]);
+  const [o, seller] = await Promise.all([getOrder(id), getDocumentSeller()]);
   if (!o) notFound();
   return (
     <>

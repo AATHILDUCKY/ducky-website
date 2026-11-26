@@ -2,10 +2,14 @@ import 'server-only';
 import { cache } from 'react';
 import { pool } from './db';
 import type { Product, ShopSettings } from './shop-types';
-export const getShopSettings = cache(
-  async (): Promise<ShopSettings> =>
-    (await pool.query("SELECT value FROM settings WHERE key='shop'")).rows[0].value,
-);
+export const getShopSettings = cache(async (): Promise<ShopSettings> => {
+  const value = (await pool.query("SELECT value FROM settings WHERE key='shop'")).rows[0].value;
+  return {
+    ...value,
+    cod_enabled: value.cod_enabled === true,
+    payment_instructions: value.payment_instructions || '',
+  };
+});
 export const getProducts = cache(
   async (): Promise<Product[]> =>
     (

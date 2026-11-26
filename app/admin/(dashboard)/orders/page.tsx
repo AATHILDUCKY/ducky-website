@@ -104,6 +104,7 @@ export default async function Orders({
           <select aria-label="Payment filter" name="payment" defaultValue={f.payment}>
             <option value="">All payments</option>
             <option value="due">Awaiting payment (active)</option>
+            <option value="review">Payment proof to review</option>
             {paymentStatuses.map((s) => (
               <option key={s} value={s}>
                 {orderLabels[s]}
@@ -161,6 +162,11 @@ export default async function Orders({
                     <span className={`order-badge order-${o.payment_status}`}>
                       {orderLabels[o.payment_status]}
                     </span>
+                    {o.proof_pending &&
+                      o.payment_status === 'unpaid' &&
+                      o.status !== 'cancelled' && (
+                        <small className="proof-inbox-label">Proof to review</small>
+                      )}
                   </td>
                   <td data-label="Placed">
                     <time dateTime={new Date(o.created_at).toISOString()}>

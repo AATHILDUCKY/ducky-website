@@ -233,3 +233,23 @@ CREATE TABLE IF NOT EXISTS shop_order_limits(key text PRIMARY KEY, attempts inte
 -- Stable ordering supports small, indexed order-management pages.
 CREATE INDEX IF NOT EXISTS shop_orders_created_id_idx ON shop_orders(created_at DESC,id DESC);
 CREATE INDEX IF NOT EXISTS shop_orders_payment_idx ON shop_orders(payment_status,created_at DESC,id DESC);
+
+-- Payment choices are opt-in. This migration never rewrites saved order methods.
+UPDATE settings SET value=(value || '{"cod_enabled":false,"payment":"manual","payment_instructions":""}'::jsonb),updated_at=now() WHERE key='shop' AND NOT(value ? 'cod_enabled');
+ALTER TABLE shop_orders ADD COLUMN IF NOT EXISTS customer_access_hash text;
+CREATE TABLE IF NOT EXISTS shop_payment_proofs (
+ id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+ order_id uuid NOT NULL REFERENCES shop_orders(id) ON DELETE CASCADE,
+ upload_id uuid NOT NULL UNIQUE,
+ filename text NOT NULL CHECK(length(filename)<=160),
+ mime text NOT NULL CHECK(mime IN ('application/pdf','image/webp')),
+ data bytea NOT NULL CHECK(octet_length(data)>0 AND octet_length(data)<=5242880),
+ status text NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','approved','rejected')),
+ review_note text NOT NULL DEFAULT '' CHECK(length(review_note)<=500),
+ created_at timestamptz NOT NULL DEFAULT clock_timestamp(), reviewed_at timestamptz
+);
+CREATE INDEX IF NOT EXISTS shop_payment_proofs_order_idx ON shop_payment_proofs(order_id,created_at DESC);
+CREATE INDEX IF NOT EXISTS shop_payment_proofs_pending_idx ON shop_payment_proofs(order_id) WHERE status='pending';
+CREATE TABLE IF NOT EXISTS shop_proof_limits(key text PRIMARY KEY,attempts integer NOT NULL DEFAULT 1,window_start timestamptz NOT NULL DEFAULT now());
+ALTER TABLE shop_orders ADD COLUMN IF NOT EXISTS customer_access_expires_at timestamptz;
+UPDATE shop_orders SET customer_access_expires_at=created_at+interval '30 days' WHERE customer_access_hash IS NOT NULL AND customer_access_expires_at IS NULL;

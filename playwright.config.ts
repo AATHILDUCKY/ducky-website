@@ -6,6 +6,7 @@ export default defineConfig({
     'contact.e2e.ts',
     'shop.e2e.ts',
     'orders.e2e.ts',
+    'payments.e2e.ts',
     'forum.e2e.ts',
     'forum-threads.e2e.ts',
     'forum-embeds.e2e.ts',

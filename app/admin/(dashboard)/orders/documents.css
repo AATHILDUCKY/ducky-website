@@ -1,0 +1,672 @@
+/* Coordinated document layout for screen previews and A4 printing. */
+.orders-workspace .commerce-document {
+  --doc-ink: #202522;
+  --doc-muted: #69716d;
+  --doc-accent: #c76143;
+  --doc-line: #dfe4df;
+  --doc-soft: #faf0e9;
+  --doc-table: #f4f6f3;
+  background: #fff;
+  color: var(--doc-ink);
+  border: 1px solid var(--doc-line);
+  border-radius: 12px;
+  padding: 42px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px #20252206;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+.commerce-document:before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: var(--doc-accent);
+}
+.commerce-document p {
+  color: var(--doc-muted);
+  font-size: 13px;
+  margin: 0;
+}
+.commerce-document h2 {
+  font-size: 12px !important;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  margin: 0 0 13px;
+  color: var(--doc-muted) !important;
+  font-weight: 700;
+}
+.commerce-document .commerce-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 0 27px;
+  margin: 0;
+  border: 0;
+  align-items: start;
+}
+.commerce-brand {
+  display: flex;
+  gap: 13px;
+  align-items: start;
+  max-width: 53%;
+  min-width: 0;
+}
+.commerce-monogram {
+  flex: 0 0 44px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #c7614338;
+  border-radius: 10px;
+  background: var(--doc-soft);
+  color: var(--doc-accent);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+.commerce-brand > div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.commerce-brand strong {
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+.commerce-brand span:not(.commerce-monogram) {
+  color: var(--doc-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.commerce-identity {
+  text-align: right;
+  min-width: 0;
+}
+.commerce-document .commerce-eyebrow {
+  display: block;
+  font-size: 10px !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--doc-muted);
+  line-height: 1.4;
+}
+.orders-workspace .commerce-identity h1 {
+  font-size: 30px !important;
+  line-height: 1.15;
+  margin: 8px 0 10px;
+  letter-spacing: -0.055em;
+  color: var(--doc-ink) !important;
+}
+.commerce-document .commerce-reference {
+  color: var(--doc-accent);
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.commerce-meta {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1.2fr 0.6fr;
+  gap: 16px;
+  padding: 19px 0;
+  border-block: 1px solid var(--doc-line);
+  margin-bottom: 25px;
+}
+.commerce-meta > div {
+  display: grid;
+  gap: 5px;
+  align-content: start;
+  min-width: 0;
+}
+.commerce-meta span {
+  font-size: 10px;
+  color: var(--doc-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+}
+.commerce-meta strong {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.commerce-meta small {
+  font-size: 10px;
+  color: var(--doc-muted);
+}
+.commerce-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 23px 25px;
+  background: var(--doc-soft);
+  border: 1px solid #efded2;
+  border-radius: 10px;
+  margin-bottom: 27px;
+  break-inside: avoid;
+}
+.commerce-summary > div:first-child {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+.commerce-summary strong {
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.commerce-summary small {
+  font-size: 11px;
+  color: var(--doc-muted);
+}
+.commerce-summary-status {
+  max-width: 43%;
+  text-align: right;
+}
+.commerce-status {
+  display: inline-flex;
+  background: #fff8;
+  border: 1px solid #c7614340;
+  color: #9b482f;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 20px;
+}
+.commerce-summary-status p {
+  font-size: 11px;
+  margin-top: 9px;
+}
+.commerce-settled {
+  background: #edf5ef;
+  border-color: #d5e7d9;
+}
+.commerce-settled .commerce-status {
+  color: #316345;
+  border-color: #31634540;
+}
+.commerce-parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
+  margin-bottom: 30px;
+}
+.commerce-parties > section {
+  min-width: 0;
+}
+.commerce-parties > section > strong {
+  font-size: 15px;
+}
+.commerce-parties p {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.commerce-parties .commerce-address {
+  white-space: pre-wrap;
+  margin: 7px 0 12px;
+}
+.commerce-parties dl {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.commerce-parties dl > div {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 9px;
+  font-size: 12px;
+  padding: 0;
+}
+.commerce-parties dt {
+  color: var(--doc-muted);
+}
+.commerce-parties dd {
+  margin: 0;
+  text-align: left;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+.commerce-collect {
+  border-top: 1px solid var(--doc-line);
+  padding-top: 12px;
+  margin-top: 14px !important;
+}
+.commerce-collect strong {
+  display: block;
+  color: var(--doc-ink);
+  font-size: 18px;
+}
+.commerce-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.commerce-section-heading h2 {
+  margin: 0;
+}
+.commerce-section-heading > span {
+  font-size: 10px;
+  color: var(--doc-muted);
+}
+.commerce-document .document-table-wrap {
+  overflow-x: auto;
+}
+.commerce-document .commerce-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.commerce-document .commerce-table :is(th, td) {
+  padding: 13px 10px;
+  text-align: right;
+  border-bottom: 1px solid var(--doc-line);
+  vertical-align: top;
+  font-size: 11px;
+}
+.commerce-document .commerce-table th {
+  background: var(--doc-table);
+  color: var(--doc-muted);
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.commerce-document .commerce-table :is(th, td):first-child {
+  width: 7%;
+  text-align: left;
+  color: var(--doc-muted);
+}
+.commerce-document .commerce-table :is(th, td):nth-child(2) {
+  width: 39%;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.commerce-document .commerce-table :is(th, td):nth-child(3) {
+  width: 9%;
+}
+.commerce-document .commerce-table :is(th, td):nth-child(4) {
+  width: 22%;
+}
+.commerce-document .commerce-table :is(th, td):last-child {
+  width: 23%;
+}
+.commerce-document .commerce-table td {
+  font-variant-numeric: tabular-nums;
+}
+.commerce-table td > strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+}
+.commerce-table td > small {
+  display: block;
+  font-size: 9px;
+  color: var(--doc-muted);
+  font-weight: 400;
+  margin-top: 5px;
+}
+.commerce-document.document-shipping .commerce-table :is(th, td):nth-child(2) {
+  width: 75%;
+}
+.commerce-document.document-shipping .commerce-table :is(th, td):last-child {
+  width: 18%;
+}
+.commerce-pack-box {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #9aa59e;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+.commerce-financial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  padding: 23px 0 0;
+  break-inside: avoid;
+}
+.commerce-payment-note p {
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+.commerce-payment-note span {
+  display: block;
+  font-size: 10px;
+  color: var(--doc-muted);
+  margin-top: 15px;
+}
+.commerce-document .commerce-totals {
+  margin: 0;
+  display: grid;
+  align-content: start;
+  gap: 0;
+}
+.commerce-document .commerce-totals > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 12px;
+}
+.commerce-totals dt {
+  color: var(--doc-muted);
+}
+.commerce-totals dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.commerce-document .commerce-order-total {
+  margin-top: 8px;
+  padding-top: 12px !important;
+  border-top: 1px solid var(--doc-line);
+}
+.commerce-order-total :is(dt, dd) {
+  font-weight: 700;
+  color: var(--doc-ink);
+}
+.commerce-document .commerce-balance {
+  background: var(--doc-soft);
+  margin: 12px -10px 0;
+  padding: 12px 10px !important;
+  border-radius: 6px;
+}
+.commerce-balance :is(dt, dd) {
+  color: var(--doc-ink);
+  font-weight: 700;
+}
+.commerce-note {
+  border-top: 1px solid var(--doc-line);
+  padding-top: 18px;
+  margin-top: 23px;
+  break-inside: avoid;
+}
+.commerce-note h2 {
+  margin-bottom: 8px;
+}
+.commerce-note p {
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.commerce-document .commerce-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--doc-line);
+  break-inside: avoid;
+}
+.commerce-footer strong {
+  font-size: 13px;
+}
+.commerce-footer p {
+  font-size: 10px;
+  margin-top: 5px;
+  max-width: 330px;
+}
+.commerce-footer > div:last-child {
+  text-align: right;
+  display: grid;
+  gap: 3px;
+  align-content: start;
+  min-width: 0;
+}
+.commerce-footer span {
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.commerce-footer small {
+  font-size: 9px;
+  color: var(--doc-muted);
+  margin-top: 5px;
+}
+.commerce-handover {
+  padding-top: 23px;
+  break-inside: avoid;
+}
+.commerce-handover p {
+  font-size: 11px;
+}
+.commerce-handover > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.7fr;
+  gap: 25px;
+  margin-top: 18px;
+}
+.commerce-handover span {
+  font-size: 10px;
+  color: var(--doc-muted);
+}
+.commerce-handover strong {
+  display: block;
+  border-bottom: 1px solid #9aa59e;
+  height: 28px;
+}
+.order-document-page {
+  max-width: 900px;
+}
+@media (max-width: 600px) {
+  .orders-workspace .commerce-document {
+    padding: 25px 20px;
+    border-radius: 10px;
+  }
+  .commerce-document .commerce-header {
+    flex-direction: column;
+    gap: 23px;
+  }
+  .commerce-brand {
+    max-width: 100%;
+  }
+  .commerce-identity {
+    text-align: left;
+  }
+  .orders-workspace .commerce-identity h1 {
+    font-size: 28px !important;
+  }
+  .commerce-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .commerce-summary {
+    padding: 18px;
+    flex-direction: column;
+    align-items: start;
+    gap: 13px;
+  }
+  .commerce-summary strong {
+    font-size: 28px;
+  }
+  .commerce-summary-status {
+    max-width: 100%;
+    text-align: left;
+  }
+  .commerce-parties {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .commerce-section-heading {
+    align-items: start;
+    gap: 10px;
+  }
+  .commerce-section-heading > span {
+    text-align: right;
+  }
+  .commerce-document .commerce-table {
+    min-width: 470px;
+  }
+  .commerce-document.document-shipping .commerce-table {
+    min-width: 0;
+  }
+  .commerce-document.document-shipping .commerce-table :is(td, th):nth-child(2) {
+    width: 66%;
+  }
+  .commerce-document.document-shipping .commerce-table :is(td, th):first-child {
+    width: 16%;
+  }
+  .commerce-financial {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .commerce-payment-note {
+    order: 2;
+  }
+  .commerce-handover > div {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+  .commerce-handover strong {
+    height: 22px;
+  }
+  .commerce-document .commerce-footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .commerce-footer > div:last-child {
+    text-align: left;
+  }
+  .commerce-section-heading h2 {
+    max-width: 50%;
+  }
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+  .orders-workspace .commerce-document {
+    border: 0 !important;
+    padding: 5mm 0 0 !important;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+    font-size: 11px;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .commerce-document:before {
+    height: 3px;
+  }
+  .commerce-document .commerce-header {
+    flex-direction: row;
+  }
+  .commerce-brand {
+    max-width: 52%;
+  }
+  .commerce-identity {
+    text-align: right;
+  }
+  .commerce-meta {
+    grid-template-columns: 1fr 1.35fr 1.2fr 0.6fr;
+  }
+  .commerce-summary {
+    flex-direction: row;
+    align-items: center;
+  }
+  .commerce-summary-status {
+    max-width: 43%;
+    text-align: right;
+  }
+  .commerce-parties {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .commerce-financial {
+    grid-template-columns: 1fr 1fr;
+  }
+  .commerce-payment-note {
+    order: 0;
+  }
+  .commerce-document .commerce-table {
+    min-width: 0;
+  }
+  .commerce-document .commerce-table thead {
+    display: table-header-group;
+  }
+  .commerce-document .commerce-table tr {
+    break-inside: avoid;
+  }
+  .commerce-handover > div {
+    grid-template-columns: 1fr 1fr 0.7fr;
+  }
+  .commerce-document .commerce-footer {
+    flex-direction: row;
+  }
+  .commerce-footer > div:last-child {
+    text-align: right;
+  }
+  .commerce-header,
+  .commerce-meta,
+  .commerce-parties {
+    break-inside: avoid;
+  }
+  .commerce-items {
+    break-inside: auto;
+  }
+}
+/* Keep ordinary orders on one A4 sheet while allowing long tables to paginate. */
+@media print {
+  .orders-workspace .commerce-document {
+    line-height: 1.4;
+  }
+  .commerce-document .commerce-header {
+    padding-bottom: 18px;
+  }
+  .commerce-meta {
+    padding-block: 12px;
+    margin-bottom: 18px;
+  }
+  .commerce-summary {
+    padding: 16px 20px;
+    margin-bottom: 18px;
+  }
+  .commerce-summary strong {
+    font-size: 27px;
+  }
+  .commerce-parties {
+    margin-bottom: 18px;
+  }
+  .commerce-document h2 {
+    margin-bottom: 9px;
+  }
+  .commerce-parties .commerce-address {
+    margin: 5px 0 8px;
+  }
+  .commerce-section-heading {
+    margin-bottom: 8px;
+  }
+  .commerce-document .commerce-table :is(th, td) {
+    padding-block: 9px;
+  }
+  .commerce-financial {
+    padding-top: 16px;
+  }
+  .commerce-document .commerce-totals > div {
+    padding-block: 5px;
+  }
+  .commerce-document .commerce-balance {
+    margin-top: 7px;
+    padding-block: 9px !important;
+  }
+  .commerce-note {
+    padding-top: 12px;
+    margin-top: 16px;
+  }
+  .commerce-document .commerce-footer {
+    margin-top: 20px;
+    padding-top: 14px;
+  }
+  .commerce-handover {
+    padding-top: 16px;
+  }
+}

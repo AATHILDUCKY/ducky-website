@@ -22,7 +22,9 @@ export const ORDER_PAGE_SIZE = 25;
 export function orderFilters(params: Record<string, string | string[] | undefined>) {
   const single = (key: string) => (typeof params[key] === 'string' ? (params[key] as string) : '');
   const status = [...orderStatuses, 'active'].includes(single('status')) ? single('status') : '';
-  const payment = [...paymentStatuses, 'due'].includes(single('payment')) ? single('payment') : '';
+  const payment = [...paymentStatuses, 'due', 'review'].includes(single('payment'))
+    ? single('payment')
+    : '';
   const page = Number(single('page'));
   return {
     q: single('q').trim().slice(0, 150),

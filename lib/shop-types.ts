@@ -17,6 +17,8 @@ export type ShopSettings = {
   currency: string;
   shipping: number;
   payment: 'cod' | 'manual';
+  cod_enabled?: boolean;
+  payment_instructions?: string;
   delivery: string;
   returns: string;
 };
@@ -46,7 +48,13 @@ export type Order = {
 export type ShopState = {
   error?: string;
   success?: boolean;
-  order?: { number: string; total: number; currency: string };
+  order?: {
+    id: string;
+    number: string;
+    total: number;
+    currency: string;
+    payment_method: 'cod' | 'manual';
+  };
 };
 export function money(value: number, currency = 'LKR') {
   return new Intl.NumberFormat('en-LK', { style: 'currency', currency }).format(value / 100);

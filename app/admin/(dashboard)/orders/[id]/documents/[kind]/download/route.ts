@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { isAdmin } from '@/lib/auth';
 import { getOrder } from '@/lib/orders';
-import { getProfile } from '@/lib/db';
+import { getDocumentSeller } from '@/lib/order-document-seller';
 import { documentKinds } from '@/lib/order-utils';
 import { orderPdf } from '@/lib/order-pdf';
 export const runtime = 'nodejs';
@@ -28,7 +28,7 @@ export async function GET(
       { status: 404, headers: privateHeaders },
     );
   try {
-    const [order, seller] = await Promise.all([getOrder(id), getProfile()]);
+    const [order, seller] = await Promise.all([getOrder(id), getDocumentSeller()]);
     if (!order)
       return Response.json({ error: 'Order not found.' }, { status: 404, headers: privateHeaders });
     const pdf = await orderPdf(order, parsed.data, seller);

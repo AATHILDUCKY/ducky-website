@@ -70,3 +70,67 @@ export async function updateOrder(_: ShopState, form: FormData): Promise<ShopSta
   }
   return { success: true };
 }
+
+export async function reviewPaymentProof(_: ShopState, form: FormData): Promise<ShopState> {
+  await requireAdmin();
+  const parsed = z
+    .object({
+      order_id: z.uuid(),
+      proof_id: z.uuid(),
+      decision: z.enum(['approve', 'reject']),
+      review_note: z.string().trim().max(500),
+    })
+    .refine((v) => v.decision !== 'reject' || v.review_note.length >= 3, {
+      message: 'Give a short reason so the customer knows what to correct.',
+    })
+    .safeParse(Object.fromEntries(form));
+  if (!parsed.success) return { error: parsed.error.issues.map((i) => i.message).join(' ') };
+  const v = parsed.data;
+  const client = await pool.connect().catch(() => null);
+  if (!client) return { error: 'Could not connect. Please try again.' };
+  try {
+    await client.query('BEGIN');
+    const order = (
+      await client.query('SELECT status,payment_status FROM shop_orders WHERE id=$1 FOR UPDATE', [
+        v.order_id,
+      ])
+    ).rows[0];
+    const proof = (
+      await client.query(
+        'SELECT status FROM shop_payment_proofs WHERE id=$1 AND order_id=$2 FOR UPDATE',
+        [v.proof_id, v.order_id],
+      )
+    ).rows[0];
+    if (!order || !proof) throw new Error('Payment proof not found.');
+    if (proof.status !== 'pending')
+      throw new Error('This proof has already been reviewed. Refresh to see the result.');
+    if (
+      v.decision === 'approve' &&
+      (order.status === 'cancelled' || order.payment_status !== 'unpaid')
+    )
+      throw new Error('Only an unpaid, active order can be marked paid.');
+    await client.query(
+      'UPDATE shop_payment_proofs SET status=$2,review_note=$3,reviewed_at=clock_timestamp() WHERE id=$1',
+      [v.proof_id, v.decision === 'approve' ? 'approved' : 'rejected', v.review_note],
+    );
+    if (v.decision === 'approve')
+      await client.query(
+        "UPDATE shop_orders SET payment_status='paid',updated_at=clock_timestamp() WHERE id=$1",
+        [v.order_id],
+      );
+    await client.query('COMMIT');
+  } catch (error) {
+    await client.query('ROLLBACK');
+    const message = error instanceof Error ? error.message : '';
+    return {
+      error: /not found|already been reviewed|Only an unpaid/.test(message)
+        ? message
+        : 'Could not save this review. Please try again.',
+    };
+  } finally {
+    client.release();
+  }
+  revalidatePath('/admin/orders', 'layout');
+  revalidatePath(`/shop/orders/${v.order_id}`);
+  return { success: true };
+}

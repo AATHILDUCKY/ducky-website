@@ -26,13 +26,13 @@ export type OrderSummary = Pick<
   | 'status'
   | 'payment_status'
   | 'created_at'
-> & { item_count: number };
+> & { item_count: number; proof_pending: boolean };
 export async function getOrderList(filters: ReturnType<typeof orderFilters>) {
   await requireAdmin();
   const search = filters.q.replace(/[\\%_]/g, '\\$&');
   const number = filters.q.replace(/^DK-/i, '');
   const where =
-    "WHERE ($1='' OR status=$1 OR ($1='active' AND status IN ('confirmed','shipped'))) AND ($2='' OR payment_status=$2 OR ($2='due' AND payment_status='unpaid' AND status<>'cancelled')) AND ($3='' OR name ILIKE '%'||$3||'%' OR email ILIKE '%'||$3||'%' OR phone ILIKE '%'||$3||'%' OR number::text=$4)";
+    "WHERE ($1='' OR status=$1 OR ($1='active' AND status IN ('confirmed','shipped'))) AND ($2='' OR payment_status=$2 OR ($2='due' AND payment_status='unpaid' AND status<>'cancelled') OR ($2='review' AND payment_status='unpaid' AND status<>'cancelled' AND EXISTS(SELECT 1 FROM shop_payment_proofs pp WHERE pp.order_id=shop_orders.id AND pp.status='pending'))) AND ($3='' OR name ILIKE '%'||$3||'%' OR email ILIKE '%'||$3||'%' OR phone ILIKE '%'||$3||'%' OR number::text=$4)";
   const values = [filters.status, filters.payment, search, number];
   const [count, summary] = await Promise.all([
     pool.query(`SELECT count(*)::int AS count FROM shop_orders ${where}`, values),
@@ -44,7 +44,7 @@ export async function getOrderList(filters: ReturnType<typeof orderFilters>) {
   const pages = Math.max(1, Math.ceil(total / ORDER_PAGE_SIZE));
   const page = Math.min(pages, filters.page);
   const result = await pool.query<OrderSummary>(
-    `SELECT id,number,name,email,phone,city,subtotal,shipping,currency,status,payment_status,created_at,jsonb_array_length(items) AS item_count FROM shop_orders ${where} ORDER BY created_at ${filters.sort === 'oldest' ? 'ASC' : 'DESC'},id ${filters.sort === 'oldest' ? 'ASC' : 'DESC'} LIMIT $5 OFFSET $6`,
+    `SELECT id,number,name,email,phone,city,subtotal,shipping,currency,status,payment_status,created_at,jsonb_array_length(items) AS item_count,EXISTS(SELECT 1 FROM shop_payment_proofs pp WHERE pp.order_id=shop_orders.id AND pp.status='pending') AS proof_pending FROM shop_orders ${where} ORDER BY created_at ${filters.sort === 'oldest' ? 'ASC' : 'DESC'},id ${filters.sort === 'oldest' ? 'ASC' : 'DESC'} LIMIT $5 OFFSET $6`,
     [...values, ORDER_PAGE_SIZE, (page - 1) * ORDER_PAGE_SIZE],
   );
   return {

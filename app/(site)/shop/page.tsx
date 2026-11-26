@@ -22,6 +22,9 @@ export default async function Shop() {
           <MessageCircle size={22} /> A real person to help
         </span>
       </div>
+      {s.cod_enabled && (
+        <p className="shop-cod-banner">Cash on delivery is available. Choose COD at checkout.</p>
+      )}
       <ShopCatalog products={products} currency={s.currency} />
       <div className="shop-info">
         <div>

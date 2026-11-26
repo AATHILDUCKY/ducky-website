@@ -262,14 +262,31 @@ export function ShopSettingsForm({ settings: s }: { settings: ShopSettings }) {
             defaultValue={s.shipping / 100}
           />
         </label>
-        <label>
-          Payment method
-          <select name="payment" defaultValue={s.payment}>
-            <option value="cod">Cash on delivery</option>
-            <option value="manual">Arrange payment after ordering</option>
-          </select>
-        </label>
       </div>
+      <label className="shop-cod-setting">
+        <input
+          type="checkbox"
+          name="cod_enabled"
+          value="yes"
+          defaultChecked={s.cod_enabled === true}
+        />
+        <span>
+          <strong>Enable cash on delivery (COD)</strong>
+          <small>
+            Disabled by default. When enabled, customers can choose COD alongside arranged payment.
+          </small>
+        </span>
+      </label>
+      <label>
+        Payment instructions
+        <textarea
+          name="payment_instructions"
+          rows={5}
+          maxLength={2000}
+          defaultValue={s.payment_instructions || ''}
+          placeholder="Add the real bank transfer or payment instructions customers should follow. These are shown publicly."
+        />
+      </label>
       <label>
         Delivery information
         <textarea

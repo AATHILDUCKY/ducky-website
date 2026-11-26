@@ -1,5 +1,7 @@
 'use server';
 import { createHash } from 'node:crypto';
+import { customerAccessHash, setCustomerOrderAccess } from '@/lib/customer-orders';
+import { secureEqual } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { pool } from '@/lib/db';
 import { checkoutSchema } from '@/lib/shop-validation';
@@ -27,13 +29,23 @@ export async function placeOrder(_: ShopState, form: FormData): Promise<ShopStat
     await client.query('SELECT pg_advisory_xact_lock(hashtextextended($1,0))', [p.submission_id]);
     const existing = (
       await client.query(
-        'SELECT number,subtotal+shipping AS total,currency FROM shop_orders WHERE submission_id=$1',
+        'SELECT id,number,subtotal+shipping AS total,currency,payment_method,customer_access_hash,(customer_access_expires_at>now()) AS access_active FROM shop_orders WHERE submission_id=$1',
         [p.submission_id],
       )
     ).rows[0];
     if (existing) {
       await client.query('COMMIT');
-      return { success: true, order: existing };
+      if (
+        !existing.access_active ||
+        !existing.customer_access_hash ||
+        !secureEqual(existing.customer_access_hash, customerAccessHash(p.access_token))
+      )
+        return {
+          error: 'This checkout has already been submitted. Use your original confirmation page.',
+        };
+      await setCustomerOrderAccess(existing.id, p.access_token);
+      const { customer_access_hash: _, access_active: __, ...safe } = existing;
+      return { success: true, order: safe };
     }
     const key = createHash('sha256').update(p.email).digest('hex');
     const rate = await client.query(
@@ -49,10 +61,11 @@ export async function placeOrder(_: ShopState, form: FormData): Promise<ShopStat
     ).rows[0].value;
     if (
       String(form.get('currency')) !== settings.currency ||
-      Number(form.get('shipping')) !== settings.shipping ||
-      form.get('payment') !== settings.payment
+      Number(form.get('shipping')) !== settings.shipping
     )
       throw new Error('Delivery or currency has changed. Refresh to review the updated total.');
+    if (p.payment === 'cod' && settings.cod_enabled !== true)
+      throw new Error('Cash on delivery is no longer available. Choose arranged payment.');
     const products = (
       await client.query(
         'SELECT * FROM shop_products WHERE id=ANY($1::uuid[]) ORDER BY id FOR UPDATE',
@@ -83,7 +96,7 @@ export async function placeOrder(_: ShopState, form: FormData): Promise<ShopStat
     if (subtotal + settings.shipping > 2000000000)
       throw new Error('This order exceeds the order limit. Please contact us.');
     const saved = await client.query(
-      `INSERT INTO shop_orders(submission_id,name,email,phone,address,city,postal_code,country,notes,items,subtotal,shipping,currency,payment_method) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING number,subtotal+shipping AS total,currency`,
+      `INSERT INTO shop_orders(submission_id,name,email,phone,address,city,postal_code,country,notes,items,subtotal,shipping,currency,payment_method,customer_access_hash,customer_access_expires_at) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,now()+interval '30 days') RETURNING id,number,subtotal+shipping AS total,currency,payment_method`,
       [
         p.submission_id,
         p.name,
@@ -98,7 +111,8 @@ export async function placeOrder(_: ShopState, form: FormData): Promise<ShopStat
         subtotal,
         settings.shipping,
         settings.currency,
-        settings.payment,
+        p.payment,
+        customerAccessHash(p.access_token),
       ],
     );
     for (const i of snapshot)
@@ -120,6 +134,7 @@ export async function placeOrder(_: ShopState, form: FormData): Promise<ShopStat
   } finally {
     client.release();
   }
+  if (result.success && result.order) await setCustomerOrderAccess(result.order.id, p.access_token);
   revalidatePath('/shop', 'layout');
   revalidatePath('/admin/orders', 'layout');
   return result;

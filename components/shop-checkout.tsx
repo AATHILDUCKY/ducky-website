@@ -3,6 +3,7 @@ import { startTransition, useActionState, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { CheckCircle, Trash2 } from 'lucide-react';
 import { useBag } from './shop-bag';
+import { PaymentProofUploader } from './payment-proof-uploader';
 import { placeOrder } from '@/app/shop-actions';
 import { money, type Product, type ShopSettings } from '@/lib/shop-types';
 export function ShopCheckout({
@@ -15,12 +16,22 @@ export function ShopCheckout({
   const bag = useBag();
   const [state, action, pending] = useActionState(placeOrder, {});
   const [submission, setSubmission] = useState('');
+  const [accessToken, setAccessToken] = useState('');
+  const [payment, setPayment] = useState<'manual' | 'cod'>('manual');
+  useEffect(() => {
+    setAccessToken(
+      Array.from(crypto.getRandomValues(new Uint8Array(32)), (n) =>
+        n.toString(16).padStart(2, '0'),
+      ).join(''),
+    );
+  }, []);
   useEffect(() => setSubmission(crypto.randomUUID()), []);
   useEffect(() => {
     if (state.success) bag.set([]);
   }, [state.success]); // Clear only after the database confirms the order.
   const rows = bag.items.map((i) => ({ ...i, product: products.find((p) => p.id === i.id) }));
   const invalid = rows.some((i) => !i.product || i.quantity > i.product.stock);
+  const selectedPayment = s.cod_enabled ? payment : 'manual';
   const subtotal = rows.reduce((sum, i) => sum + (i.product?.price || 0) * i.quantity, 0);
   if (state.success && state.order)
     return (
@@ -36,12 +47,26 @@ export function ShopCheckout({
           Total: <strong>{money(state.order.total, state.order.currency)}</strong>
         </p>
         <p>
-          {s.payment === 'cod'
+          {state.order.payment_method === 'cod'
             ? 'Payment is due on delivery.'
             : 'We will contact you to arrange payment.'}{' '}
           We’ll contact you using the details you provided to confirm your order and delivery.
         </p>
         <p>No payment has been collected online.</p>
+        <Link className="shop-button" href={`/shop/orders/${state.order.id}`}>
+          Manage payment & view your order
+        </Link>
+        {state.order.payment_method === 'manual' && (
+          <>
+            {s.payment_instructions && (
+              <div className="shop-payment">
+                <h2>Payment instructions</h2>
+                <p className="shop-description">{s.payment_instructions}</p>
+              </div>
+            )}
+            <PaymentProofUploader orderId={state.order.id} />
+          </>
+        )}
         <Link className="shop-button" href="/shop">
           Back to the shop
         </Link>
@@ -76,7 +101,8 @@ export function ShopCheckout({
         >
           <h2>Your details</h2>
           <input type="hidden" name="submission_id" value={submission} />
-          <input type="hidden" name="payment" value={s.payment} />
+          <input type="hidden" name="access_token" value={accessToken} />
+          <input type="hidden" name="payment" value={selectedPayment} />
           <input type="hidden" name="currency" value={s.currency} />
           <input type="hidden" name="shipping" value={s.shipping} />
           <input
@@ -158,13 +184,39 @@ export function ShopCheckout({
           <h2>Payment</h2>
           <div className="shop-payment">
             <strong>
-              {s.payment === 'cod' ? 'Cash on delivery' : 'Payment arranged after ordering'}
+              {selectedPayment === 'cod' ? 'Cash on delivery' : 'Payment arranged after ordering'}
             </strong>
             <p>
-              {s.payment === 'cod'
-                ? 'Pay when your order arrives. No online payment is required.'
-                : 'We’ll contact you with payment instructions. No payment is collected here.'}
+              {selectedPayment === 'cod'
+                ? 'Pay when your order arrives. No payment proof is needed for COD.'
+                : 'Pay using the shop’s instructions, then upload your receipt or payment screenshot for verification.'}
             </p>
+            {s.cod_enabled && (
+              <fieldset className="shop-payment-options">
+                <legend>Choose your payment method</legend>
+                <label>
+                  <input
+                    type="radio"
+                    name="payment_choice"
+                    checked={payment === 'manual'}
+                    onChange={() => setPayment('manual')}
+                  />
+                  Arrange payment / upload proof
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="payment_choice"
+                    checked={payment === 'cod'}
+                    onChange={() => setPayment('cod')}
+                  />
+                  Cash on delivery
+                </label>
+              </fieldset>
+            )}
+            {s.payment_instructions && selectedPayment === 'manual' && (
+              <p className="shop-description">{s.payment_instructions}</p>
+            )}
           </div>
           <label className="shop-consent">
             <input type="checkbox" name="consent" value="yes" required />
@@ -178,7 +230,10 @@ export function ShopCheckout({
               {state.error}
             </p>
           )}
-          <button className="shop-button" disabled={pending || invalid || !submission}>
+          <button
+            className="shop-button"
+            disabled={pending || invalid || !submission || !accessToken}
+          >
             {pending
               ? 'Placing your order…'
               : `Place order · ${money(subtotal + s.shipping, s.currency)}`}

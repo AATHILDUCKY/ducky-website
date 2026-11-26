@@ -2,8 +2,12 @@ import type { NextConfig } from 'next';
 import { contentSecurityPolicy } from './lib/content-security-policy';
 const config: NextConfig = {
   outputFileTracingIncludes: {
-    '/admin/orders/*/documents/*/download': ['./assets/fonts/DejaVuSans-orders.ttf'],
+    '/admin/orders/*/documents/*/download': [
+      './assets/fonts/DejaVuSans-orders.ttf',
+      './assets/fonts/DejaVuSans-Bold-orders.ttf',
+    ],
     '/opengraph-image': ['./assets/fonts/JetBrainsMono-social.ttf'],
+    '/api/shop/orders/*/proof': ['./scripts/decode-heif.cjs', './node_modules/libheif-js/**/*'],
     '/api/upload': ['./scripts/decode-heif.cjs', './node_modules/libheif-js/**/*'],
   },
   serverExternalPackages: ['pdfkit'],

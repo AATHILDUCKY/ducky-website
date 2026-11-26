@@ -6,6 +6,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { createElement } from 'react';
 import { orderFilters, orderHref, documentKinds } from '../lib/order-utils';
 import { orderPdf } from '../lib/order-pdf';
+import { documentModel } from '../lib/order-document-model';
 import { OrderDocument } from '../components/order-document';
 import type { Order } from '../lib/shop-types';
 const order: Order = {
@@ -81,6 +82,11 @@ test('all three document types generate compact PDFs and long orders paginate sa
     assert.equal(pdf.subarray(0, 5).toString(), '%PDF-');
     assert.ok(pdf.length < 150000);
     assert.ok(pdf.toString('latin1').includes('%%EOF'));
+    assert.equal(
+      (pdf.toString('latin1').match(/\/Type \/Page\b/g) || []).length,
+      1,
+      'A typical order must fit on one A4 page without blank footer pages',
+    );
     assert.ok(!pdf.includes(Buffer.from(order.admin_note)));
   }
   const long = {
@@ -112,4 +118,41 @@ test('the PDF font covers document text, amounts, references and accented custom
       font.hasGlyphForCodePoint(letter.codePointAt(0)!),
       `Missing PDF character: ${letter}`,
     );
+});
+
+test('preview and PDF share actual order amounts, payment states and seller identity', () => {
+  const merchant = {
+    name: 'Actual Seller',
+    email: 'seller@shop.test',
+    storeName: 'Actual Store',
+    website: 'https://shop.test',
+    location: 'Colombo',
+  };
+  const pending = documentModel(order, 'invoice', merchant);
+  assert.equal(pending.total, 281900);
+  assert.equal(pending.due, 281900);
+  assert.equal(pending.reference, 'INV-42');
+  assert.equal(pending.storeName, 'Actual Store');
+  assert.equal(pending.status, 'Payment pending');
+  for (const status of ['paid', 'refunded']) {
+    const doc = documentModel({ ...order, payment_status: status }, 'invoice', merchant);
+    assert.equal(doc.due, 0);
+    assert.ok(!doc.paymentInstruction.includes('arranged'));
+  }
+  const cancelled = documentModel({ ...order, status: 'cancelled' }, 'invoice', merchant);
+  assert.equal(cancelled.due, 0);
+  assert.equal(cancelled.status, 'Order cancelled');
+  const shipping = documentModel({ ...order, payment_method: 'cod' }, 'shipping', merchant);
+  assert.equal(shipping.units, 2);
+  assert.match(shipping.collect || '', /2,819\.00/);
+  assert.equal(
+    documentModel({ ...order, payment_method: 'cod', payment_status: 'paid' }, 'shipping', merchant)
+      .collect,
+    null,
+  );
+  assert.equal(
+    documentModel({ ...order, payment_method: 'cod', status: 'cancelled' }, 'shipping', merchant)
+      .collect,
+    null,
+  );
 });
