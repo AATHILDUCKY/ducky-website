@@ -1,4 +1,4 @@
-import { ShoppingBag, PackageCheck, ReceiptText, MessageCircle } from 'lucide-react';
+import { PackageCheck, ReceiptText, MessageCircle } from 'lucide-react';
 import { getProducts, getShopSettings } from '@/lib/shop';
 import { ShopCatalog } from '@/components/shop-catalog';
 export const metadata = {
@@ -11,33 +11,6 @@ export default async function Shop() {
   const [products, s] = await Promise.all([getProducts(), getShopSettings()]);
   return (
     <>
-      <header className="shop-hero">
-        <div>
-          <p className="shop-kicker">A LITTLE SOMETHING FROM DUCKY</p>
-          <h1>
-            Good finds.
-            <br />
-            <em>Great possibilities.</em>
-          </h1>
-          <p>
-            A collection worth exploring. Find something you love, take a closer look, and make it
-            yours.
-          </p>
-          <a href="#collection" className="shop-button">
-            <ShoppingBag size={19} /> Explore the collection
-          </a>
-        </div>
-        <div className="shop-hero-art" aria-hidden="true">
-          <div className="shop-orbit" />
-          <ShoppingBag strokeWidth={1} size={150} />
-          <span>
-            HANDPICKED.
-            <br />
-            READY FOR YOU.
-          </span>
-          <i>✳</i>
-        </div>
-      </header>
       <div className="shop-benefits">
         <span>
           <PackageCheck size={22} /> Clear product details
