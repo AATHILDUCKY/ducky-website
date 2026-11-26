@@ -7,10 +7,11 @@ const slug = `shop-qa-${randomUUID()}`;
 const email = `${slug}@example.com`;
 let id = '';
 let imageId = '';
+let imageIds: string[] = [];
 test.afterAll(async () => {
   await db.query('DELETE FROM shop_orders WHERE email=$1', [email]);
-  await db.query('DELETE FROM shop_products WHERE slug=$1', [slug]);
-  if (imageId) await db.query('DELETE FROM media WHERE id=$1', [imageId]);
+  await db.query('DELETE FROM shop_products WHERE slug LIKE $1', [slug + '%']);
+  if (imageIds.length) await db.query('DELETE FROM media WHERE id=ANY($1::uuid[])', [imageIds]);
   await db.query('DELETE FROM shop_order_limits WHERE key=$1', [
     createHash('sha256').update(email).digest('hex'),
   ]);
@@ -43,20 +44,28 @@ test('shop: owner publishes, customer orders, retries deduplicate, stock is prot
   })
     .webp()
     .toBuffer();
-  await page
-    .getByLabel('Upload photo', { exact: true })
-    .setInputFiles({ name: 'shop-qa.webp', mimeType: 'image/webp', buffer: image });
-  await expect(page.locator('.shop-admin-images img')).toHaveCount(1);
+  await page.getByLabel('Upload photo', { exact: true }).setInputFiles([
+    { name: 'shop-qa-front.webp', mimeType: 'image/webp', buffer: image },
+    { name: 'shop-qa-back.webp', mimeType: 'image/webp', buffer: image },
+  ]);
+  await expect(page.locator('.shop-admin-images img')).toHaveCount(2);
   await expect(page.getByText('Optimizing photo…')).toHaveCount(0);
-  imageId = await page
+  imageIds = await page
     .locator('.shop-admin-images img')
-    .getAttribute('src')
-    .then((v) => v!.split('/').pop()!);
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('src')!.split('/').pop()!));
+  imageId = imageIds[1];
+  await page.getByRole('button', { name: 'Use as cover', exact: true }).click();
+  await expect(page.locator('.shop-admin-images img').first()).toHaveAttribute(
+    'src',
+    `/media/${imageId}`,
+  );
+  await expect(page.getByText('Main image', { exact: true })).toBeVisible();
   await page.getByLabel('Visibility').selectOption('published');
   await page.getByRole('button', { name: 'Save product', exact: true }).first().click();
   await expect(page).toHaveURL(/\/admin\/shop\/products\/[0-9a-f-]{36}$/);
   id = page.url().split('/').pop()!;
   const product = (await db.query('SELECT * FROM shop_products WHERE id=$1', [id])).rows[0];
+  expect(product.images).toEqual([imageIds[1], imageIds[0]]);
   expect(product.price).toBe(125050);
   expect(product.stock).toBe(2);
   const guest = await browser.newPage();
@@ -66,6 +75,24 @@ test('shop: owner publishes, customer orders, retries deduplicate, stock is prot
   await expect(guest.getByRole('heading', { name: 'Shop QA item', exact: true })).toBeVisible();
   expect(await guest.locator('script[type="application/ld+json"]').last().textContent()).toContain(
     'InStock',
+  );
+  await expect(guest.locator('.shop-detail-image img')).toHaveAttribute('src', `/media/${imageId}`);
+  await guest.getByRole('button', { name: 'Show photo 2', exact: true }).click();
+  await expect(guest.locator('.shop-detail-image img')).toHaveAttribute(
+    'src',
+    `/media/${imageIds[0]}`,
+  );
+  await expect(guest.getByRole('button', { name: 'Show photo 2', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await guest.getByRole('button', { name: 'Next product photo', exact: true }).click();
+  await expect(guest.locator('.shop-detail-image img')).toHaveAttribute('src', `/media/${imageId}`);
+  await guest.getByRole('button', { name: 'Show photo 2', exact: true }).focus();
+  await guest.keyboard.press('Enter');
+  await expect(guest.locator('.shop-detail-image img')).toHaveAttribute(
+    'src',
+    `/media/${imageIds[0]}`,
   );
   await guest.getByRole('button', { name: 'Add to bag', exact: true }).click();
   await guest.getByRole('link', { name: 'Continue to checkout' }).click();
@@ -173,14 +200,40 @@ test('shop: owner publishes, customer orders, retries deduplicate, stock is prot
     `/shop/${slug}`,
   );
   expect(await (await request.get('/sitemap.xml')).text()).toContain(`products-${bucket}.xml`);
-  for (const width of [390, 1440]) {
+  // Four real cards verify that the desktop row and mobile wrapping work together.
+  for (let index = 1; index <= 3; index++)
+    await db.query(
+      "INSERT INTO shop_products(name,slug,description,category,price,stock,images,status) VALUES($1,$2,$3,$4,$5,$6,$7,'published')",
+      [
+        `Gallery QA ${index}`,
+        `${slug}-grid-${index}`,
+        product.description,
+        product.category,
+        product.price,
+        2,
+        product.images,
+      ],
+    );
+  for (const width of [320, 390, 768, 1440]) {
     await guest.setViewportSize({ width, height: 960 });
     await guest.goto(`/shop/${slug}`);
     expect(
       await guest.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
     ).toBeTruthy();
+    await guest.getByRole('button', { name: 'Show photo 2', exact: true }).click();
+    await expect(guest.locator('.shop-detail-image img')).toHaveAttribute(
+      'src',
+      `/media/${imageIds[0]}`,
+    );
     await guest.screenshot({ path: `artifacts/shop-product-${width}.png`, fullPage: true });
     await guest.goto('/shop');
+    const columns = await guest
+      .locator('.shop-grid')
+      .evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(' ').length);
+    expect(columns).toBe(width > 1000 ? 4 : width > 520 ? 2 : 1);
+    expect(
+      await guest.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+    ).toBeTruthy();
     await guest.screenshot({ path: `artifacts/shop-${width}.png`, fullPage: true });
   }
   await page.goto(`/admin/shop/products/${id}`);
@@ -189,7 +242,7 @@ test('shop: owner publishes, customer orders, retries deduplicate, stock is prot
   await expect(page.getByRole('status')).toContainText('Changes saved');
   expect((await request.get(`/shop/${slug}`)).status()).toBe(404);
   expect(await (await request.get(`/sitemaps/products-${bucket}.xml`)).text()).not.toContain(
-    `/shop/${slug}`,
+    `/shop/${slug}</loc>`,
   );
   await guest.close();
 });

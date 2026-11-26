@@ -26,17 +26,26 @@ export function ProductForm({ product: p }: { product?: Product }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const [slug, setSlug] = useState(p?.slug || '');
-  async function upload(file: File) {
+  async function upload(files: File[]) {
+    if (files.length > 6 - images.length) {
+      setError(
+        `You can add ${6 - images.length} more photos. Each product supports up to 6 photos.`,
+      );
+      return;
+    }
     setUploading(true);
     setError('');
     try {
-      const data = new FormData();
-      data.set('file', file);
-      data.set('alt', file.name);
-      const res = await fetch('/api/upload', { method: 'POST', body: data });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error);
-      setImages((v) => [...v, json.id].slice(0, 6));
+      // Process sequentially: the image optimizer accepts one upload at a time.
+      for (const file of files) {
+        const data = new FormData();
+        data.set('file', file);
+        data.set('alt', file.name);
+        const res = await fetch('/api/upload', { method: 'POST', body: data });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error);
+        setImages((v) => [...v, json.id]);
+      }
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -149,18 +158,25 @@ export function ProductForm({ product: p }: { product?: Product }) {
       </div>
       <h2>Product photos</h2>
       <p>
-        The first image is the cover. Upload up to 6 photos; images are automatically optimized.
+        Select up to 6 photos at once. Choose “Use as cover” to set the main image shown first on
+        the product page and in the shop. Images are automatically optimized.
       </p>
       <div className="shop-admin-images">
         {images.map((id, i) => (
           <div key={id}>
             <img src={`/media/${id}`} alt={`Product photo ${i + 1}`} />
-            <button type="button" onClick={() => setImages(images.filter((v) => v !== id))}>
+            {i === 0 && <span className="shop-main-image-label">Main image</span>}
+            <button
+              type="button"
+              disabled={uploading || pending}
+              onClick={() => setImages(images.filter((v) => v !== id))}
+            >
               Remove photo {i + 1}
             </button>
             {i > 0 && (
               <button
                 type="button"
+                disabled={uploading || pending}
                 onClick={() => setImages([id, ...images.filter((v) => v !== id)])}
               >
                 Use as cover
@@ -174,10 +190,11 @@ export function ProductForm({ product: p }: { product?: Product }) {
         <input
           type="file"
           accept={IMAGE_ACCEPT}
-          disabled={uploading || images.length >= 6}
+          multiple
+          disabled={uploading || pending || images.length >= 6}
           onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) void upload(file);
+            const files = Array.from(e.target.files || []);
+            if (files.length) void upload(files);
             e.target.value = '';
           }}
         />

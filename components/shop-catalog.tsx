@@ -57,7 +57,7 @@ export function ShopCatalog({ products, currency }: { products: Product[]; curre
                   src={`/media/${p.images[0]}`}
                   alt={p.name}
                   fill
-                  sizes="(max-width:600px) 90vw, (max-width:1000px) 45vw, 30vw"
+                  sizes="(max-width:520px) 90vw, (max-width:1000px) 45vw, 23vw"
                 />
               ) : (
                 <Package size={64} />

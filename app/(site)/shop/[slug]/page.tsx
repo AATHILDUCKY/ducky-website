@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import { ProductGallery } from '@/components/shop-product-gallery';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProduct, getShopSettings } from '@/lib/shop';
@@ -59,19 +59,7 @@ export default async function ProductPage({ params }: Props) {
         }}
       />
       <div className="shop-detail">
-        <div className="shop-gallery">
-          {p.images.map((id, i) => (
-            <div className="shop-detail-image" key={id}>
-              <Image
-                src={`/media/${id}`}
-                alt={`${p.name}${i ? ` — view ${i + 1}` : ''}`}
-                fill
-                priority={i === 0}
-                sizes="(max-width:800px) 90vw, 50vw"
-              />
-            </div>
-          ))}
-        </div>
+        <ProductGallery key={p.id} images={p.images} name={p.name} />
         <div className="shop-detail-copy">
           <p className="shop-kicker">{p.category}</p>
           <h1>{p.name}</h1>

@@ -290,7 +290,7 @@
 }
 .shop-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
 }
 .shop-card {
@@ -412,25 +412,98 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(28px, 5vw, 70px);
+  min-width: 0;
 }
 .shop-gallery {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   align-content: start;
-  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  min-width: 0;
 }
 .shop-detail-image {
   position: relative;
   aspect-ratio: 1;
   background: #242721;
+  display: grid;
+  place-items: center;
   border-radius: 12px;
   overflow: hidden;
 }
-.shop-detail-image:first-child {
-  grid-column: 1/-1;
-}
 .shop-detail-image img {
   object-fit: contain;
+}
+.shop-thumbnails {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 5px;
+  margin: -5px;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+.shop-thumbnail {
+  position: relative;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border: 2px solid var(--shop-line);
+  border-radius: 9px;
+  background: #242721;
+  overflow: hidden;
+  padding: 0;
+  touch-action: manipulation;
+}
+.shop-thumbnail img {
+  object-fit: contain;
+}
+.shop-thumbnail[aria-pressed='true'] {
+  border-color: var(--shop-accent);
+  box-shadow: 0 0 0 2px var(--shop-bg);
+}
+.shop-thumbnail:hover {
+  border-color: var(--shop-accent);
+}
+.shop-gallery-caption {
+  font-size: 14px;
+  color: var(--shop-muted);
+}
+.shop-gallery-controls {
+  position: absolute;
+  inset: 50% 12px auto;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+.shop-gallery-controls button {
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--shop-line);
+  border-radius: 50%;
+  background: #101110e8;
+  color: var(--shop-ink);
+  touch-action: manipulation;
+}
+.shop-gallery-controls button:hover {
+  border-color: var(--shop-accent);
+}
+.shop-main-image-label {
+  color: var(--shop-accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+.shop-grid > *,
+.shop-detail > *,
+.shop-card-copy {
+  min-width: 0;
+}
+.shop-card h3 {
+  overflow-wrap: anywhere;
 }
 .shop-detail-copy h1 {
   font-size: clamp(2.5rem, 4vw, 4rem);

@@ -5,7 +5,7 @@ The storefront is `/shop`. The protected management area is `/admin/shop` (Shop 
 ## Add and publish products
 
 1. Select **Add product**, enter the name, URL slug, description/specifications, price, category and available stock.
-2. Upload up to six product images. The first image is the cover; use **Use as cover** to change it. Existing uploads automatically compress to WebP under the site's image budget.
+2. Select and upload up to six product images at once. The first image is the default main image for the product page and shop card; use **Use as cover** to change it. Customers can tap the small photo thumbnails or previous/next controls to switch images. Existing uploads automatically compress to WebP under the site's image budget.
 3. Save as a draft while preparing the listing. Choose **Published** and save to make it available in the storefront and product sitemap. Published products require an image. Zero stock shows as sold out.
 4. Optional SEO title and description override the automatic defaults. Keep published URL slugs stable to preserve links.
 
