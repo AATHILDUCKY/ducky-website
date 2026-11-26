@@ -4,6 +4,8 @@ import { getProfile } from '@/lib/db';
 import { isAdmin, requireAdmin } from '@/lib/auth';
 import { ForumPostCard } from '@/components/forum-post';
 import { Markdown } from '@/components/markdown';
+import { ForumEmbed } from '@/components/forum-embed';
+import { forumLinks, normalizeForumLinkInput } from '@/lib/forum-links';
 import { forumPageHref } from '@/lib/forum-validation';
 import { forumSort } from '@/lib/forum-ranking';
 import { forumPostPath } from '@/lib/forum-slugs.mjs';
@@ -24,9 +26,17 @@ export async function loadForumPage(q: string, after: string, order: string = 't
     count: page.posts.length,
   };
 }
-export async function previewForumPost(content: string) {
+export async function previewForumPost(content: string, link = '') {
   await requireAdmin();
-  return <Markdown content={String(content).slice(0, 20000)} />;
+  const text = String(content).slice(0, 20000);
+  return (
+    <>
+      <Markdown content={text} />
+      {forumLinks(text, normalizeForumLinkInput(String(link).slice(0, 2000))).map((item) => (
+        <ForumEmbed key={item.url} value={item.url} />
+      ))}
+    </>
+  );
 }
 export async function loadForumComments(
   postId: string,

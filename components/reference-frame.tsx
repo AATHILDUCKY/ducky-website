@@ -24,9 +24,12 @@ export function ReferenceFrame({
 }) {
   const routePath = usePathname();
   const pathname = preview ? '/' : routePath;
-  const links = site.navigation.items.some((item) => item.href === '/forum')
+  const forumLinks = site.navigation.items.some((item) => item.href === '/forum')
     ? site.navigation.items
     : [...site.navigation.items, { id: 'nav-forum', href: '/forum', label: 'Forum' }];
+  const links = forumLinks.some((item) => item.href === '/shop')
+    ? forumLinks
+    : [...forumLinks, { id: 'nav-shop', href: '/shop', label: 'Shop' }];
   const mobileLinks = site.navigation.contact.enabled
     ? [
         ...links,
@@ -132,10 +135,14 @@ export function ReferenceFrame({
               <p>{site.footer.copyright.replaceAll('{year}', String(new Date().getFullYear()))}</p>
             </div>
             <nav className="footer-pages" aria-label="Footer navigation">
-              {(site.footer.links.some((item) => item.href === '/forum')
-                ? site.footer.links
-                : [...site.footer.links, { id: 'footer-forum', href: '/forum', label: 'Forum' }]
-              ).map(({ id, href: url, label }) => (
+              {[
+                ...(site.footer.links.some((item) => item.href === '/forum')
+                  ? site.footer.links
+                  : [...site.footer.links, { id: 'footer-forum', href: '/forum', label: 'Forum' }]),
+                ...(!site.footer.links.some((item) => item.href === '/shop')
+                  ? [{ id: 'footer-shop', href: '/shop', label: 'Shop' }]
+                  : []),
+              ].map(({ id, href: url, label }) => (
                 <Link key={id} href={url} aria-current={isActive(url) ? 'page' : undefined}>
                   {label}
                 </Link>

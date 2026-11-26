@@ -4,8 +4,10 @@ export default defineConfig({
   testMatch: [
     'e2e.spec.ts',
     'contact.e2e.ts',
+    'shop.e2e.ts',
     'forum.e2e.ts',
     'forum-threads.e2e.ts',
+    'forum-embeds.e2e.ts',
     'author.e2e.ts',
     'branding.e2e.ts',
     'socials.e2e.ts',

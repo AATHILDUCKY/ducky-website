@@ -552,32 +552,32 @@ html[data-theme='light'] .reference-site.public-site[data-page='forum'][data-pag
   .forum-link-label > svg:last-child {
     color: var(--forum-muted);
   }
-  .forum-embed-load {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 18px;
-    min-height: 100px;
-    width: 100%;
-    border: 0;
-    border-top: 1px solid var(--forum-line);
-    background: linear-gradient(120deg, #302331, #20283b);
-    font-size: 14px;
-    color: #f2e2ee;
-  }
-  .forum-embed-load span {
-    margin-left: auto;
-    font-size: 11px;
-    opacity: 0.7;
-  }
-  .forum-link-card iframe {
-    display: block;
+  .forum-embed-player {
     width: 100%;
     max-width: 540px;
     height: 580px;
     margin-inline: auto;
+    background: #fff;
+  }
+  .forum-embed-video {
+    max-width: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    min-height: 200px;
+    background: #000;
+  }
+  .forum-embed-portrait {
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+  }
+  .forum-link-linkedin .forum-embed-player {
+    height: 620px;
+  }
+  .forum-embed-player iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
     border: 0;
-    background: white;
   }
   .forum-embed-note {
     padding: 12px 18px;

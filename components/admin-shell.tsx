@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import {
   Inbox,
+  ShoppingBag,
   LayoutDashboard,
   PanelsTopLeft,
   FileText,
@@ -39,6 +40,7 @@ export function AdminShell({
     ['/admin/homepage', 'Homepage', PanelsTopLeft],
     ['/admin/posts', 'Writeups', FileText],
     ['/admin/forum', 'Forum', MessagesSquare],
+    ['/admin/shop', 'Shop & orders', ShoppingBag],
     ['/admin/requests', 'Contact requests', Inbox],
     ['/admin/profile', 'My profile', UserRound],
     ['/admin/socials', 'Social links', Share2],

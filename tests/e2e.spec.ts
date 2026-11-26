@@ -35,14 +35,7 @@ test('public pages render server content, correct metadata, and mobile layouts',
   expect(html).toContain('Security Engineer.');
   expect(html).toContain('JWT Token Analyzer');
   expect(html).toContain('application/ld+json');
-  for (const route of [
-    '/about',
-    '/research',
-    '/tools',
-    '/blog',
-    '/contact',
-    '/blog/building-testing-always-learning',
-  ]) {
+  for (const route of ['/about', '/research', '/tools', '/blog', '/contact']) {
     const r = await request.get(route);
     expect(r.status(), route).toBe(200);
     expect(await r.text()).toContain('rel="canonical"');

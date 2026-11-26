@@ -1,5 +1,14 @@
 export const SITEMAP_SHARD_SIZE = 10000;
-export const publicPaths = ['', '/about', '/research', '/tools', '/blog', '/forum', '/contact'];
+export const publicPaths = [
+  '',
+  '/about',
+  '/research',
+  '/tools',
+  '/blog',
+  '/forum',
+  '/contact',
+  '/shop',
+];
 export function xmlEscape(value: string) {
   return value.replace(
     /[&<>"']/g,

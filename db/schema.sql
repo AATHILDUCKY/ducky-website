@@ -202,3 +202,30 @@ BEGIN
 END $$;
 DROP TRIGGER IF EXISTS forum_reply_counter_trigger ON forum_replies;
 CREATE TRIGGER forum_reply_counter_trigger AFTER INSERT OR DELETE OR UPDATE OF hidden,hidden_by_parent,post_id ON forum_replies FOR EACH ROW EXECUTE FUNCTION forum_reply_counter();
+
+-- Shop: money is stored in minor units; order items preserve purchase-time details.
+CREATE TABLE IF NOT EXISTS shop_products (
+ id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+ sitemap_id bigint GENERATED ALWAYS AS IDENTITY UNIQUE,
+ slug text NOT NULL UNIQUE, name text NOT NULL, description text NOT NULL,
+ category text NOT NULL DEFAULT 'Collection', price integer NOT NULL CHECK(price>0),
+ stock integer NOT NULL DEFAULT 0 CHECK(stock>=0),
+ images uuid[] NOT NULL DEFAULT '{}', status text NOT NULL DEFAULT 'draft' CHECK(status IN ('draft','published')),
+ seo_title text NOT NULL DEFAULT '', seo_description text NOT NULL DEFAULT '',
+ created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS shop_products_public_idx ON shop_products(created_at DESC) WHERE status='published';
+INSERT INTO settings(key,value) VALUES('shop','{"currency":"LKR","shipping":0,"payment":"manual","delivery":"We will contact you to confirm delivery.","returns":"Contact us before returning an item."}') ON CONFLICT DO NOTHING;
+CREATE TABLE IF NOT EXISTS shop_orders (
+ id uuid PRIMARY KEY DEFAULT gen_random_uuid(), number bigint GENERATED ALWAYS AS IDENTITY UNIQUE,
+ submission_id uuid NOT NULL UNIQUE, name text NOT NULL, email text NOT NULL, phone text NOT NULL,
+ address text NOT NULL, city text NOT NULL, postal_code text NOT NULL, country text NOT NULL,
+ notes text NOT NULL DEFAULT '', items jsonb NOT NULL, subtotal integer NOT NULL CHECK(subtotal>=0),
+ shipping integer NOT NULL CHECK(shipping>=0), currency text NOT NULL,
+ payment_method text NOT NULL, payment_status text NOT NULL DEFAULT 'unpaid' CHECK(payment_status IN ('unpaid','paid','refunded')),
+ status text NOT NULL DEFAULT 'new' CHECK(status IN ('new','confirmed','shipped','completed','cancelled')),
+ admin_note text NOT NULL DEFAULT '', tracking text NOT NULL DEFAULT '',
+ created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS shop_orders_status_idx ON shop_orders(status,created_at DESC);
+CREATE TABLE IF NOT EXISTS shop_order_limits(key text PRIMARY KEY, attempts integer NOT NULL DEFAULT 1, window_start timestamptz NOT NULL DEFAULT now());

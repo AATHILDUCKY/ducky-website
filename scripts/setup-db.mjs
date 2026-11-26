@@ -103,22 +103,11 @@ try {
       googleVerification: '',
     }),
   ]);
-  await db.query(
-    `INSERT INTO posts(slug,title,excerpt,content,category,tags,status,published_at) VALUES($1,$2,$3,$4,$5,$6,'published',now()) ON CONFLICT(slug) DO NOTHING`,
-    [
-      'building-testing-always-learning',
-      'Building. Testing. Always learning.',
-      'A little about the work I do, the tools I build, and what I’m learning along the way.',
-      '## A space for the process\n\nI’m Aathil Ahamed, a Security Engineer and Full-Stack Developer based in Sri Lanka. I work on penetration testing, identity and access security, and practical tools that make everyday work a little easier.\n\n## From building to testing\n\nMy background is in web development, backend systems, and integrations. At Welford Systems, I bring that experience into application security and IAM/IAG research. Understanding how a system is built helps me ask better questions about how it can fail.\n\n## Small tools, useful outcomes\n\nMy projects include Duck Leak Scanner, Subdomain Status Monitor, and Ducky Pwn Docs. They reflect the same idea: build something practical around a real problem.\n\n## What comes next\n\nI’m learning more about security architecture, cloud platform security, and engineering practices. This space is where I’ll share project notes and what I learn along the way.\n\n*This introduction was adapted from the biography on [my existing portfolio](https://aathilducky.com/about/). Future articles will appear here as I publish them.*',
-      'Personal',
-      ['Behind the work', 'Learning'],
-    ],
-  );
   await installReference(db);
   await installHomepage(db);
   await db.query('COMMIT');
   console.log(
-    'Database ready. Imported profile, source snapshots, and an introductory post. Existing content preserved.',
+    'Database ready. Profile and site configuration initialized. Existing posts preserved; no sample posts created.',
   );
 } catch (error) {
   await db.query('ROLLBACK');

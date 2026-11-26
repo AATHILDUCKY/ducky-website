@@ -6,16 +6,23 @@ import type { ForumImage } from './forum-types';
 import { forumPostPath } from './forum-slugs.mjs';
 export const getSitemapFiles = unstable_cache(
   async () => {
-    const [blog, forum] = await Promise.all([
+    const [blog, forum, products] = await Promise.all([
       pool.query(
         `SELECT ((sitemap_id-1)/${SITEMAP_SHARD_SIZE})::text AS bucket,max(updated_at) AS modified FROM posts WHERE status='published' AND published_at<=now() GROUP BY bucket ORDER BY bucket`,
       ),
       pool.query(
         `SELECT ((sitemap_id-1)/${SITEMAP_SHARD_SIZE})::text AS bucket,max(greatest(updated_at,discussion_updated_at)) AS modified FROM forum_posts WHERE status='published' GROUP BY bucket ORDER BY bucket`,
       ),
+      pool.query(
+        `SELECT ((sitemap_id-1)/${SITEMAP_SHARD_SIZE})::text AS bucket,max(updated_at) AS modified FROM shop_products WHERE status='published' GROUP BY bucket ORDER BY bucket`,
+      ),
     ]);
     return [
       { file: 'pages.xml', modified: null },
+      ...products.rows.map((row) => ({
+        file: `products-${row.bucket}.xml`,
+        modified: new Date(row.modified).toISOString(),
+      })),
       ...blog.rows.map((row) => ({
         file: `blog-${row.bucket}.xml`,
         modified: new Date(row.modified).toISOString(),
@@ -26,17 +33,32 @@ export const getSitemapFiles = unstable_cache(
       })),
     ];
   },
-  ['sitemap-manifest-v2-slugs'],
+  ['sitemap-manifest-v3-shop'],
   { tags: ['sitemaps', 'content'], revalidate: 300 },
 );
 // Cache shard responses at the HTTP layer; origin always reads current publication state.
 export async function getSitemapXml(file: string): Promise<string | null> {
   const base = siteUrl();
   if (file === 'pages.xml') return sitemapUrls(publicPaths.map((path) => ({ url: base + path })));
-  const match = /^(blog|forum)-(\d{1,9})\.xml$/.exec(file);
+  const match = /^(blog|forum|products)-(\d{1,9})\.xml$/.exec(file);
   if (!match) return null;
   const start = Number(match[2]) * SITEMAP_SHARD_SIZE + 1;
   const end = start + SITEMAP_SHARD_SIZE;
+  if (match[1] === 'products') {
+    const result = await pool.query(
+      "SELECT slug,updated_at,images FROM shop_products WHERE sitemap_id >= $1 AND sitemap_id < $2 AND status='published' ORDER BY sitemap_id",
+      [start, end],
+    );
+    return result.rows.length
+      ? sitemapUrls(
+          result.rows.map((row) => ({
+            url: `${base}/shop/${row.slug}`,
+            modified: row.updated_at,
+            images: row.images.map((id: string) => `${base}/media/${id}`),
+          })),
+        )
+      : null;
+  }
   if (match[1] === 'blog') {
     const result = await pool.query(
       "SELECT slug,updated_at,cover_id FROM posts WHERE sitemap_id >= $1 AND sitemap_id < $2 AND status='published' AND published_at<=now() ORDER BY sitemap_id",

@@ -370,6 +370,9 @@ test('only the owner can publish Markdown, optimized images, and social embeds; 
   page,
   browser,
 }) => {
+  await page.route('https://www.instagram.com/**', (route) =>
+    route.fulfill({ contentType: 'text/html', body: '<p>Instagram embed fixture</p>' }),
+  );
   await page.goto('/admin/login');
   await page.getByLabel('Username', { exact: true }).fill(process.env.ADMIN_USERNAME!);
   await page.getByLabel('Password', { exact: true }).fill(process.env.ADMIN_PASSWORD!);
@@ -390,7 +393,7 @@ test('only the owner can publish Markdown, optimized images, and social embeds; 
     .getByLabel('A link to share (optional)')
     .fill('https://www.instagram.com/reel/ABC_xyz/');
   await page.getByRole('button', { name: 'Preview', exact: true }).click();
-  await expect(page.locator('.forum-markdown-preview strong')).toHaveText('bold thought');
+  await expect(page.locator('.forum-markdown-preview .prose strong')).toHaveText('bold thought');
   await page.getByRole('button', { name: 'Write', exact: true }).click();
   const image = await sharp({
     create: { width: 1200, height: 800, channels: 3, background: '#e8a18b' },
@@ -430,7 +433,10 @@ test('only the owner can publish Markdown, optimized images, and social embeds; 
   );
   await expect(page.locator('.forum-link-github')).toContainText('vercel / next.js');
   await expect(page.locator('.forum-link-instagram')).toBeVisible();
-  await expect(page.locator('iframe')).toHaveCount(0);
+  await expect(page.locator('iframe[title="Embedded Instagram post"]')).toHaveAttribute(
+    'loading',
+    'lazy',
+  );
   const media = await page.request.get(upload.url);
   expect(media.headers()['content-type']).toBe('image/webp');
   expect((await media.body()).length).toBeLessThan(50000);
@@ -443,6 +449,9 @@ test('only the owner can publish Markdown, optimized images, and social embeds; 
   });
   expect(denied.headers()['x-action-redirect'] || denied.headers().location).toContain(
     '/admin/login',
+  );
+  await guest.route('https://www.instagram.com/**', (route) =>
+    route.fulfill({ contentType: 'text/html', body: '<p>Instagram embed fixture</p>' }),
   );
   await guest.goto(`/forum/${id}`);
   await expect(guest.getByRole('link', { name: /Edit / })).toHaveCount(0);
@@ -458,11 +467,8 @@ test('only the owner can publish Markdown, optimized images, and social embeds; 
       `discussion width ${width}`,
     ).toBeTruthy();
   }
-  // Verify lazy frame loading without depending on an external account or network.
-  await guest.route('https://www.instagram.com/**', (route) =>
-    route.fulfill({ contentType: 'text/html', body: '<p>Instagram embed fixture</p>' }),
-  );
-  await guest.getByRole('button', { name: /Load Instagram post/ }).click();
+  // Public posts render inline without requiring a separate load button.
+  await expect(guest.getByRole('button', { name: /Load Instagram post/ })).toHaveCount(0);
   await expect(guest.locator('iframe')).toHaveAttribute(
     'src',
     'https://www.instagram.com/reel/ABC_xyz/embed/',

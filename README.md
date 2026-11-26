@@ -14,7 +14,7 @@ npm start
 
 Open **http://localhost:3000** and **http://localhost:3000/admin**. This runs the full production application: public pages, admin studio, API routes, database-backed media, and static assets. No separate deployment script, asset-copy step, or API process is needed.
 
-`npm run build` loads your environment, checks PostgreSQL, applies the idempotent schema and seed setup while preserving existing content, and builds Next.js with one worker and a 1 GB Node heap limit. On a fresh checkout with no environment configuration, it creates a private `.env` with unique admin, database, and session credentials. Open `.env` locally to view the credentials; it is excluded from Git and served assets. `.env.example` documents the settings without secrets.
+`npm run build` loads your environment, checks PostgreSQL, applies the idempotent schema and initial site configuration while preserving existing content, and builds Next.js with one worker and a 1 GB Node heap limit. It never creates sample blog posts. On a fresh checkout with no environment configuration, it creates a private `.env` with unique admin, database, and session credentials. Open `.env` locally to view the credentials; it is excluded from Git and served assets. `.env.example` documents the settings without secrets.
 
 `npm start` checks the production build and database, restarts the project's local PostgreSQL cluster if necessary, and runs the standard Next.js production server with a 384 MB Node heap limit. It serves `public/` and `.next/static/` directly. It does not reinstall dependencies or rebuild. Stop it with Ctrl+C; the database remains running so your data stays available. Run `node scripts/stop-db.mjs` to stop only this project's database.
 
@@ -82,7 +82,7 @@ The landing page retains its saved content, configurable section order, images, 
 - **Overview:** real database counts, recent posts, and quick actions.
 - **Homepage:** a section-by-section editor for every homepage heading, paragraph, link, highlight, experience entry, tool, portrait, contact detail, and site-wide brand/navigation/footer. Add, remove, and reorder list items; hide and reorder whole sections. Preview the actual draft at desktop or mobile width before saving.
 - **Writeups:** search and filter drafts/published posts; create, edit, unpublish, or delete.
-- **Forum:** publish Markdown thoughts, images, GitHub links, and Instagram reels at `/forum`. Visitors can reply without accounts; only you can post. Manage posts under **Admin → Forum** and hide or restore replies on each discussion.
+- **Forum:** publish Markdown thoughts, images, GitHub links, and inline Instagram, YouTube, and LinkedIn posts at `/forum`. Visitors can reply without accounts; only you can post. Manage posts under **Admin → Forum** and hide or restore replies on each discussion.
 - **Writeup block editor:** Tiptap visual blocks, formatting toolbar, add-block menu, headings, lists, checklists, tables, quotes, dividers, images, block movement/removal, and undo/redo. Paste Markdown to render it automatically, or switch to Markdown source and Preview. Includes cover images, drag/drop and clipboard image upload, word count, read time, Ctrl/⌘+S, and recoverable local drafts. Explicit Save/Publish writes Markdown to PostgreSQL.
 - **Contact requests:** a private inbox with search, status filters, pagination, progress tracking, private notes, and email reply links. New request counts appear in the sidebar and overview.
 - **Profile:** update biography, portrait, contact details, toolkit, and experience entries.
@@ -110,7 +110,7 @@ Submissions use server validation, a database limit of five requests per email p
 
 ### Forum
 
-Open **/forum**. Your existing admin login reveals **New post** and edit controls. The composer supports Markdown, server-rendered preview, pasted/dropped images, up to four attachments with image descriptions, and draft visibility. The file picker, paste, and drop support iPhone HEIC/HEIF photos, including files with an empty MIME type. Uploaded images use the shared WebP optimizer and remain strictly below 50 KB. GitHub and Instagram links automatically become cards; Instagram content loads on demand and retains a direct link when embedding is unavailable.
+Open **/forum**. Your existing admin login reveals **New post** and edit controls. The composer supports Markdown, server-rendered preview, pasted/dropped images, up to four attachments with image descriptions, and draft visibility. The file picker, paste, and drop support iPhone HEIC/HEIF photos, including files with an empty MIME type. Uploaded images use the shared WebP optimizer and remain strictly below 50 KB. Public Instagram posts/reels, YouTube videos/Shorts, and LinkedIn posts render inline in the feed, discussion, and preview. Paste their URL in the content or share field, or paste provider iframe code in the share field; only its recognized URL is saved, and the supplied HTML is never executed. Frames load lazily without autoplay. YouTube uses its privacy-enhanced player; Shorts use a portrait layout. GitHub and other explicit links remain lightweight cards. Every embed retains a source link for private, deleted, or embedding-disabled content. LinkedIn shortened links must be replaced with the full post URL.
 
 The forum contains posts and compact controls, with no introduction, profile sidebar, or decorative footer. Readers can like, unlike, reply, and share without an account. A signed anonymous browser cookie remembers likes, and database uniqueness prevents duplicate delivery from adding extra reactions. Publishing remains admin-only.
 
@@ -200,7 +200,7 @@ References: [responsive ad sizes](https://support.google.com/adsense/answer/9183
 
 Profile, experience, skills, public contact links, and all ten projects were researched from [aathilducky.com](https://aathilducky.com/), its [about](https://aathilducky.com/about/), [projects](https://aathilducky.com/projects/), and [contact](https://aathilducky.com/contact/) pages on November 10, 2026. The portrait comes from the GitHub avatar linked on that website. A readable source snapshot is in `db/source-snapshot.json` and is also imported into PostgreSQL.
 
-The introductory post is an adaptation of the existing biography, with attribution inside the article. No technical findings, testimonials, traffic numbers, or research articles were invented.
+Database setup and `npm run build` never create sample blog posts. A fresh installation starts with an empty blog, and deleted articles stay deleted across builds. Existing articles from earlier installations are preserved and can be removed through Admin → Writeups. The regression check `node --env-file=.env --import tsx --test tests/setup-db.integration.ts` verifies this in an isolated temporary database; it needs a local database role with permission to create databases and removes its test database afterward.
 
 ## Back up and restore
 

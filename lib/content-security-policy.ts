@@ -7,7 +7,7 @@ export function contentSecurityPolicy(development: boolean) {
     "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com",
     "font-src 'self'",
     "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com",
-    "frame-src 'self' https://www.instagram.com",
+    "frame-src 'self' https://www.instagram.com https://www.youtube-nocookie.com https://www.linkedin.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",

@@ -36,7 +36,7 @@ test('both environments allow Analytics while retaining forms and framing restri
       "default-src 'self'",
       "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com",
       "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com",
-      "frame-src 'self' https://www.instagram.com",
+      "frame-src 'self' https://www.instagram.com https://www.youtube-nocookie.com https://www.linkedin.com",
       "form-action 'self'",
       "frame-ancestors 'none'",
     ])
@@ -48,6 +48,8 @@ test('both environments allow Analytics while retaining forms and framing restri
       'https://*.google-analytics.com',
       'https://*.google.com',
       'https://www.instagram.com',
+      'https://www.youtube-nocookie.com',
+      'https://www.linkedin.com',
     ]);
     for (const source of policy.split(/[;\s]+/)) {
       if (source.startsWith('https:')) assert.ok(allowedOrigins.has(source));

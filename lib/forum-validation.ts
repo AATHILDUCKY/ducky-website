@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { safeForumUrl } from './forum-links';
+import { normalizeForumLinkInput, safeForumUrl } from './forum-links';
 
 export const forumImageSchema = z.object({
   id: z.uuid(),
@@ -16,6 +16,7 @@ export const forumPostSchema = z.object({
     .string()
     .trim()
     .max(2000)
+    .transform(normalizeForumLinkInput)
     .refine((v) => !v || safeForumUrl(v), 'Use a complete http or https link.'),
   images: z.array(forumImageSchema).max(4),
   status: z.enum(['published', 'draft']),

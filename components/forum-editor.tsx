@@ -5,10 +5,12 @@ import { saveForumPost } from '@/app/forum-actions';
 import { previewForumPost } from '@/app/forum-render-actions';
 import type { ForumImage, ForumPost } from '@/lib/forum-types';
 import { IMAGE_ACCEPT, isImageFile, MAX_IMAGE_BYTES } from '@/lib/image-upload';
+import { normalizeForumLinkInput } from '@/lib/forum-links';
 
 export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
   const [state, action, pending] = useActionState(saveForumPost, {});
   const [content, setContent] = useState(post?.content || '');
+  const [linkUrl, setLinkUrl] = useState(post?.link_url || '');
   const [images, setImages] = useState<ForumImage[]>(post?.images || []);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
@@ -111,7 +113,7 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
           onClick={() =>
             startPreview(async () => {
               try {
-                setPreview(await previewForumPost(content));
+                setPreview(await previewForumPost(content, linkUrl));
               } catch {
                 setError('Preview could not load. Please try again.');
               }
@@ -167,7 +169,7 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
           }}
           hidden={preview !== null}
           placeholder={
-            'Share a thought, a useful find, or something you’re working on…\n\nPaste a GitHub or Instagram link and it becomes a card.'
+            'Share a thought, a useful find, or something you’re working on…\n\nPaste an Instagram, YouTube, or LinkedIn post URL to embed it. GitHub links become cards.'
           }
           onPaste={(event) => {
             const files = [...event.clipboardData.files].filter(isImageFile);
@@ -183,12 +185,23 @@ export function ForumEditor({ id, post }: { id: string; post?: ForumPost }) {
         A link to share <span className="forum-optional">(optional)</span>
         <input
           name="link_url"
-          type="url"
+          type="text"
           maxLength={2000}
-          defaultValue={post?.link_url}
-          placeholder="GitHub, Instagram reel, or any useful link"
+          value={linkUrl}
+          onChange={(event) => {
+            setLinkUrl(event.target.value);
+            setPreview(null);
+          }}
+          onBlur={() => setLinkUrl(normalizeForumLinkInput(linkUrl))}
+          placeholder="Post URL or copied iframe embed code"
+          aria-describedby="forum-link-hint"
         />
       </label>
+      <p className="forum-composer-hint" id="forum-link-hint">
+        Public Instagram posts and reels, YouTube videos and Shorts, and LinkedIn posts display
+        inline. Use the full post URL or the provider’s iframe embed code. Other links appear as
+        cards.
+      </p>
       <input
         ref={fileInput}
         type="file"

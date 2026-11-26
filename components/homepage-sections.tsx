@@ -212,6 +212,11 @@ export function HomepageSections({
                       </p>
                       <LearningNote label={s.learningLabel} text={s.learningText} />
                       <div className="hero-actions flex flex-wrap items-center gap-3">
+                        {!s.buttons.some((button) => button.href === '/shop') && (
+                          <a className="button button-primary" href="/shop">
+                            Visit the shop
+                          </a>
+                        )}
                         {s.buttons.map((button) => (
                           <a
                             key={button.id}

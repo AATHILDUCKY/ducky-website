@@ -142,14 +142,7 @@ test('a script failure hides the empty placement', async ({ page }) => {
 });
 
 test('all public content routes remain usable with the ad policy', async ({ page }) => {
-  for (const path of [
-    '/tools',
-    '/contact',
-    '/research',
-    '/blog',
-    '/blog/building-testing-always-learning',
-    '/forum',
-  ]) {
+  for (const path of ['/tools', '/contact', '/research', '/blog', '/forum']) {
     const response = await page.goto(path);
     expect(response?.status(), path).toBe(200);
     await expect(page.locator('main h1').first()).toBeVisible();
