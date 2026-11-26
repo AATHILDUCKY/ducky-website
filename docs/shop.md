@@ -1,6 +1,6 @@
 # Shop operations
 
-The storefront is `/shop`. The protected management area is `/admin/shop` (Shop & orders in the sidebar).
+The storefront is `/shop`. Product and shop settings are at `/admin/shop` (**Products & shop** in the sidebar). Orders have a separate protected workspace at `/admin/orders` (**Orders**). Old `/admin/shop/orders` links redirect to the new workspace.
 
 ## Add and publish products
 
@@ -21,11 +21,17 @@ Orders are saved transactionally in PostgreSQL; the server checks current price,
 
 After a saved order, customers see a DK order reference. They are told the owner will contact them; no email/SMS is automatically sent. Check **Manage orders** regularly and contact the customer using the recorded details to arrange payment and delivery.
 
-Search orders by name, email or numeric reference and filter by status. Open an order to update fulfilment status, record payment, add tracking details and keep a private note. Cancellation restores stock once and is final. Recording a refund does not move money; arrange and verify the refund separately.
+Search orders by name, email, phone or a DK reference. Use fulfilment tabs, payment filters and newest/oldest sorting. The list fetches only summary fields in pages of 25; complete order details are loaded when an order is opened. Open an order to update fulfilment status, record payment, add tracking details and keep a private note. Concurrent edits are rejected when an order has changed in another tab; refresh and review the latest details before saving. Cancellation restores stock once and is final. Recording a refund does not move money; arrange and verify the refund separately.
 
-## Receipts
+## Receipts, invoices and shipping documents
 
-Open any order and choose **Print receipt / Save PDF**. Browser printing supports A4 paper and Save as PDF. The receipt includes your profile name/email, order reference/date, customer/delivery information, purchase-time item details, quantities, subtotal, delivery, currency, total and recorded payment status. Admin navigation, internal notes and editing controls are omitted from print. Receipts remain accessible only through the authenticated dashboard.
+Each order has three document cards. **View & print** opens a document with A4 print controls. **PDF** downloads an actual PDF directly, generated on demand by the Node server without launching a browser or adding PDF code to the storefront bundle.
+
+- **Order receipt:** acknowledges the order and records its current payment status. It does not claim that an unpaid order has been paid.
+- **Invoice:** includes the seller profile name/email, customer and delivery details, invoice/order reference, purchase-time items, quantities, prices, delivery charge, total and amount due. Cancelled, paid and refunded orders show no amount due. No tax or due date is invented.
+- **Shipping invoice:** a packing and dispatch document with delivery address, contact details, tracking reference, items/quantities, total units and handover lines. Item prices are excluded; an unpaid cash-on-delivery order shows the amount to collect. Cancelled orders are marked clearly.
+
+Documents use the saved order data. Admin navigation, private internal notes and editing controls are omitted from print and downloads. Every PDF request checks admin authentication, validates the order/type, and returns private `no-store` and `noindex` headers. PDFs embed a subset of a bundled DejaVu Sans font (license in `assets/fonts/DejaVuSans-LICENSE.txt`); no remote font or document service is needed. Sending a downloaded document to a customer remains a manual action.
 
 ## Deployment and Google discovery
 

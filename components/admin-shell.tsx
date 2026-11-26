@@ -5,6 +5,7 @@ import { useState } from 'react';
 import {
   Inbox,
   ShoppingBag,
+  ClipboardList,
   LayoutDashboard,
   PanelsTopLeft,
   FileText,
@@ -40,7 +41,8 @@ export function AdminShell({
     ['/admin/homepage', 'Homepage', PanelsTopLeft],
     ['/admin/posts', 'Writeups', FileText],
     ['/admin/forum', 'Forum', MessagesSquare],
-    ['/admin/shop', 'Shop & orders', ShoppingBag],
+    ['/admin/shop', 'Products & shop', ShoppingBag],
+    ['/admin/orders', 'Orders', ClipboardList],
     ['/admin/requests', 'Contact requests', Inbox],
     ['/admin/profile', 'My profile', UserRound],
     ['/admin/socials', 'Social links', Share2],

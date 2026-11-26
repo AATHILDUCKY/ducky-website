@@ -1,9 +1,9 @@
 'use client';
 import { startTransition, useActionState, useState } from 'react';
 import Link from 'next/link';
-import { saveProduct, saveShopSettings, updateOrder } from '@/app/admin/shop-actions';
+import { saveProduct, saveShopSettings } from '@/app/admin/shop-actions';
 import { IMAGE_ACCEPT } from '@/lib/image-upload';
-import type { Product, Order, ShopSettings, ShopState } from '@/lib/shop-types';
+import type { Product, ShopSettings, ShopState } from '@/lib/shop-types';
 function Feedback({ state }: { state: ShopState }) {
   return (
     <>
@@ -289,63 +289,5 @@ export function ShopSettingsForm({ settings: s }: { settings: ShopSettings }) {
         Save settings
       </button>
     </form>
-  );
-}
-export function OrderForm({ order: o }: { order: Order }) {
-  const [state, action, pending] = useActionState(updateOrder, {});
-  return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        const form = new FormData(event.currentTarget);
-        startTransition(() => action(form));
-      }}
-      className="shop-form shop-order-controls"
-    >
-      <input type="hidden" name="id" value={o.id} />
-      <div className="shop-fields">
-        <label>
-          Order status
-          <select name="status" defaultValue={o.status}>
-            {['new', 'confirmed', 'shipped', 'completed', 'cancelled'].map((s) => (
-              <option key={s} disabled={o.status === 'cancelled' && s !== 'cancelled'}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Payment status
-          <select name="payment_status" defaultValue={o.payment_status}>
-            {['unpaid', 'paid', 'refunded'].map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <label>
-        Tracking number / delivery reference
-        <input name="tracking" maxLength={300} defaultValue={o.tracking} />
-      </label>
-      <label>
-        Internal note
-        <textarea name="admin_note" maxLength={2000} defaultValue={o.admin_note} />
-      </label>
-      <p>
-        Cancelling restores stock once. Cancelled orders cannot be reopened. Refunds must be
-        arranged separately; changing payment status records the result.
-      </p>
-      <Feedback state={state} />
-      <button className="shop-button" disabled={pending}>
-        {pending ? 'Saving…' : 'Update order'}
-      </button>
-    </form>
-  );
-}
-export function PrintReceipt() {
-  return (
-    <button className="shop-button shop-print-button" onClick={() => window.print()}>
-      Print receipt / Save PDF
-    </button>
   );
 }

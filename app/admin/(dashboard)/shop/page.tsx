@@ -5,11 +5,8 @@ import { money, type Product } from '@/lib/shop-types';
 import { ShopSettingsForm } from '@/components/shop-admin-forms';
 export const metadata = { title: 'Shop management' };
 export default async function ShopAdmin() {
-  const [products, stats, s] = await Promise.all([
+  const [products, s] = await Promise.all([
     pool.query<Product>('SELECT * FROM shop_products ORDER BY created_at DESC'),
-    pool.query(
-      "SELECT count(*)::int AS total,count(*) FILTER(WHERE status='new')::int AS new,count(*) FILTER(WHERE status IN ('confirmed','shipped'))::int AS active FROM shop_orders",
-    ),
     getShopSettings(),
   ]);
   return (
@@ -18,27 +15,15 @@ export default async function ShopAdmin() {
         <div>
           <p className="shop-kicker">YOUR STORE</p>
           <h1>Shop management</h1>
-          <p>Products, orders and the details that make your shop yours.</p>
+          <p>Your product collection, stock and storefront settings.</p>
         </div>
         <Link className="shop-button" href="/admin/shop/products/new">
           Add product
         </Link>
       </div>
-      <div className="shop-admin-stats">
-        <Link href="/admin/shop/orders">
-          <strong>{stats.rows[0].new}</strong> New orders
-        </Link>
-        <Link href="/admin/shop/orders">
-          <strong>{stats.rows[0].active}</strong> In progress
-        </Link>
-        <Link href="/admin/shop/orders">
-          <strong>{stats.rows[0].total}</strong> All orders
-        </Link>
-        <Link href="/shop">View storefront</Link>
-      </div>
       <div className="shop-section-title">
         <h2>Your products</h2>
-        <Link href="/admin/shop/orders">Manage orders</Link>
+        <Link href="/admin/orders">Manage orders</Link>
       </div>
       <div className="shop-table-wrap">
         <table className="shop-table">

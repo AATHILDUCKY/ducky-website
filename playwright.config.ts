@@ -5,6 +5,7 @@ export default defineConfig({
     'e2e.spec.ts',
     'contact.e2e.ts',
     'shop.e2e.ts',
+    'orders.e2e.ts',
     'forum.e2e.ts',
     'forum-threads.e2e.ts',
     'forum-embeds.e2e.ts',

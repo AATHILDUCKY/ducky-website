@@ -121,6 +121,6 @@ export async function placeOrder(_: ShopState, form: FormData): Promise<ShopStat
     client.release();
   }
   revalidatePath('/shop', 'layout');
-  revalidatePath('/admin/shop', 'layout');
+  revalidatePath('/admin/orders', 'layout');
   return result;
 }

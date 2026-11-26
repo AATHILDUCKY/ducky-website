@@ -2,9 +2,11 @@ import type { NextConfig } from 'next';
 import { contentSecurityPolicy } from './lib/content-security-policy';
 const config: NextConfig = {
   outputFileTracingIncludes: {
+    '/admin/orders/*/documents/*/download': ['./assets/fonts/DejaVuSans-orders.ttf'],
     '/opengraph-image': ['./assets/fonts/JetBrainsMono-social.ttf'],
     '/api/upload': ['./scripts/decode-heif.cjs', './node_modules/libheif-js/**/*'],
   },
+  serverExternalPackages: ['pdfkit'],
   poweredByHeader: false,
   cacheMaxMemorySize: 10 * 1024 * 1024,
   experimental: { cpus: 1, serverActions: { bodySizeLimit: '512kb' } },

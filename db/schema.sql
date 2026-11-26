@@ -229,3 +229,7 @@ CREATE TABLE IF NOT EXISTS shop_orders (
 );
 CREATE INDEX IF NOT EXISTS shop_orders_status_idx ON shop_orders(status,created_at DESC);
 CREATE TABLE IF NOT EXISTS shop_order_limits(key text PRIMARY KEY, attempts integer NOT NULL DEFAULT 1, window_start timestamptz NOT NULL DEFAULT now());
+
+-- Stable ordering supports small, indexed order-management pages.
+CREATE INDEX IF NOT EXISTS shop_orders_created_id_idx ON shop_orders(created_at DESC,id DESC);
+CREATE INDEX IF NOT EXISTS shop_orders_payment_idx ON shop_orders(payment_status,created_at DESC,id DESC);

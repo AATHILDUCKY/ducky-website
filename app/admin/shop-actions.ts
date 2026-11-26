@@ -5,7 +5,7 @@ import { revalidatePath, updateTag } from 'next/cache';
 import { pool } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth';
 import { productSchema, shopSettingsSchema } from '@/lib/shop-validation';
-import type { OrderItem, ShopState } from '@/lib/shop-types';
+import type { ShopState } from '@/lib/shop-types';
 function invalidate() {
   updateTag('sitemaps');
   revalidatePath('/shop', 'layout');
@@ -83,48 +83,6 @@ export async function saveShopSettings(_: ShopState, form: FormData): Promise<Sh
   await pool.query("UPDATE settings SET value=$1,updated_at=now() WHERE key='shop'", [
     JSON.stringify(p.data),
   ]);
-  invalidate();
-  return { success: true };
-}
-export async function updateOrder(_: ShopState, form: FormData): Promise<ShopState> {
-  await requireAdmin();
-  const p = z
-    .object({
-      id: z.uuid(),
-      status: z.enum(['new', 'confirmed', 'shipped', 'completed', 'cancelled']),
-      payment_status: z.enum(['unpaid', 'paid', 'refunded']),
-      admin_note: z.string().max(2000),
-      tracking: z.string().max(300),
-    })
-    .safeParse(Object.fromEntries(form));
-  if (!p.success) return { error: 'Please check the order fields.' };
-  const v = p.data;
-  const client = await pool.connect();
-  try {
-    await client.query('BEGIN');
-    const order = (await client.query('SELECT * FROM shop_orders WHERE id=$1 FOR UPDATE', [v.id]))
-      .rows[0];
-    if (!order) throw new Error('Order not found.');
-    if (order.status === 'cancelled' && v.status !== 'cancelled')
-      throw new Error('Cancelled orders cannot be reopened. Create a new order instead.');
-    if (v.status === 'cancelled' && order.status !== 'cancelled') {
-      for (const i of [...(order.items as OrderItem[])].sort((a, b) => a.id.localeCompare(b.id)))
-        await client.query('UPDATE shop_products SET stock=stock+$2,updated_at=now() WHERE id=$1', [
-          i.id,
-          i.quantity,
-        ]);
-    }
-    await client.query(
-      'UPDATE shop_orders SET status=$2,payment_status=$3,admin_note=$4,tracking=$5,updated_at=now() WHERE id=$1',
-      [v.id, v.status, v.payment_status, v.admin_note, v.tracking],
-    );
-    await client.query('COMMIT');
-  } catch (e) {
-    await client.query('ROLLBACK');
-    return { error: (e as Error).message };
-  } finally {
-    client.release();
-  }
   invalidate();
   return { success: true };
 }
