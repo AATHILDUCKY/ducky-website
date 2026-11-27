@@ -1,9 +1,8 @@
 'use client';
 
-import Script from 'next/script';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { ADSENSE_CLIENT, ADSENSE_SCRIPT_URL, adSlotId, isAdPage } from '@/lib/adsense';
+import { ADSENSE_CLIENT, adSlotId, isAdPage } from '@/lib/adsense';
 
 declare global {
   interface Window {
@@ -11,24 +10,20 @@ declare global {
   }
 }
 
-export function DisplayAd() {
+export function DisplayAd({ ready, failed }: { ready: boolean; failed: boolean }) {
   const pathname = usePathname();
   const slot = adSlotId(process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_SLOT);
   if (!slot || !isAdPage(pathname)) return null;
-  return <AdPlacement key={pathname} slot={slot} />;
+  return <AdPlacement key={pathname} slot={slot} ready={ready} failed={failed} />;
 }
 
-function AdPlacement({ slot }: { slot: string }) {
+function AdPlacement({ slot, ready, failed }: { slot: string; ready: boolean; failed: boolean }) {
   const unit = useRef<HTMLModElement>(null);
   const requested = useRef(false);
   const [nearby, setNearby] = useState(false);
-  const [ready, setReady] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
-  const [nonce, setNonce] = useState<string>();
 
   useEffect(() => {
-    // Keep the document's nonce across client navigations; RSC responses have fresh nonces.
-    setNonce(document.querySelector<HTMLScriptElement>('script[nonce]')?.nonce);
     const element = unit.current;
     if (!element) return;
     if (!('IntersectionObserver' in window)) {
@@ -50,7 +45,7 @@ function AdPlacement({ slot }: { slot: string }) {
 
   useEffect(() => {
     const element = unit.current;
-    if (!nearby || !ready || !element || requested.current) return;
+    if (!nearby || !ready || failed || !element || requested.current) return;
     // AdSense must see a visible, sized unit, and each element may be requested only once.
     const request = () => {
       if (!element.isConnected || element.getBoundingClientRect().width <= 0) return;
@@ -67,7 +62,7 @@ function AdPlacement({ slot }: { slot: string }) {
     observer.observe(element);
     request();
     return () => observer.disconnect();
-  }, [nearby, ready]);
+  }, [nearby, ready, failed]);
 
   useEffect(() => {
     const element = unit.current;
@@ -80,7 +75,7 @@ function AdPlacement({ slot }: { slot: string }) {
   }, []);
 
   return (
-    <aside className="display-ad" aria-label="Advertisement" hidden={unavailable}>
+    <aside className="display-ad" aria-label="Advertisement" hidden={unavailable || failed}>
       <span className="display-ad-label">Advertisement</span>
       <div className="display-ad-space">
         <ins
@@ -91,17 +86,6 @@ function AdPlacement({ slot }: { slot: string }) {
           data-ad-slot={slot}
         />
       </div>
-      {nearby && (
-        <Script
-          id="google-adsense"
-          src={ADSENSE_SCRIPT_URL}
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-          nonce={nonce}
-          onReady={() => setReady(true)}
-          onError={() => setUnavailable(true)}
-        />
-      )}
     </aside>
   );
 }

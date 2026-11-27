@@ -2,23 +2,21 @@
 
 import { usePathname } from 'next/navigation';
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { adSlotId, isAdPage } from '@/lib/adsense';
+import { isAdPage } from '@/lib/adsense';
 
 export function AdSenseNavigationGuard() {
   const pathname = usePathname();
-  const enabled = !!adSlotId(process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_SLOT);
   const initialAdPage = useRef(isAdPage(pathname));
 
   useLayoutEffect(() => {
     // The two page types have different CSPs. Use a fresh document across that boundary,
     // including browser Back/Forward, so home cannot inherit vendor code or overlays.
-    if (enabled && initialAdPage.current !== isAdPage(pathname)) {
+    if (initialAdPage.current !== isAdPage(pathname)) {
       window.location.reload();
     }
-  }, [enabled, pathname]);
+  }, [pathname]);
 
   useEffect(() => {
-    if (!enabled) return;
     const navigate = (event: MouseEvent) => {
       if (
         event.defaultPrevented ||
@@ -45,7 +43,7 @@ export function AdSenseNavigationGuard() {
     };
     document.addEventListener('click', navigate, true);
     return () => document.removeEventListener('click', navigate, true);
-  }, [enabled]);
+  }, []);
 
   return null;
 }

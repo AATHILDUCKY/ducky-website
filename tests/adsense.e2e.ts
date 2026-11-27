@@ -1,9 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.skip(
-  !/^\d+$/.test(process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_SLOT || ''),
-  'Set an ad slot in the test server build environment.',
-);
+const hasDisplaySlot = /^\d+$/.test(process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_SLOT || '');
 
 const adStub = `
   window.adsbygoogle = { push() {
@@ -77,9 +74,23 @@ test('ad pages use fresh nonces and load analytics and vendor descendants', asyn
   expect(nonce).toBeTruthy();
   expect(await first.text()).toContain('nonce="' + nonce + '"');
   await page.goto('/about');
-  await page.locator('.display-ad').scrollIntoViewIfNeeded();
-  await expect(page.locator('html')).toHaveAttribute('data-ad-requests', '1');
   await expect(page.locator('html')).toHaveAttribute('data-ad-child-loaded', 'true');
+  const script = page.locator('#google-adsense');
+  await expect(script).toHaveCount(1);
+  await expect(script).toHaveAttribute(
+    'src',
+    'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6405478732026557',
+  );
+  await expect(script).toHaveAttribute('async', '');
+  await expect(script).toHaveAttribute('crossorigin', 'anonymous');
+  const documentNonce = await page.evaluate(
+    () => document.querySelector<HTMLScriptElement>('script[nonce]')?.nonce,
+  );
+  expect(await script.evaluate((element: HTMLScriptElement) => element.nonce)).toBe(documentNonce);
+  if (!hasDisplaySlot) {
+    await expect(page.locator('ins.adsbygoogle')).toHaveCount(0);
+    await expect(page.locator('html')).not.toHaveAttribute('data-ad-requests');
+  }
   await expect(page.locator('#google-analytics-init')).toBeAttached();
   expect(
     await page
@@ -89,6 +100,7 @@ test('ad pages use fresh nonces and load analytics and vendor descendants', asyn
 });
 
 test('one responsive ad fits narrow, phone, tablet, and desktop viewports', async ({ page }) => {
+  test.skip(!hasDisplaySlot, 'Set a display slot in the test server build environment.');
   for (const [width, height] of [
     [320, 100],
     [390, 100],
@@ -115,6 +127,7 @@ test('one responsive ad fits narrow, phone, tablet, and desktop viewports', asyn
 test('navigation preserves ad lifecycle and returning home removes vendor code', async ({
   page,
 }) => {
+  test.skip(!hasDisplaySlot, 'Set a display slot in the test server build environment.');
   await page.goto('/about');
   await page.locator('.display-ad').scrollIntoViewIfNeeded();
   await expect(page.locator('html')).toHaveAttribute('data-ad-requests', '1');
@@ -135,9 +148,9 @@ test('navigation preserves ad lifecycle and returning home removes vendor code',
 });
 
 test('a script failure hides the empty placement', async ({ page }) => {
+  test.skip(!hasDisplaySlot, 'Set a display slot in the test server build environment.');
   await page.route('**/pagead/js/adsbygoogle.js?*', (route) => route.abort());
   await page.goto('/about');
-  await page.locator('.display-ad').scrollIntoViewIfNeeded();
   await expect(page.locator('.display-ad')).toBeHidden();
 });
 
@@ -162,6 +175,7 @@ test('all public content routes remain usable with the ad policy', async ({ page
 });
 
 test('unfilled ads collapse and browser Back cannot carry ads home', async ({ page }) => {
+  test.skip(!hasDisplaySlot, 'Set a display slot in the test server build environment.');
   await page.goto('/');
   await expect(page.locator('.signature-avatar')).toBeVisible();
   await page.locator('.desktop-nav a[href="/about"]').click();
@@ -175,4 +189,27 @@ test('unfilled ads collapse and browser Back cannot carry ads home', async ({ pa
   await expect(page).toHaveURL(/\/$/);
   await expect(page.locator('.signature-avatar')).toBeVisible();
   await expect(page.locator('#google-adsense')).toHaveCount(0);
+});
+
+test('publisher script stays deduplicated across content pages and leaves with the document', async ({
+  page,
+}) => {
+  let scriptRequests = 0;
+  page.on('request', (request) => {
+    if (request.url().startsWith('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?'))
+      scriptRequests += 1;
+  });
+  await page.goto('/about');
+  await expect(page.locator('html')).toHaveAttribute('data-ad-child-loaded', 'true');
+  await page.locator('.desktop-nav a[href="/tools"]').click();
+  await expect(page).toHaveURL(/\/tools$/);
+  await expect(page.locator('#google-adsense')).toHaveCount(1);
+  expect(scriptRequests).toBe(1);
+  await page.locator('.site-header a.brand').click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.locator('.signature-avatar')).toBeVisible();
+  await expect(page.locator('#google-adsense')).toHaveCount(0);
+  await page.goBack();
+  await expect(page).toHaveURL(/\/tools$/);
+  await expect(page.locator('#google-adsense')).toHaveCount(1);
 });

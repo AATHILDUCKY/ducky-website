@@ -1,14 +1,10 @@
 import { randomBytes } from 'node:crypto';
 import { NextResponse, type NextRequest } from 'next/server';
-import { adSlotId, isAdPage } from './lib/adsense';
+import { isAdPage } from './lib/adsense';
 import { adsenseContentSecurityPolicy } from './lib/content-security-policy';
 
 export function proxy(request: NextRequest) {
-  if (
-    !adSlotId(process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_SLOT) ||
-    !isAdPage(request.nextUrl.pathname)
-  )
-    return NextResponse.next();
+  if (!isAdPage(request.nextUrl.pathname)) return NextResponse.next();
 
   const nonce = randomBytes(16).toString('base64');
   const policy = adsenseContentSecurityPolicy(process.env.NODE_ENV === 'development', nonce);

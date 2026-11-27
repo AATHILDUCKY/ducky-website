@@ -180,15 +180,15 @@ Official references researched for the implementation:
 
 ## Google AdSense
 
-Publisher `ca-pub-6405478732026557` is configured, including the account-verification meta tag and `/ads.txt`. Create a **responsive display** ad unit in AdSense, then set its numeric `data-ad-slot` in `.env` or the build environment:
+Publisher `ca-pub-6405478732026557` is configured, including the account-verification meta tag and `/ads.txt`. The asynchronous AdSense script loads once after hydration on eligible content pages, independently of manual ad-slot configuration. To enable the existing manual placements, create a **responsive display** ad unit in AdSense, then set its numeric `data-ad-slot` in `.env` or the build environment:
 
 ```dotenv
 NEXT_PUBLIC_ADSENSE_DISPLAY_SLOT=YOUR_NUMERIC_SLOT_ID
 ```
 
-Rebuild and restart after setting this value. Leaving it empty disables both ad placements and AdSense script requests; no placeholder or sample slot is sent to Google.
+Rebuild and restart after setting this value. Leaving it empty disables manual placements; the publisher script still loads. No placeholder or sample slot is sent to Google.
 
-Each eligible public page has one labeled placement at a natural content break, away from navigation and form controls. Sizes are 320×100 on phones (shrinking to the available width on narrow screens), 468×60 on tablets, and 728×90 on desktop. Space is reserved before loading. The script loads only when a placement approaches the viewport; unfilled ads or script failures collapse the placement. Ads never auto-refresh.
+When a slot is configured, each eligible public page has one labeled placement at a natural content break, away from navigation and form controls. Sizes are 320×100 on phones (shrinking to the available width on narrow screens), 468×60 on tablets, and 728×90 on desktop. Space is reserved before loading. Manual ad requests wait until a placement approaches the viewport; unfilled ads or script failures collapse the placement. Manual ads never auto-refresh.
 
 The home page, admin, editors, previews, error pages, and empty feeds have no placements. Crossing between ad pages and excluded pages uses a full document navigation so the home page never inherits the ad library. Ad pages use a fresh nonce and Google's supported strict CSP; their HTML renders per request while database content retains its existing cache. The home page retains its existing rendering strategy and security policy.
 
